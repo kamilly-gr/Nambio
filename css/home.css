@@ -1,0 +1,59 @@
+/* Configuração automática */
+* {
+    margin: 0 auto;
+    padding: 0 auto;
+    font-family: 'Poppins';
+} 
+
+/* Cor de fundo de todo o site */
+body {
+    background-color: #D0DBE8;
+}
+
+/* Cabeçalho/Menu */
+header {
+    background-color: #ED6D00;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    padding: 10px;
+
+}
+
+/* Tirar pontos das partes da lista não ordenada e organizar elas um do lado da outra */
+.links ul {
+    display: flex;
+    padding: 10px;
+    list-style: none;
+}
+
+/* Links das outras páginas */
+.links ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    padding: 0px 30px;
+    font-size: 19px;
+
+    &:hover {
+        font-weight: 600;
+    }
+}
+
+
+
+button {
+    background-color: #37B1DA;
+    color: black;
+    border-radius: 20px;
+    width: 147px;
+    height: 32px;
+    align-items: center;
+    text-align: center;
+    border: none;
+}
+
+header h1 {
+    align-items: center;
+    height: 37px;
+}
