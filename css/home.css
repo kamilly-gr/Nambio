@@ -51,9 +51,30 @@ button {
     align-items: center;
     text-align: center;
     border: none;
+
+    &:hover{
+        background-color: #2f94b6;
+        cursor: pointer;
+    }
+
+    &:active{
+        transition: none;
+        background-color: #267995;
+        color: white;
+        width: 140px;
+        height: 29px;
+    }
 }
 
 header h1 {
     align-items: center;
     height: 37px;
+}
+
+/* Footer */
+footer {
+    background-color: #ED6D00;
+    color: white;
+    padding: 50px;
+    
 }
