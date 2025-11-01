@@ -17,14 +17,12 @@ header {
     justify-content: space-between;
     width: 100%;
     align-items: center;
-    padding: 10px;
-
 }
 
 /* Tirar pontos das partes da lista não ordenada e organizar elas um do lado da outra */
 .links ul {
     display: flex;
-    padding: 10px;
+    padding: 20px;
     list-style: none;
 }
 
@@ -77,4 +75,18 @@ footer {
     color: white;
     padding: 50px;
     
+}
+
+/* Banner com frase de efeito do site */
+
+.cristo {
+    background-image: url(/Nambio/assets/images/image\ 1.png);
+    display: flex;
+    height: 538.59px;
+    width: 1100x;
+
+}
+
+.cristo img {
+    height: 50px;
 }
