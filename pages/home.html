@@ -9,7 +9,7 @@
     <title>Nâmbio</title>
     <link rel="icon" href="/Nambio/assets/icons/logo.svg" type="image/x-icon">
     <link rel="stylesheet" href="/Nambio/css/global.css">
-    <script src="/Nambio/js/script.js"></script>
+    <script src="/Nambio/js/home.js" defer></script>
 </head>
 
 <body>
@@ -38,14 +38,67 @@
 
     <!-- Banner com frase de efeito do site  -->
     <banner class="cristo">
-        <img src="/Nambio/assets/images/arara blue.png" alt="Arara Azul">
-        <img src="/Nambio/assets/images/cristo.png" alt="Cristo Redentor">
+        <img src="/Nambio/assets/images/arara blue.png" alt="Arara Azul" class="arara">
+        <img src="/Nambio/assets/images/cristo.png" alt="Cristo Redentor" class="cristoft">
 
         <h1>"Faça as malas, o Brasil te espera e a NÂMBIO te leva"</h1>
 
-        <img src="/Nambio/assets/images/luz.png" alt="Luz de fundo">
-        <img src="/Nambio/assets/images/student_PNG45 1.png" alt="Estudantes com livros">
+        <img src="/Nambio/assets/images/luz.png" alt="Luz de fundo" class="luz">
+        <img src="/Nambio/assets/images/student_PNG45 1.png" alt="Estudantes com livros" class="estudantes">
     </banner>
+
+    <!-- Faixa azul abaixo do banner -->
+    <section class="faixa">
+        <p>Familias prontas para te receber em várias regiões! <a href="categorias.html">Confira já!</a></p>
+    </section>
+
+    <!-- Carrosel com cidades famosas
+     
+    inner - conteudo
+    label - texto
+    header - titulo 
+    -->
+
+    <div class="carousel-container">
+
+        <div class="carousel-titulo">Cidades em destaque:</div>
+
+        <button class="seta seta-esquerda" aria-label="Anterior">&#10094;</button>
+
+        <div class="carousel">
+
+            <div class="carousel-conteudo" id="carousel-conteudo">
+
+                <div class="card">
+                    <img src="#" alt="Salvador - BA" />
+                    <div class="card-texto salvador">SALVADOR - BA</div>
+                </div>
+
+                <div class="card">
+                    <img src="#" alt="Capital - SP" />
+                    <div class="card-texto capital">CAPITAL - SP</div>
+                </div>
+
+                <div class="card">
+                    <img src="#" alt="Ipanema - RJ" />
+                    <div class="card-texto ipanema">IPANEMA - RJ</div>
+                </div>
+
+                <div class="card">
+                    <img src="#" alt="Ourinhos - MG" />
+                    <div class="card-texto ourinhos">OURINHOS - MG</div>
+                </div>
+
+                <div class="card">
+                    <img src="#" alt="Gramado - RS" />
+                    <div class="card-texto gramado">GRAMADO - RS</div>
+                </div>
+
+            </div>
+        </div>
+        <button class="seta seta-direita" aria-label="Próximo">&#10095;</button>
+    </div>
+
 
     <br><br><br><br><br>
 

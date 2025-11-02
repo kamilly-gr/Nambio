@@ -79,14 +79,183 @@ footer {
 
 /* Banner com frase de efeito do site */
 
+/* Banner todo */
 .cristo {
     background-image: url(/Nambio/assets/images/image\ 1.png);
     display: flex;
     height: 538.59px;
-    width: 1100x;
+    width: 1351px;
 
 }
 
 .cristo img {
-    height: 50px;
+    pointer-events: none;
+    user-select: none;
+    /* Fiz isso aqui pro mouse não selecionar as imagens do banner
+    pois se eles fossem selecionaveis o link da faixa abaixo "confira já!"
+    não estaria disponivel para seleção */
 }
+
+
+/* Posição absoluta em todas as imagens secundarias e ajeitar cada uma no seu lugar */
+
+/* Cristo Redentor */
+.cristoft {
+    position: absolute;
+    left: 100px;
+    z-index: 1;
+    top: 120px;
+}
+
+/* Arara Azul, usar o z-index para a arara ficar na frente da imagem do cristo redentor */
+.arara {
+    position: absolute;
+    z-index: 2;
+    height:320px;
+}
+
+/* Imagem dos estudantes */
+.estudantes{
+    position: absolute;
+    right: 100px;
+    z-index: 1;
+    top: 137px;
+    height: 470px;
+}
+
+/* Luz de fundo dos estudantes */
+.luz {
+    position: absolute;
+    top: 100px;
+    right:20px;
+}
+
+/* Texto central */
+.cristo h1 {
+    position: absolute;
+    text-align: center;
+    width: 500px;
+    top: 269.295px;
+    left: 425px;
+    font-size:30px;
+    color: white;
+    z-index: 3;
+}
+
+/* Faixa azul com link */
+
+.faixa {
+    display: flex;
+    height: 35px;
+    width: 100%;
+    background-color: #37B1DA;
+    justify-content: center;
+    text-align: center;
+    font-size: 20px;
+    z-index: 10;
+    
+}
+
+.faixa p{
+    text-align: center;
+    justify-content: center;
+}
+.faixa a {
+    font-style: italic;
+    cursor: pointer;
+}
+
+/* Carrosel com imagens de cidades famosas */
+
+  body {
+    margin: 0;
+    background-color: #c0d0e0; /* light blue background */
+    font-family: Arial, sans-serif;
+  }
+  .carousel-container {
+    max-width: 900px;
+    margin: 40px auto;
+    position: relative;
+    user-select: none;
+    padding: 20px 60px; /* space for arrows */
+    text-align: center;
+  }
+  .carousel-titulo {
+    margin-bottom: 16px;
+    font-size: 16px;
+  }
+  .carousel {
+    overflow: hidden;
+  }
+  .carousel-conteudo {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+  .card {
+    min-width: 160px;
+    margin: 0 8px;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .card img {
+    width: 160px;
+    height: 120px;
+    object-fit: cover;
+    display: block;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+  .card-texto {
+    padding: 12px 0;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+    text-transform: uppercase;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+  }
+  .salvador {
+    background-color: #f07400; /* orange */
+  }
+  .capital {
+    background-color: #2c99a5; /* teal */
+  }
+  .ipanema {
+    background-color: #f0ba31; /* gold */
+  }
+  .ourinhos {
+    background-color: #184c5a; /* dark teal */
+  }
+  .gramado {
+    background-color: #57bae3; /* light blue */
+  }
+  /* Setas */
+  .seta {
+    position: absolute;
+    top: 50%;
+    font-size: 28px;
+    color: #2c99a5;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    user-select: none;
+    transform: translateY(-50%);
+    transition: color 0.3s ease;
+    padding: 6px 12px;
+    z-index: 10;
+  }
+  .seta:hover {
+    color: #0a6077;
+  }
+  .seta-esquerda {
+    left: 10px;
+  }
+  .seta-direita {
+    right: 10px;
+  }
