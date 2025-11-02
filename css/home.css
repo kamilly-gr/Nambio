@@ -77,6 +77,55 @@ footer {
     
 }
 
+.lg-footer h1 img{
+    height: 77px;
+    margin-bottom: 35px;
+}
+
+
+.conteudo-footer{
+    display: flex;
+    justify-content: space-between;
+    gap: 100px;
+}
+/* Prmeira coluna do footer  */
+.sobre{ 
+    width:  400px;
+    gap: 100px
+}
+
+.nosSigaNasRedes{
+    margin-top: 35px;
+    
+}
+
+.nosSigaNasRedes h2{
+    margin-bottom: 10px;
+    
+}
+
+.nosSigaNasRedes img{
+    height: 31px;
+    margin: 0;
+}
+
+.logos-apps{
+    display: flex;
+    justify-content: left;
+    gap: 35px;
+    
+}
+
+/* Segunda coluna do footer  */
+.informacao{
+    text-align: right;
+}
+.informacao ul li{
+    list-style: none;
+}
+
+
+
 /* Banner com frase de efeito do site */
 
 /* Banner todo */
