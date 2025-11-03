@@ -54,3 +54,28 @@ footer {
 .informacao ul li {
   list-style: none;
 }
+
+.novidades{
+  max-width: 600px;
+  background-color: red;
+}
+
+
+.novidades .novi input{
+  border: none;
+  padding: 10px 5px 10px 15px;
+  background-color: #D9D9D9;
+  color:#828282;
+  border-radius: 26px;
+  font-family: 'Poppins', sans-serif;
+  width: 350px;
+  margin-top:15px;
+}
+
+.novidades .novi button{
+  position: absolute;
+  top: 2120px;
+
+  border: none;
+  padding:10px 5px 10px 15px ;
+}
