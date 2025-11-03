@@ -37,6 +37,7 @@ header {
   align-items: center;
   text-align: center;
   border: none;
+  font-family: 'Poppins', sans-serif;
 
   &:hover {
     background-color: #2f94b6;
