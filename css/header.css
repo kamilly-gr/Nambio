@@ -32,11 +32,11 @@ header {
   background-color: #37B1DA;
   color: black;
   border-radius: 20px;
-  width: 147px;
-  height: 32px;
+  width: 150px;
+  padding: 5px;
   align-items: center;
   text-align: center;
-  border: none;
+  font-family: 'Poppins', sans-serif;
 
   &:hover {
     background-color: #2f94b6;
