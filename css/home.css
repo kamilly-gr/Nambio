@@ -99,21 +99,68 @@
   cursor: pointer;
 }
 
-/* Faixa do celular */
+/* Faixa com celular da Nâmbio */
 
 .faixa-celular {
   display: flex;
   background-color: #F0BA2F;
   height: 300px;
   margin: 0;
+  position: relative;
 } 
 
 
-.texto-celular {
-width: 500px;
+.texto-celular-principal {
+width: 600px;
+padding: 15px;
+font-size: 25px;
+font-weight: bolder;
 }
 
 .faixa-celular img {
-  max-width: 100%;
-  height: 100px;
+position: absolute;
+}
+
+.img-celular {
+  left: 200px;
+  bottom: -150px;
+  z-index: 1;
+}
+
+.linha-iphone {
+  z-index: 2;
+  left: 250px;
+}
+
+.texto-celular {
+  width: 600px;
+  font-size: 20px;
+  margin-left: 400px;
+  margin-top: 15px;
+}
+
+/* Icones do por que escolher a Nâmbio */
+
+.main-text {
+  align-items: center;
+  text-align: center;
+}
+
+.main-content {
+  display: flex;
+  justify-content: center;
+}
+
+.main-label {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bolder;
+}
+
+.main-icon {
+  margin: 50px 40px;
+}
+
+.main-icon p {
+  width: 150px;
 }
