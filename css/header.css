@@ -1,0 +1,56 @@
+/* Header */
+header {
+  background-color: #ED6D00;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+/* Tirar pontos da lista não ordenada e organizar os itens lado a lado */
+.links ul {
+  display: flex;
+  padding: 20px;
+  list-style: none;
+}
+
+/* Links para outras páginas */
+.links ul li a {
+  text-decoration: none;
+  color: #ffffff;
+  padding: 0px 30px;
+  font-size: 19px;
+
+  &:hover {
+    font-weight: 600;
+  }
+}
+
+
+
+.cadastro{
+  background-color: #37B1DA;
+  color: black;
+  border-radius: 20px;
+  width: 147px;
+  height: 32px;
+  align-items: center;
+  text-align: center;
+  border: none;
+
+  &:hover {
+    background-color: #2f94b6;
+    cursor: pointer;
+  }
+
+  &:active {
+    transition: none;
+    background-color: #267995;
+    color: white;
+  }
+}
+
+header h1 {
+  align-items: center;
+  height: 37px;
+}
