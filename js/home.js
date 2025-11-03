@@ -1,7 +1,7 @@
 const carouselConteudo = document.getElementById('carousel-conteudo');
 const cardsOriginal = Array.from(carouselConteudo.children);
 const totalCards = cardsOriginal.length;
-const cardWidth = cardsOriginal[0].offsetWidth + 16; // width + margin left+right (8px each)
+const cardWidth = cardsOriginal[0].offsetWidth + 16; // width + margin left+right (8px cada)
 
 const cloneCount = 5;
 // Clone last cloneCount cards and prepend
