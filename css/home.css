@@ -98,3 +98,22 @@
   font-style: italic;
   cursor: pointer;
 }
+
+/* Faixa do celular */
+
+.faixa-celular {
+  display: flex;
+  background-color: #F0BA2F;
+  height: 300px;
+  margin: 0;
+} 
+
+
+.texto-celular {
+width: 500px;
+}
+
+.faixa-celular img {
+  max-width: 100%;
+  height: 100px;
+}
