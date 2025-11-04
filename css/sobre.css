@@ -1,0 +1,116 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+ 
+  background-color: #f5f7fa;
+  color: #333;
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* parte bonitinha fofinha das fotos */
+.decoracoes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.decorativo {
+  position: absolute;
+  max-width: 200px;
+  opacity: 0.8;
+}
+
+.azul {
+  top: 50px;
+  left: 30px;
+}
+
+.amarelo {
+  top: 300px;
+  right: 50px;
+}
+
+.desenho1 {
+  bottom: 100px;
+  left: 100px;
+}
+
+.desenho2 {
+  bottom: 50px;
+  right: 120px;
+}
+
+/* Seção principal */
+.sobre-nos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 100px auto;
+  padding: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Texto à esquerda */
+.texto {
+  flex: 1;
+}
+
+.texto h2 {
+  font-size: 24px;
+  color: #37B1DA;
+  margin-bottom: 10px;
+}
+
+.texto h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.texto p {
+  font-size: 16px;
+  margin-bottom: 30px;
+  color: #555;
+}
+
+/* Botão */
+.botao {
+  display: inline-block;
+  background-color: #37B1DA;
+  color: #fff;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.botao:hover {
+  background-color: #2e7992;
+}
+
+/* Imagem à direita */
+.imagem {
+  flex: 1;
+  text-align: center;
+}
+
+.imagem img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
