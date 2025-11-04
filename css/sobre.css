@@ -10,7 +10,7 @@ body {
   background-color: #f5f7fa;
   color: #333;
   line-height: 1.6;
-  position: relative;
+  position: absolute;
   overflow-x: hidden;
 }
 
@@ -94,7 +94,7 @@ body {
   color: #fff;
   padding: 12px 24px;
   text-decoration: none;
-  border-radius: 10px;
+  border-radius: 20px;
   font-weight: bold;
   transition: background-color 0.3s ease;
 }
@@ -113,4 +113,5 @@ body {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
+  left: 100px;
 }
