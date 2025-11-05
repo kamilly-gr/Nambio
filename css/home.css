@@ -29,7 +29,7 @@
 /* Cristo Redentor */
 .cristoft {
   position: absolute;
-  left: 100px;
+  left: 25px;
   max-width: 100%; /* Garante que a imagem não seja mais larga que o elemento pai */
   height: auto;
   
@@ -39,7 +39,7 @@
 .arara {
   position: absolute;
   bottom: 220px;
-  left: -10px;
+  left: -85px;
   z-index: 2;
   height: 320px;
 }
@@ -47,7 +47,7 @@
 /* Imagem dos estudantes */
 .estudantes {
   position: absolute;
-  right: 140px;
+  right: 0;
   max-width: 100%; /* Garante que a imagem não seja mais larga que o elemento pai */
   height: auto;
 }
@@ -55,7 +55,7 @@
 /* Luz de fundo dos estudantes */
 .luz {
   position: absolute;
-  right: 100px;
+  right: 0px;
   top: 20px;
   max-width: 100%; /* Garante que a imagem não seja mais larga que o elemento pai */
   height: auto;
@@ -122,14 +122,14 @@ position: absolute;
 }
 
 .img-celular {
-  left: 200px;
+  left: 25px;
   bottom: -150px;
   z-index: 1;
 }
 
 .linha-iphone {
   z-index: 2;
-  left: 250px;
+  left: 75px;
 }
 
 .texto-celular {
