@@ -94,4 +94,10 @@ footer {
   margin-top: 15px;
   background-color: #3EBAEF ;
   font-family: "Poppins", sans-serif;
+  cursor: pointer;
+
+  &:active{
+    background-color: #0687be;
+  }
+  
 }

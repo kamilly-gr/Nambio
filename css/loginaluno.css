@@ -36,6 +36,17 @@
     border-radius: 50px;
     max-width: 35%;
     margin-bottom: 15px;
+
+
+
+    &:hover{
+        background-color: #1d4f8b;
+    }
+
+    &:active{
+        background-color: black;
+        
+    }
 }
 
 .caixa1 a{
