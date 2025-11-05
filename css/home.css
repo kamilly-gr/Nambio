@@ -9,7 +9,7 @@
 /* Banner completo */
 
 .cristo {
-  background-image: url(/Nambio/assets/images/image\ 1.png);
+  background-image: url(/Nambio/assets/images/image\ 1.jpg);
   display: flex;
   background-repeat: no-repeat;
   background-size: cover;
@@ -19,7 +19,7 @@
   /* Exemplo de tamanho do container */
   height: 500px;
   position: relative;
-  align-items: flex-end;
+  align-items: center;
   /* evitar que filhos absolutos "pulem" para fora */
   overflow: hidden;
 }
@@ -66,19 +66,11 @@
   max-height: 100%;
 }
 
-/* Luz de fundo dos estudantes */
-.luz {
-  position: absolute;
-  max-width: 100%;
-  /* Garante que a imagem não seja mais larga que o elemento pai */
-  max-height: 100%;
-  /* ou ajuste conforme necessário */
-}
 
 /* Texto central */
 .cristo h1 {
   text-align: center;
-  width: 33.33%;
+  width: 2000px;
   font-size: 45px;
   color: white;
   z-index: 3;
@@ -189,14 +181,14 @@
   overflow: hidden;
 }
 
-.cristo img, .cristoft, .estudantes, .luz {
+.cristo img, .cristoft, .estudantes {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
 /* Ajuste para centralizar e manter proporção das imagens absolutas */
-.cristoft, .estudantes, .luz {
+.cristoft, .estudantes {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -213,7 +205,7 @@
   .cristoContainer, .estudantesContainer {
     width: 100%;
   }
-  .cristoft, .estudantes, .luz {
+  .cristoft, .estudantes {
     max-width: 220px;
   }
 }
@@ -223,7 +215,7 @@
     height: 180px;
     min-height: 120px;
   }
-  .cristoft, .estudantes, .luz {
+  .cristoft, .estudantes {
     max-width: 120px;
   }
   .faixa-celular, .texto-celular-principal, .texto-celular {
