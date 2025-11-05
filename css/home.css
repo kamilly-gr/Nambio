@@ -9,7 +9,7 @@
 /* Banner completo */
 
 .cristo {
-  background-image: url(/Nambio/assets/images/image\ 1.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), url(/Nambio/assets/images/image\ 1.jpg);
   display: flex;
   background-repeat: no-repeat;
   background-size: cover;

@@ -14,12 +14,19 @@ header {
   list-style: none;
   margin: 0;
 }
+.links {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  margin-left: 250px;
+}
+
 
 /* Links para outras páginas */
 .links ul li a {
   text-decoration: none;
   color: #ffffff;
-  padding: 0px 30px;
+  padding: 0px 20px;
   font-size: 19px;
 
   &:hover {
@@ -28,7 +35,9 @@ header {
 }
 
 header h1 {
+  display: flex;
   align-items: center;
+  justify-content: center;
   height: 37px;
   margin: 10px;
 }
