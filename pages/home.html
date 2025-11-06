@@ -32,19 +32,39 @@
             </ul>
         </div>
 
-        <!-- Botão de cadastro -->
-         <a href="/Nambio/pages/login.html" class="cadastro" style="text-decoration: none;">Cadastre-se já!</a>
+        <!-- Botôes de login e cadastro -->
+        <div class="botoesHeader">
+            <!-- Botão de Cadastro -->
+            <div class="dropdownCad">
+                <button class="dropbtn cad">Cadastre-se já!</button>
+                <div class="dropdown-content">
+                    <a href="/Nambio/pages/cadastroHost.html">Cadastrar-se como Host</a>
+                    <a href="/Nambio/pages/cadastroAluno.html">Cadastrar-se como Aluno</a>
+                </div>
+            </div>
+
+            <!-- Botão de Login -->
+            <div class="dropdownLogin">
+                <button class="dropbtn login">Login</button>
+                <div class="dropdown-content">
+                    <a href="/Nambio/pages/loginHost.html">Login como Host</a>
+                    <a href="/Nambio/pages/loginAluno.html">Login como Aluno</a>
+                </div>
+            </div>
+
+        </div>
     </header>
 
     <!-- Banner com frase de efeito do site  -->
     <banner class="cristo">
-        <img src="/Nambio/assets/images/araraBlue.png" alt="Arara Azul" class="arara">
-        <img src="/Nambio/assets/images/cristo.png" alt="Cristo Redentor" class="cristoft">
+        <div class="cristoContainer">
+            <img src="/Nambio/assets/images/cristo.png" alt="Cristo Redentor" class="cristoft">
+        </div>
 
         <h1>"Faça as malas, o Brasil te espera e a NÂMBIO te leva"</h1>
-
-        <img src="/Nambio/assets/images/luz.png" alt="Luz de fundo" class="luz">
-        <img src="/Nambio/assets/images/student_PNG45 1.png" alt="Estudantes com livros" class="estudantes">
+        <div class="estudantesContainer">
+            <img src="/Nambio/assets/images/student_PNG45 1.png" alt="Estudantes com livros" class="estudantes">
+        </div>
     </banner>
 
     <!-- Faixa azul abaixo do banner -->
@@ -94,7 +114,7 @@
         <button class="seta seta-direita" aria-label="Próximo">&#10095;</button>
     </div>
 
-     <br><br><br><br><br>
+    <br><br><br><br><br>
 
     <!-- Faixa com celular -->
     <section class="faixa-celular">
@@ -110,7 +130,7 @@
                 <p>Tenha todas as funcionalidades do Nâmbio na palma da sua mão.
                     Encontre a casa perfeita para você, gerencie suas reservas e
                     comunique-se diretamente com as famílias anfitriãs, tudo através do nosso aplicativo intuitivo e
-                    fácil de usar.
+                    fácil de usar, disponível para iOS e Android.
                 </p>
             </div>
 
@@ -146,16 +166,24 @@
         </div>
     </div>
 
-    <!-- Sessão que fala sobre os comentários dos estudantes sobre a agência -->
+
+    <!-- Sessão dos comentários sobre a agência -->
+
     <section class="coments">
-        <img src="" alt="Japones no computador" class="japones">
+        <img src="/Nambio/assets/images/japones.png" alt="japones estudando" class="japones">
         <div class="oqPensam">
-            <span></span>
+            <p>O que nosso estudantes pensam da nossa agência?</p>
             <button>Ver mais relatos</button>
         </div>
-        <img src="" alt="Comentário do Renato Americano" class="coment">
+        <article class="comentarioRenato">
+            <p class="renatoText">
+                "Estou prestes a embarcar e adoro como a Nâmbio mantém todos informados e animados para a viagem. 
+                Na reta final, eles promovem eventos incríveis para integrar os alunos e aproximar a equipe de coordenadores, 
+                que compartilham dicas valiosas sobre cada etapa do intercâmbio. Sempre com muita atenção e um toque especial da cultura brasileira!"
+            </p>
+        </article>
     </section>
-    <div class="textoUni"><p>Nós auxiliamos você a encontrar a universidade dos seus sonhos! <a href="">Conheça!</a></p></div>
+    <aside class="uni">Nós auxiliamos você a encontrar a universidade dos seus sonhos! <a href="#">Conheça!</a></aside>
 
     <!-- Footer -->
     <footer>
@@ -171,8 +199,10 @@
             <div class="sobre">
                 <div class="sobreNos">
                     <h2>Sobre nós</h2>
-                    <p>A melhor agência de Intercâmbio Nacional do Brasil, uma empresa que se preocupa 
-                        inteiramente com seu futuro, estudo e educação. Somos capazes de te fornecer uma Host Famly, para te acudir durante todo seu tempo de Graduação, e permitir que você tenha uma boa moradia e além de tudo, um lar para chamar de seu.</p>
+                    <p>A melhor agência de Intercâmbio Nacional do Brasil, uma empresa que se preocupa
+                        inteiramente com seu futuro, estudo e educação. Somos capazes de te fornecer uma Host Famly,
+                        para te acudir durante todo seu tempo de Graduação, e permitir que você tenha uma boa moradia e
+                        além de tudo, um lar para chamar de seu.</p>
                 </div>
 
                 <div class="nosSigaNasRedes">
@@ -209,8 +239,17 @@
             colocar seu e-mail e receber notificações  -->
 
             <div class="novidades">
-                <h2>Sobre nós</h2>
-                * Prmeira coluna do footer */
+                <h2>Quer receber novidades?</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incidente
+                </p>
+
+                <article class="novi">
+                    <input type="email" placeholder="Digite um email válido!"><br>
+                    <button>Enviar</button>
+                </article>
+
+
             </div>
         </div>
 

@@ -14,14 +14,18 @@ footer {
 
 .conteudo-footer {
   display: flex;
-  justify-content: space-between;
-  gap: 100px;
+  justify-content: space-around;
+  gap: 150px;
+  padding: 0;
+  
 }
 
 /* Primeira coluna do rodapé */
 .sobre {
-  width: 400px;
-  gap: 100px
+  
+  max-width: 450px;
+  margin: 0;
+  
 }
 
 .nosSigaNasRedes {
@@ -48,9 +52,52 @@ footer {
 
 /* Segunda coluna do rodapé */
 .informacao {
-  text-align: right;
+  text-align: left;
+  max-width: 450px;
+}
+
+.informacao ul{
+  padding: 0;
 }
 
 .informacao ul li {
   list-style: none;
+}
+
+
+/* terceira linha do site  */
+
+.novidades{
+  max-width: 600px;
+  
+  max-width: 450px;
+  margin: 0;
+
+}
+
+
+.novidades .novi input{
+  border: none;
+  padding: 10px 5px 10px 15px;
+  background-color: #D9D9D9;
+  color:#828282;
+  border-radius: 26px;
+  font-family: 'Poppins', sans-serif;
+  width: 350px;
+  margin-top:15px;
+}
+
+.novidades .novi button{
+  border: none;
+  padding: 5px 20px 5px 20px ;
+  border-radius: 15px;
+  margin-top: 15px;
+  background-color: #3EBAEF ;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+
+  &:active{
+    background-color: #0687be;
+  }
+  
 }

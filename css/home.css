@@ -1,8 +1,15 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 /* Banner com frase de efeito do site */
 
 /* Banner completo */
+
 .cristo {
-  background-image: url(/Nambio/assets/images/image\ 1.png);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), url(/Nambio/assets/images/image\ 1.jpg);
   display: flex;
   background-repeat: no-repeat;
   background-size: cover;
@@ -12,7 +19,9 @@
   /* Exemplo de tamanho do container */
   height: 500px;
   position: relative;
-  align-items: flex-end;
+  align-items: center;
+  /* evitar que filhos absolutos "pulem" para fora */
+  overflow: hidden;
 }
 
 .cristo img {
@@ -23,52 +32,45 @@
     não estaria disponível para seleção */
 }
 
+.cristoContainer {
+  position: relative;
+  width: 33.33%;
+  height: 100%;
+}
+
+.estudantesContainer {
+  position: relative;
+  width: 33.33%;
+  height: 100%;
+  text-align: center;
+  margin: 0;
+}
 
 /* Posição absoluta para todas as imagens secundárias e ajuste de cada uma no seu lugar */
 
 /* Cristo Redentor */
 .cristoft {
   position: absolute;
-  left: 25px;
-  max-width: 100%; /* Garante que a imagem não seja mais larga que o elemento pai */
-  height: auto;
-  
+  left: 10%;
+  max-width: 100%;
+  max-height: 100%;
+
 }
 
-/* Arara Azul, use z-index para a arara ficar na frente da imagem do Cristo Redentor */
-.arara {
-  position: absolute;
-  bottom: 220px;
-  left: -85px;
-  z-index: 2;
-  height: 320px;
-}
 
 /* Imagem dos estudantes */
 .estudantes {
   position: absolute;
-  right: 0;
-  max-width: 100%; /* Garante que a imagem não seja mais larga que o elemento pai */
-  height: auto;
+  max-width: 100%;
+  /* Garante que a imagem não seja mais larga que o elemento pai */
+  max-height: 100%;
 }
 
-/* Luz de fundo dos estudantes */
-.luz {
-  position: absolute;
-  right: 0px;
-  top: 20px;
-  max-width: 100%; /* Garante que a imagem não seja mais larga que o elemento pai */
-  height: auto;
-}
 
 /* Texto central */
 .cristo h1 {
-  position: absolute;
   text-align: center;
-  width: 600px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 2000px;
   font-size: 45px;
   color: white;
   z-index: 3;
@@ -107,18 +109,18 @@
   height: 300px;
   margin: 0;
   position: relative;
-} 
+}
 
 
 .texto-celular-principal {
-width: 600px;
-padding: 15px;
-font-size: 25px;
-font-weight: bolder;
+  width: 600px;
+  padding: 15px;
+  font-size: 25px;
+  font-weight: bolder;
 }
 
 .faixa-celular img {
-position: absolute;
+  position: absolute;
 }
 
 .img-celular {
@@ -163,4 +165,62 @@ position: absolute;
 
 .main-icon p {
   width: 150px;
+}
+
+/* Responsividade geral para containers e imagens */
+.cristo, .cristoContainer, .estudantesContainer {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.cristo {
+  min-height: 250px;
+  height: 50vw;
+  max-height: 500px;
+  overflow: hidden;
+}
+
+.cristo img, .cristoft, .estudantes {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Ajuste para centralizar e manter proporção das imagens absolutas */
+.cristoft, .estudantes {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 350px;
+  height: auto;
+  bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .cristo {
+    height: 40vw;
+    min-height: 180px;
+  }
+  .cristoContainer, .estudantesContainer {
+    width: 100%;
+  }
+  .cristoft, .estudantes {
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cristo {
+    height: 180px;
+    min-height: 120px;
+  }
+  .cristoft, .estudantes {
+    max-width: 120px;
+  }
+  .faixa-celular, .texto-celular-principal, .texto-celular {
+    width: 100%;
+    font-size: 16px;
+    padding: 5px;
+  }
 }
