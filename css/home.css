@@ -66,6 +66,24 @@
   max-height: 100%;
 }
 
+/* Ajuste: tornar .cristoft maior que .estudantes e evitar conflito com regras genéricas */
+.cristoft {
+  /* aumenta largura máxima do Cristo */
+  max-width: 520px;
+  /* reposiciona um pouco à esquerda para ficar mais natural em composição com estudantes */
+  left: 30%;
+  /* evita deslocamento total do centro (padrão translateX(-50%)) */
+  transform: translateX(-10%);
+  z-index: 2;
+}
+
+/* mantém .estudantes menor que o cristo */
+.estudantes {
+  max-width: 350px;
+  left: 65%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
 
 /* Texto central */
 .cristo h1 {
@@ -181,46 +199,135 @@
   overflow: hidden;
 }
 
-.cristo img, .cristoft, .estudantes {
+.cristo img,
+.cristo .estudantes {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
-/* Ajuste para centralizar e manter proporção das imagens absolutas */
-.cristoft, .estudantes {
+/* Posicionamento e tamanhos específicos */
+.cristo .cristoft {
   position: absolute;
-  left: 50%;
+  left: 1%;
+  transform: translateX(-10%);
+  max-width: 600px;
+  height: auto;
+  bottom: 0;
+  z-index: 2;
+}
+
+.cristo .estudantes {
+  position: absolute;
+  left: 45%;
   transform: translateX(-50%);
   max-width: 350px;
   height: auto;
   bottom: 0;
+  z-index: 0;
 }
 
+/* Responsividade */
 @media (max-width: 900px) {
-  .cristo {
-    height: 40vw;
-    min-height: 180px;
-  }
-  .cristoContainer, .estudantesContainer {
-    width: 100%;
-  }
-  .cristoft, .estudantes {
-    max-width: 220px;
-  }
+  .cristo .cristoft { max-width: 320px; left: 30%; transform: translateX(-10%); }
+  .cristo .estudantes { max-width: 220px; left: 65%; }
 }
 
 @media (max-width: 600px) {
-  .cristo {
-    height: 180px;
-    min-height: 120px;
-  }
-  .cristoft, .estudantes {
-    max-width: 120px;
-  }
-  .faixa-celular, .texto-celular-principal, .texto-celular {
-    width: 100%;
-    font-size: 16px;
-    padding: 5px;
-  }
+  .cristo .cristoft { max-width: 160px; left: 50%; transform: translateX(-50%); }
+  .cristo .estudantes { max-width: 120px; left: 50%; transform: translateX(-50%); }
+}
+
+.coments { /*Conatiner todo da parte do japones */
+ display: flex;
+ width: 100%;
+ background-color: #195973;
+ height: 254px;
+ position: relative;
+ overflow: visible;
+}
+
+.japones { /* foto do japones */
+  position: relative; /* necessário para z-index funcionar */
+  z-index: 2;
+  margin-bottom: -116px;
+  will-change: transform;
+}
+
+.oqPensam { /* sessão com o botão de ver mais relatos */
+ & p {
+    color: white;
+    font-size: 25px;
+    width: 260px;
+    margin-top: 20px;
+    margin-left: 50px;
+    font-weight: 600;
+    border-spacing: 20px;
+ }
+
+ & button {
+  margin-left: 50px;
+  margin-top: 10px;
+  border: none;
+  color: black;
+  background-color: var(--secondary-color);
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-size: 13px;
+ }
+}
+
+.comentRenato { /*comentario do renato */
+  width: 700px;
+  background-color: white;
+  border-radius: 35px;
+  height: 231px;
+
+  /* faz o cartão "sair" para cima do container pai sem usar absolute */
+  margin-top: -60px;
+  position: relative; /* mantém contexto para z-index */
+  z-index: 3;
+
+  /* estilo opcional para destaque */
+  padding: 16px;
+  overflow: visible;
+  
+
+
+  & p{
+  width: 100%;
+  color: var(--text-secondary);
+  font-size: 17px;
+  margin: 10px;
+}
+
+& span {
+  font-weight: bold;
+  font-size: 18px;
+  color: var(--text-primary);
+  margin: 10px;
+}
+
+}
+
+.uni { /* parte pequena embaixo azul que fala das universidades */
+width: 100%;
+background-color: var(--primary-color);
+height: 50px;
+display: flex;
+align-items: center;
+justify-content: center;
+
+& p {
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  font-weight: 900;
+  margin-right: 265px;
+
+  & a {
+    color: var(--secondary-color);
+    font-weight: 600;
+    font-size: 19px;
+}
+
 }

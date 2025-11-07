@@ -18,7 +18,7 @@ header {
   flex: 2;
   display: flex;
   justify-content: center;
-  margin-left: 250px;
+  margin: 0px;
 }
 
 
@@ -39,14 +39,12 @@ header h1 {
   align-items: center;
   justify-content: center;
   height: 37px;
-  margin: 10px;
+  margin: 0px 50px;
 }
 
 /* Estilo dos botões de header */
 .botoesHeader {
   display: flex;
-  margin: 10px;
-  padding: 5px;
 }
 
 /* Estilo do dropdown de cadastro */
@@ -96,13 +94,13 @@ header h1 {
 .dropbtn {
   background-color: #37B1DA;
   color: rgb(0, 0, 0);
-  padding: 10px;
-  font-size: 18px;
+  padding: 8px;
+  font-size: 15px;
   border: none;
   cursor: pointer;
-  border-radius: 30px;
+  border-radius: var(--border-btn);
   max-width: 200px;
-  margin-left: 20px;
-  margin-right: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
   font-family: 'poppins', sans-serif;
 }

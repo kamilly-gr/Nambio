@@ -15,5 +15,30 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #D0DBE8;
+    background-color: var(--color-bg);
+}
+
+:root {
+    /* Paleta principal */
+    --primary-color: #37B1DA;
+    --secondary-color: #ED6D00;
+
+    /* Acentos / feedback */
+    --color-accent: #ff6b6b;
+    --color-success: #28a745;
+    --color-warning: #ffb020;
+    --color-danger:  #e03131;
+    --color-info:    #17a2b8;
+
+    /* Neutros / superfícies */
+    --color-bg:      #D0DBE8;
+
+    /* Texto */
+    --text-primary:  #0f1724;
+    --text-secondary:#475569;
+    --text-muted:    #8892a6;
+
+    /* Borda do botão */
+    --border-btn: 30px;
+
 }
