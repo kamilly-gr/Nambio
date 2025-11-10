@@ -106,16 +106,50 @@ hr{
 }
 
 
-.email {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.aluno-login {
+    text-align: center;
+    padding: 15px;
+    
     margin-top: 25px;
     background-color: red;
+    
 }
 
 
-.email img{
-    max-width: 5%;
-    background-color: blue;
+.aluno-login img{
+    max-width: 7%;
+    margin: 0;
+
+}
+
+.campo-senha-alunoLogin{
+    position: relative;
+    width: 250px;
+}
+.campo-senha-alunoLogin .input-senha-login{
+    width: 100%;
+    padding: 10px 40px 10px 10px; /* espaço para o ícone */
+    font-size: 16px;
+    box-sizing: border-box;
+    }
+
+.botao-olho {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    
+    
+    background-image: url('/Nambio/assets/icons/olho-senha-fechado.svg'); /* 🔹 imagem inicial */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    
+    
 }
