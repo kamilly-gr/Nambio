@@ -1,17 +1,14 @@
 .filtros-pg-SP{
     text-align: center;
     background-color: red;
-    max-width: 600px;
+    
     margin: 25px;
-
     position: relative;
     display: inline-block;
 }
 
 .filtros-pg-SP form input {
     background-color: white;
-    
-
     padding-right: 35px; /* espaço pro X */
     height: 35px;
     font-size: 15px;
