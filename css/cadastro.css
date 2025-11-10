@@ -1,0 +1,14 @@
+.cntLoginAluno {  /* classe emprestada */
+    & div { 
+        display: flex;
+        align-items: center;
+        text-align: center;
+        margin: 0 auto;
+       
+    }
+
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+
+}

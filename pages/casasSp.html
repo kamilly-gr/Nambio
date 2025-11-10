@@ -54,10 +54,30 @@
 
     <section>
         <article class="filtros-pg-SP">
-            <div class="localizacao-pg-SP">
-                <a href="#">São paulo</a>
-                <a href="#">Belo horizonte</a>
-            </div>
+            <form>
+                <input 
+                    type="text" 
+                    id="opcoes" 
+                    placeholder="Selecione a localização!" 
+                    list="faixa"
+                    oninput="mostrarIcone()"      
+                >
+                <img 
+                    src="/Nambio/assets/icons/x9icone para fechar ou tirar.svg" 
+                    alt="Limpar" 
+                    id="clearBtn" 
+                    class="clear-btn"
+                    onclick="limparCampo()"
+                >
+                
+                
+                <datalist id="faixa">
+                    <option value="Capital">São Paulo</option>
+                    <option value="Ourinhos">Minas Gerais</option>
+                    <option value="Ipanema">Rio de Janeiro</option>
+                    <option value="Gramado">Rio grande do sul</option>
+                </datalist>
+            </form>
 
 
         </article>
@@ -135,6 +155,7 @@
 
 
     </footer>
+    <script src="/Nambio/js/casasSp.js"></script>
         
 </body>
 
