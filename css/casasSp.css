@@ -1,0 +1,37 @@
+.filtros-pg-SP{
+    text-align: center;
+    background-color: red;
+    max-width: 600px;
+    margin: 25px;
+
+    position: relative;
+    display: inline-block;
+}
+
+.filtros-pg-SP form input {
+    background-color: white;
+    
+
+    padding-right: 35px; /* espaço pro X */
+    height: 35px;
+    font-size: 15px;
+}
+
+
+.clear-btn {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    display: none; /* aparece só quando há texto */
+    user-select: none;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+    
+    &:hover {
+        opacity: 1;
+    }
+}
