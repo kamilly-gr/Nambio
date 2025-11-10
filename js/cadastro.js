@@ -1,31 +1,36 @@
-function nextStep(stepNumber) {
-    // Validação básica
-    if (stepNumber === 2) {
-        const nome = document.getElementById('nome').value;
-        const email = document.getElementById('email').value;
+function avançarParaEndereco() {
+  // validação antes de avançar
+  const nome = document.getElementById('nome').value;
+  const email = document.getElementById('email').value;
 
-        if (!nome || !email) {
-            alert('Por favor, preencha todos os campos obrigatórios da primeira etapa.');
-            return;
-        }
-    }
+  if (!nome || !email) {
+    alert('Preencha todos os campos obrigatórios.');
+    return;
+  }
 
-    // Oculta todas as etapas
-    document.getElementById('step1').style.display = 'none';
-    document.getElementById('step2').style.display = 'none';
-
-    // Exibe a etapa desejada
-    document.getElementById('step' + stepNumber).style.display = 'block';
+  // Esconde o primeiro container e mostra o segundo
+  document.getElementById('ctnLoginAluno 1').style.display = 'none';
+  document.getElementById('ctnLoginAluno 2').style.display = 'block';
 }
 
-function submitForm() {
-    // Valores das informações do cadastro 2
-    const cep = document.getElementById('cep').value;
-    const endereco = document.getElementById('endereco').value;
+function voltarParaUsuario() {
+  // Volta para a primeira etapa
+  document.getElementById('ctnLoginAluno 2').style.display = 'none';
+  document.getElementById('ctnLoginAluno 1').style.display = 'block';
+}
+
+function finalizarCadastro() {
+  // Aqui você pode coletar todos os dados e enviar
 
 
-    if (!cep || !endereco) {
-        alert('Por favor, preencha todos os campos de endereço.');
-        return;
-    }
+  const dados = {
+    nome: document.getElementById('nome').value,
+    email: document.getElementById('email').value,
+    rua: document.getElementById('rua').value,
+    cidade: document.getElementById('cidade').value
+  };
+
+  console.log('Cadastro finalizado:', dados);
+  alert('Cadastro realizado com sucesso!');
+  // Aqui você poderia enviar para um backend com fetch(), por exemplo
 }

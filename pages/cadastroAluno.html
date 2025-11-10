@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Nambio/css/global.css">
     <title>Nâmbio</title>
+    <script src="/Nambio/js/cadastro.js" defer></script>
 </head>
 
 <body>
@@ -56,7 +57,7 @@
     </main>
 
     <!-- Partes da tela de cadastro -->
-    <form id="cadastroConatiner1" class="cadastroContainer1"> <!-- Parte 1 = -->
+    <div id="ctnLoginAluno 1" class="ctnLoginAluno 1"> <!-- Parte 1 = -->
         <h1>Cadastro de Aluno</h1>
         <p>insira suas informações para se tornar um aluno Nâmbio</p>
 
@@ -96,14 +97,14 @@
 
 
         <div class="avancar">
-            <button type="button" onclick="nextStep(2)">Avançar</button>
+            <button type="button" onclick="avançarParaEndereco()">Avançar</button>
         </div>
-    </form>
+    </div>
 
 
     <!-- Parte 2 do cadastro -->
 
-    <form id="cadastroConatiner2" class="cadastroContainer2">
+    <div id="ctnLoginAluno 2" class="ctnLoginAluno 2">
         <h1>Cadastro de Aluno</h1>
         <p>insira suas informações para se tornar um aluno Nâmbio</p>
 
@@ -143,10 +144,10 @@
 
 
         <div class="avancar">
-            <button type="button" onclick="nextStep(-1)">Voltar</button>
-            <button class="cadAlunoCad">Cadastrar</button>
+            <button type="button" onclick="voltarParaUsuario()">Voltar</button>
+            <button class="cadAlunoCad" onclick="finalizarCadastro()">Cadastrar</button>
         </div>
-    </form>
+    </div>
 
 
 
@@ -214,8 +215,8 @@
 
             <div class="novidades">
                 <h2>Quer receber novidades?</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incidente
+                <p>Coloque seu email aqui, e fique por dentro de tudo que acontece na Nâmbio!
+                    Locações, universidades e tudo que podemos te oferecer.
                 </p>
 
                 <article class="novi">

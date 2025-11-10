@@ -1,0 +1,35 @@
+.conteudo1 {
+    padding: 5%;
+
+}
+
+.titulo {
+    font-size: 196%;
+}
+
+.btnambio {
+    background-color: #37B1DA;
+    color: white;
+    padding: 15px;
+    border-radius: 23px;
+    font-weight: bold;
+    border: 0 solid;
+    margin: 20px;
+    cursor: pointer;
+    transition: 0.4s ease;
+    font-family: 'Poppins', sans-serif;
+
+
+    &:hover {
+        background-color: #3594b4;
+    }
+
+    &:active {
+        width: 70px;
+    }
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
