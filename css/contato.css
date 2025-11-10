@@ -75,23 +75,23 @@
 .formulario .nome input,
 .formulario .email input {
     background-color: #DDE0E3;
-    border-radius: 40px;
+    border-radius: 13px;
     border: none;
     width: 450px;
-    height: 25px;
+    height: 45px;
     margin-bottom: 15px;
-    padding: 2px 10px 2px 10px;
+    padding: 2px 10px 2px 15px;
     font-family: 'Poppins', sans-serif;
     outline: none;
 }
 
 .formulario .relato textarea {
     background-color: #DDE0E3;
-    border-radius: 20px;
+    border-radius: 13px;
     border: none;
     width: 450px;
     height: 150px;
-    padding: 10px 25px 10px 10px;
+    padding: 10px 25px 10px 15px;
     font-family: 'Poppins', sans-serif;
     outline: none;
 }

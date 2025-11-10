@@ -56,7 +56,7 @@
             <article class="ctnLoginAluno">
                 <h1>Entrar</h1>
                 <p>Olá seja bem vindo novamente! para prosseguir conecte-se
-                    com as redes, ou preencha seus dados abaixo!</p>
+                    com as redes!</p>
 
                 <div class="caixa1">
                     <img src="/Nambio/assets/icons/facebook-branco.svg" alt="">
@@ -71,22 +71,41 @@
                 <hr>
                 
                 <article class="aluno-login">
+                    <p> Ou preencha seus dados abaixo!</p>
+                    <!-- Campo de Email-->
+                    <div class="campo-email-alunoLogin">
+                        <input type="email" placeholder="Digite seu Email!">
+                    </div>
+
+                    <!-- Campo de senha -->
                     <div class="campo-senha-alunoLogin">
                         <input type="password" placeholder="Digite sua senha!" id="senha" class="input-senha-login">
-                        <button class="botao-olho" id="botao-senha" type="button" onclick="mostrarSenha()">
-                            
-                        </button>
+                        <button class="botao-olho" id="botao-senha" onclick="mostrarSenha()"></button>
                     </div>
-                    
+
+                    <article class="lembrarSenha">
+                        <div class="lembraDeMim">
+                            <input type="checkbox" id="lembrar">
+                            <label for="lembrar">Lembrar de mim!</label>
+                        </div>
+
+                        <div class="esqueceuSenha">
+                            <span><a href="#">Esqueceu a senha?</a></span>
+                        </div>
+
+                    </article>
+
+                    <button class="btn-entrar-login"><a href="/Nambio/pages/home.html">Entrar</a></button>
                 </article>
-
-                
-                
-                
-
             </article>
         </article>
 
+        <div class="pgLogin-Linkcadastro">
+            <p class="linkParaCadastro">Ainda Não é um Nâmbio</p>
+            <span><a href="cadastro.html">Cadatre-se agora!</a></span>
+        </div>
+
+        <br>
 
 
 
