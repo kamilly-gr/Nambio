@@ -1,7 +1,21 @@
+.container-pg-casasSP{
+    display: flex;
+}
+
+
+
+.primeiraParte{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: blue;
+    margin: 0;
+}
+
+
 .filtros-pg-SP{
     text-align: center;
-    background-color: red;
-    
     margin: 25px;
     position: relative;
     display: inline-block;
@@ -32,3 +46,15 @@
         opacity: 1;
     }
 }
+
+
+
+.segundaParte{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: green;
+    margin: 0;
+}
+
