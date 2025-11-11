@@ -3,8 +3,10 @@ function avançarParaEndereco() {
   const email = document.getElementById('email').value;
   const username = document.getElementById('username').value;
   const tel = document.getElementById('tel').value;
+  const nasc = document.getElementById('nasc').value;
+  const cpf = document.getElementById('cpf').value;
 
-  if (!nome || !email || !username || !tel) {
+  if (!nome || !email || !username || !tel || !nasc || !cpf) {
     alert('Preencha todos os campos obrigatórios.');
     return;
   }
@@ -18,16 +20,57 @@ function voltarParaUsuario() {
   document.getElementById('ctnLoginAluno1').style.display = 'block';
 }
 
-function finalizarCadastro() {
-  const dados = {
-    nome: document.getElementById('nome') ? document.getElementById('nome').value : '',
-    email: document.getElementById('email') ? document.getElementById('email').value : '',
-    cep: document.getElementById('cep') ? document.getElementById('cep').value : '',
-    endereco: document.getElementById('endereco') ? document.getElementById('endereco').value : '',
-    numeroCasa: document.getElementById('numeroCasa') ? document.getElementById('numeroCasa').value : ''
-  };
+const cepInput = document.getElementById('cep');
+const logradouroInput = document.getElementById('logradouro');
+const bairroInput = document.getElementById('bairro');
+const cidadeInput = document.getElementById('cidade');
+const ufInput = document.getElementById('uf');
 
-  console.log('Cadastro finalizado:', dados);
+cepInput.addEventListener('blur', () => {
+  let cep = cepInput.value.replace(/\D/g, ''); // remove tudo que não for número
+
+  // Limpa os campos ao sair do input
+  logradouroInput.value = '';
+  bairroInput.value = '';
+  cidadeInput.value = '';
+  ufInput.value = '';
+
+  if (cep.length !== 8) {
+    alert('CEP inválido. Digite um CEP com 8 números.');
+    return;
+  }
+
+  // Requisição para a API do ViaCEP
+  fetch(`https://viacep.com.br/ws/${cep}/json/`)
+    .then(response => response.json())
+    .then(data => {
+      // Verifica se a API retornou dados válidos
+      if (data.erro) {
+        alert('CEP não encontrado.');
+        return;
+      }
+
+      // Preenche os campos do formulário
+      logradouroInput.value = data.logradouro;
+      bairroInput.value = data.bairro;
+      cidadeInput.value = data.localidade;
+      ufInput.value = data.uf;
+    })
+    .catch(error => {
+      console.error('Erro ao buscar CEP:', error);
+      alert('Erro ao consultar o CEP. Tente novamente.');
+    });
+});
+
+
+function finalizarCadastro() {
+
+  if (!logradouro || !bairro || !uf || !cidade) {
+    alert('Preencha todos os campos obrigatórios.');
+    return;
+  }else {
+  console.log('Cadastro finalizado:');
   alert('Cadastro realizado com sucesso!');
   window.location.href = 'home.html';
+}
 }
