@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=h1, initial-scale=1.0">
+    <title>Nâmbio</title>
+    <link rel="icon" href="/Nambio/assets/icons/logo.svg" type="image/x-icon">
+    <link rel="stylesheet" href="/Nambio/css/global.css">
+    <script src="/Nambio/js/script.js" defer></script>
+    <script src="/Nambio/js/logados.js" defer></script>
+</head>
+
+<body>
+    <!-- //Cabeçalho com logo, categorias e botões de configuração -->
+    <header>
+        <!-- //Logo do site -->
+        <a href="home.html">
+            <h1>
+                <img src="/Nambio/assets/icons/logoNome.svg" alt="Nâmbio">
+            </h1>
+        </a>
+        <!-- //Textos com link para levar para outras páginas  -->
+        <div class="links">
+            <ul>
+                <li><a href="home.html">Início</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="sejaHost.html">Seja uma Host</a></li>
+                <li><a href="categorias.html" ">Categorias</a></li>
+                <li><a href=" contato.html">Contato</a></li>
+            </ul>
+        </div>
+
+        <!-- Botôes de login e cadastro -->
+        <div class="botoesHeader">
+            <!-- Botão de Cadastro -->
+            <div class="dropdownCad">
+                <button class="dropbtn cad">Cadastre-se já!</button>
+                <div class="dropdown-content">
+                    <a href="/Nambio/pages/cadastroHost.html">Cadastrar-se como Host</a>
+                    <a href="/Nambio/pages/cadastroAluno.html">Cadastrar-se como Aluno</a>
+                </div>
+            </div>
+
+            <!-- Botão de Login -->
+            <div class="dropdownLogin">
+                <button onclick="window.location.href='loginAluno.html'" class="dropbtn login">Login</a>
+            </div>
+
+        </div>
+
+        <div class="perfil-container" style="display: none;">
+            <a href="perfil.html"><img src="/Nambio/assets/icons/perfil.svg" alt="icone de perfil"></a>
+        </div>
+    </header>
+
+    <section class="main-container">
+        <div class="text-perfil">
+            <h1>Meu Perfil</h1>
+            <p>Acesse ou altere dados cadastrais de sua conta Nâmbio.</p>
+        </div>
+        <div class="container-acesso">
+            <h2>Dados de acesso</h2>
+            <div class="dados-acesso">
+                <p>
+                    <strong>E-mail</strong>
+                    <span>Alterar e-mail
+                        <a onclick=""><img src="/Nambio/assets/icons/icone-alteração.svg" alt="icone de alteração"></a>
+                    </span><br>
+                    kamilly123@gmail.com
+                </p>
+                
+                <p>
+                    <strong>Telefone</strong>
+                    <span>Alterar telefone
+                        <a onclick=""><img src="/Nambio/assets/icons/icone-alteração.svg" alt="icone de alteração"></a>
+                    </span><br>
+                    (11) 9999911991
+                </p>
+
+                <p>
+                    <strong>Senha</strong>
+                    <span>Alterar senha
+                        <a onclick=""><img src="/Nambio/assets/icons/icone-alteração.svg" alt="icone de alteração"></a>
+                    </span><br>
+                    senhateste1234
+                </p>
+
+            </div>
+            <div class="container-pessoais"></div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <footer>
+        <!-- Logo do footer -->
+        <div class="lg-footer">
+            <h1>
+                <img src="/Nambio/assets/icons/logoNome.svg" alt="Nâmbio">
+            </h1>
+        </div>
+        <div class="conteudo-footer">
+            <!-- Primeira coluna do footer, onde fica a parte sobre nós
+            e a parte das redes  -->
+            <div class="sobre">
+                <div class="sobreNos">
+                    <h2>Sobre nós</h2>
+                    <p>A melhor agência de Intercâmbio Nacional do Brasil, uma empresa que se preocupa
+                        inteiramente com seu futuro, estudo e educação. Somos capazes de te fornecer uma Host Famly,
+                        para te acudir durante todo seu tempo de Graduação, e permitir que você tenha uma boa moradia e
+                        além de tudo, um lar para chamar de seu.</p>
+                </div>
+
+                <div class="nosSigaNasRedes">
+                    <h2>Nos siga nas redes!</h2>
+                    <div class="logos-apps">
+
+                        <img src="/Nambio/assets/icons/instagram.svg" alt="instagram" />
+
+                        <img src="/Nambio/assets/icons/facebook.svg" alt="facebook" />
+
+                        <img src="/Nambio/assets/icons/tiktok.svg" alt="tiktok">
+
+                        <img src="/Nambio/assets/icons/twitter.svg" alt="twitter">
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Segunda coluna do footer onde fica o acesso a informacao, 
+            ou seja o sobre nós, termos de privacidade etc. -->
+            <div class="informacao">
+                <h2>Acesso a informação</h2>
+                <ul>
+                    <li><a href=""></a>Sobre nós</li>
+                    <li><a href=""></a>Termos e condições</li>
+                    <li><a href=""></a>Política de privacidade</li>
+                    <li><a href=""></a>Suporte</li>
+                    <li><a href=""></a>Serviços</li>
+                </ul>
+
+            </div>
+
+            <!-- terceira coluna do footer, onde fica um input para o usuarios
+            colocar seu e-mail e receber notificações  -->
+
+            <div class="novidades">
+                <h2>Quer receber novidades?</h2>
+                <p>Coloque seu email aqui, e fique por dentro de tudo que acontece na Nâmbio!
+                    Locações, universidades e tudo que podemos te oferecer.
+                </p>
+
+                <article class="novi">
+                    <input type="email" placeholder="Digite um email válido!"><br>
+                    <button>Enviar</button>
+                </article>
+
+
+            </div>
+        </div>
+
+
+
+
+    </footer>
+
+</body>
+
+</html>
