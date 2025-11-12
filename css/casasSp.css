@@ -1,5 +1,12 @@
 .container-pg-casasSP{
     display: flex;
+    justify-content: center;
+    aliguin-items: center;
+    background-color: azure;
+    max-width: 55%;
+    border-radius: 25px;
+    margin: 25px;
+    padding: 5px 0px 5px 0px;
 }
 
 
@@ -8,24 +15,27 @@
     display:flex;
     justify-content: center;
     align-items: center;
-
-    background-color: blue;
+    background-color :azure;
     margin: 0;
+    padding: 10px;
+    border-right: 2px solid #ED6D00;
 }
 
 
 .filtros-pg-SP{
     text-align: center;
-    margin: 25px;
     position: relative;
     display: inline-block;
 }
 
 .filtros-pg-SP form input {
     background-color: white;
-    padding-right: 35px; /* espaço pro X */
-    height: 35px;
+    padding: 10px 35px 10px 15px;
     font-size: 15px;
+    border: none;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    outline: none;
 }
 
 
@@ -53,8 +63,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 20px;
+}
 
-    background-color: green;
+
+.terceira-parte{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
     margin: 0;
 }
 
+.segundaParte input, .terceira-parte input{
+    width: 200px;
+    height: 35px;
+    border: none;
+    border: 1px solid #ccc;
+    padding: 10px 35px 10px 15px;
+    border-radius: 15px;
+}

@@ -14,3 +14,22 @@ function limparCampo() {
     clearBtn.style.display = "none";
     input.focus();
 }
+
+
+// let data = document.getElementById("dataEntrada")
+// let lempar = document.getElementById("tirarData")
+
+// function iconeDoX(){
+//     if (data.value.trim() !== ""){
+//         lempar.style.display = "block"
+
+//     }else{
+//         lempar.style.display = "none"
+//     }
+// }
+
+// function lempar(){
+//     data.value = ""
+//     lempar.style.display = "none"
+//     data.focus()
+// }
