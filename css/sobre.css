@@ -42,11 +42,12 @@ a {
     display: flex;
     justify-content: space-between;
     padding: 40px;
-    max-width: 1200px;
+    max-width: 85%;
     margin: 20px auto;
     align-items: center;
-    
-    
+    gap: 75px;
+
+
 }
 
 .bloco-texto {
@@ -63,6 +64,7 @@ a {
     perspective: 1000px;
     display: flex;
     justify-content: flex-end;
+
 
 }
 
@@ -88,6 +90,7 @@ a {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: flex-end;
+
 }
 
 .card-front {
