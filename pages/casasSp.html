@@ -94,24 +94,20 @@
                 <img src="/Nambio/assets/icons/calendario-pg-casas.svg" alt="">
             </div>
 
-            <article class="data-entrada-pg-SP>
-                <form>
+            <article class="data-entrada-pg-SP">
                     <input 
                         type ="date" 
-                        id="dataEntrada" 
-                        placeholder="Data de entrada" 
-                        onclick="iconeDoX()"
-                    >
+                        id="dataEntrada"
+                        oninput="nAparece()"
+                    />
 
                     <img 
                         src="/Nambio/assets/icons/x9icone para fechar ou tirar.svg" 
                         alt="Limpar" 
                         id="tirarData" 
-                        class="clear-btn"
+                        class="tirarData"
                         onclick="lempar()"
                     >
-                </form>
-                
             </article>
         </article>
 
