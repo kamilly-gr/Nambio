@@ -89,14 +89,21 @@
                 <img src="/Nambio/assets/icons/calendario-pg-casas.svg" alt="">
             </div>
 
-            <article>
-                <form action="">
+            <article class="data-entrada-pg-SP>
+                <form>
                     <input 
-                        type="text" 
+                        type ="date" 
                         id="dataEntrada" 
                         placeholder="Data de entrada" 
-                        onfocus="(this.type='date')" 
-                        onblur="(this.type='text')"
+                        onclick="iconeDoX()"
+                    >
+
+                    <img 
+                        src="/Nambio/assets/icons/x9icone para fechar ou tirar.svg" 
+                        alt="Limpar" 
+                        id="tirarData" 
+                        class="clear-btn"
+                        onclick="lempar()"
                     >
                 </form>
                 
@@ -106,6 +113,7 @@
         <!-- terceira parte dos filtros - Quantidade de alunos -->
         <article class="terceira-parte">
             <div class="icon-usuario">
+                <img src="/Nambio/assets/icons/usuarios-pg-casas.svg">
 
             </div>
 
