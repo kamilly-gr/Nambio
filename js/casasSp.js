@@ -28,7 +28,7 @@ function iconeDoX(){
     }
 }
 
-function lempar(){
+function apagar(){
     data.value = ""
     lempar.style.display = "none"
     data.focus()
