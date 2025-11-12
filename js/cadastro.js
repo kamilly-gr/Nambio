@@ -71,6 +71,11 @@ function finalizarCadastro() {
   }else {
   console.log('Cadastro finalizado:');
   alert('Cadastro realizado com sucesso!');
-  window.location.href = 'home.html';
+
+  document.getElementById('formCadastro').reset(); // Limpa o formulário
+
+  atualizarHeaderAposCadastro() // atualiza os botões de cadastro para o botão de perfil
+
+  window.location.href = 'home.html'; // redireciona para a página home
 }
 }
