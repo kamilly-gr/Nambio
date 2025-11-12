@@ -65,12 +65,23 @@ cepInput.addEventListener('blur', () => {
 
 function finalizarCadastro() {
 
+  // verifica os valores atuais dos inputs de endereço
+  const logradouro = logradouroInput.value;
+  const bairro = bairroInput.value;
+  const cidade = cidadeInput.value;
+  const uf = ufInput.value;
+
   if (!logradouro || !bairro || !uf || !cidade) {
     alert('Preencha todos os campos obrigatórios.');
     return;
-  }else {
+  }
+
   console.log('Cadastro finalizado:');
   alert('Cadastro realizado com sucesso!');
-  window.location.href = 'home.html';
-}
+
+  // atualiza o header (marca usuário como logado) antes de redirecionar
+  atualizarHeaderAposCadastro();
+
+  // redireciona para a página inicial (caminho absoluto do projeto)
+  window.location.href = '/Nambio/pages/home.html';
 }
