@@ -52,5 +52,29 @@
     font-size: 11px;
     margin-left: 5px;
     margin-right: 0px;
-
 }
+
+.main-container {
+    max-width: 1100px;
+    margin: 0 auto; /* centraliza o container na viewport */
+    padding: 40px 16px;
+    display: flex;
+    flex-direction: column; /* empilha: text-perfil em cima e container-acesso embaixo */
+    gap: 20px; /* espaço entre a coluna de texto e o conteúdo principal */
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+
+/* coluna de título/descrição fixa à esquerda dentro do container centralizado */
+.text-perfil {
+    width: 100%;         /* ocupa a largura do container (fica em cima) */
+    text-align: left;    /* mantém o texto colado à esquerda */
+    margin: 0;
+}
+
+/* conteúdo principal (formulários) ocupa a largura inteira e fica abaixo */
+.container-acesso {
+    width: 100%;
+    box-sizing: border-box;
+}
+/* ...existing code... */
