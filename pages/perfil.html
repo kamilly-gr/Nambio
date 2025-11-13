@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/Nambio/css/global.css">
     <script src="/Nambio/js/login.js" defer></script>
     <script src="/Nambio/js/logados.js" defer></script>
+    <script src="/Nambio/js/perfil.js" defer></script>
 </head>
 
 <body>
@@ -66,26 +67,29 @@
             <div class="dados-acesso">
                 <p>
                     <strong>E-mail</strong>
-                    <span>Alterar e-mail
-                        <a onclick=""><img src="/Nambio/assets/icons/icone-alteração.svg" alt="icone de alteração"></a>
-                    </span><br>
-                    kamilly123@gmail.com
+                    <span>Alterar e-mail</span>
+                    <button onclick="mudarEmail()">
+                        <img src="/Nambio/assets/icons/icone-alteração.svg" alt="icone de alteração">
+                    </button><br>
+                    <input value="kamilly123@gmail.com" disabled class="input-senha-perfil" id="email"></input>
                 </p>
                 
                 <p>
                     <strong>Telefone</strong>
-                    <span>Alterar telefone
-                        <a onclick=""><img src="/Nambio/assets/icons/icone-alteração.svg" alt="icone de alteração"></a>
-                    </span><br>
-                    (11) 9999911991
+                    <span>Alterar telefone</span>
+                    <button onclick="mudarTele()">
+                        <img src="/Nambio/assets/icons/icone-alteração.svg" alt="icone de alteração">
+                    </button><br>
+                    <input value="(11)96334-1733" maxlength="11" disabled class="input-senha-perfil" id="tele" placeholder="()_____-____"></input>
                 </p>
 
                 <p>
                     <strong>Senha</strong>
-                    <span>Alterar senha
-                        <a onclick=""><img src="/Nambio/assets/icons/icone-alteração.svg" alt="icone de alteração"></a>
-                    </span><br>
-                    <p>senhateste1234</p><button class="botao-olho" id="botao-senha" onclick="mostrarSenha()"></button>
+                    <span>Alterar senha</span>
+                    <button onclick="mudarSenha()">
+                        <img src="/Nambio/assets/icons/icone-alteração.svg" alt="icone de alteração">
+                    </button><br>
+                    <input value="senhateste" disabled class="input-senha-perfil" id="senha"></input><button class="botao-olho-perfil" id="botao-senha" onclick="mostrarSenha()"></button>
                 </p>
 
             </div>

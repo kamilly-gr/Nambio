@@ -1,0 +1,29 @@
+.input-senha-perfil {
+    border: none;
+    background-color: var(--color-bg);
+    color: black;
+    field-sizing: content;
+    margin: 0 auto;
+}
+
+.botao-olho-perfil {
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s;
+
+    background-image: url("/Nambio/assets/icons/olho-senha-fechado.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;         /* alinha com o input */
+    margin-left: 4px;               /* espaço entre input e botão */
+    padding: 0;
+    border-radius: 4px;
+    text-align: center;
+}
