@@ -27,3 +27,30 @@
     border-radius: 4px;
     text-align: center;
 }
+
+.icon-altera {
+    width: 17px;
+    height: 17px;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s;
+
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;         /* alinha com o input */ 
+    border-radius: 4px;
+    text-align: center;
+    margin: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.dados-acesso p span {
+    color: var(--secondary-color);
+    font-size: 11px;
+    margin-left: 5px;
+    margin-right: 0px;
+
+}
