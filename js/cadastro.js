@@ -83,5 +83,5 @@ function finalizarCadastro() {
   atualizarHeaderAposCadastro();
 
   // redireciona para a página inicial (caminho absoluto do projeto)
-  window.location.href = '/Nambio/pages/home.html';
+  window.location.href = 'home.html';
 }
