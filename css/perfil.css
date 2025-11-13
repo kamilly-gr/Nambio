@@ -1,80 +1,468 @@
+/* Reset / base (mantive seletores já usados) */
 .input-senha-perfil {
     border: none;
-    background-color: var(--color-bg);
-    color: black;
-    field-sizing: content;
-    margin: 0 auto;
+    background-color: transparent;
+    color: var(--text-secondary);
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 8px 12px;
+    height: 40px;
+    box-sizing: border-box;
+    border-radius: 6px;
+    font-family: inherit;
+    line-height: 1;
 }
 
+/* Botão olho e ícones */
 .botao-olho-perfil {
-    width: 20px;
-    height: 20px;
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     background-color: transparent;
     cursor: pointer;
     border: none;
     transition: opacity 0.2s;
-
     background-image: url("/Nambio/assets/icons/olho-senha-fechado.svg");
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    vertical-align: middle;         /* alinha com o input */
-    margin-left: 4px;               /* espaço entre input e botão */
+    background-size: 18px;
+    vertical-align: middle;
+    margin-left: 8px;
     padding: 0;
-    border-radius: 4px;
-    text-align: center;
+    border-radius: 6px;
 }
 
 .icon-altera {
-    width: 17px;
-    height: 17px;
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     background-color: transparent;
     cursor: pointer;
     border: none;
     transition: opacity 0.2s;
-
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    vertical-align: middle;         /* alinha com o input */ 
+    vertical-align: middle;
     border-radius: 4px;
-    text-align: center;
-    margin: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
+    margin: 0 8px;
+    padding: 0;
 }
 
-.dados-acesso p span {
-    color: var(--secondary-color);
-    font-size: 11px;
-    margin-left: 5px;
-    margin-right: 0px;
-}
-
+/* MAIN LAYOUT */
 .main-container {
-    max-width: 1100px;
-    margin: 0 auto; /* centraliza o container na viewport */
+    max-width: 1000px;
+    margin: 0 auto;
     padding: 40px 16px;
     display: flex;
-    flex-direction: column; /* empilha: text-perfil em cima e container-acesso embaixo */
-    gap: 20px; /* espaço entre a coluna de texto e o conteúdo principal */
-    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    align-items: stretch;
     box-sizing: border-box;
 }
 
-/* coluna de título/descrição fixa à esquerda dentro do container centralizado */
 .text-perfil {
-    width: 100%;         /* ocupa a largura do container (fica em cima) */
-    text-align: left;    /* mantém o texto colado à esquerda */
-    margin: 0;
+    width: 100%;
+    text-align: left;
+    margin: 0 0 8px 0;
 }
 
-/* conteúdo principal (formulários) ocupa a largura inteira e fica abaixo */
-.container-acesso {
+/* CARD PADRÃO */
+.container-acesso,
+.container-pessoais {
     width: 100%;
     box-sizing: border-box;
+    background-color: white;
+    border-radius: 16px;
+    padding: 20px;
 }
-/* ...existing code... */
+
+/* --------------------------
+   DADOS DE ACESSO: layout conforme imagem
+   - senha aparece no canto direito superior
+   - email/telefone ficam à esquerda
+   -------------------------- */
+.dados-acesso {
+    display: grid;
+    grid-template-columns: 1fr 320px; /* esquerda flexível, direita fixa para senha */
+    grid-template-rows: auto;
+    gap: 12px 24px;
+    align-items: start;
+    width: 100%;
+}
+
+
+/* Forçar senha em linha: input + botão lado a lado */
+.senha-acesso {
+  grid-column: 2 / 3;
+  grid-row: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;       /* alinha verticalmente input e botão */
+  justify-content: flex-end; /* mantém o bloco alinhado à direita como na imagem */
+  gap: 8px;                  /* espaço entre input e botão */
+  white-space: nowrap;       /* evita quebra entre input e botão */
+}
+
+/* input ocupa o máximo possível mas permite o botão ao lado */
+.senha-acesso input.input-senha-perfil {
+  display: inline-block;
+  flex: 1 1 160px;           /* cresce, mas com largura mínima razoável */
+  min-width: 120px;
+  max-width: 220px;
+  margin-top: 0;             /* remove margem superior que forçava quebra */
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+/* botão do olho já tem dimensões; garante alinhamento */
+.senha-acesso .botao-olho-perfil {
+  flex: 0 0 auto;
+  margin-left: 0;            /* já controlado pelo gap */
+}
+
+/* Responsivo: em telas pequenas empilha a senha (mantendo inputs legíveis) */
+@media (max-width: 880px) {
+  .senha-acesso {
+    display: block;
+    text-align: left;
+  }
+  .senha-acesso input.input-senha-perfil {
+    width: 100%;
+    max-width: none;
+    margin-top: 8px;
+  }
+  .senha-acesso .botao-olho-perfil {
+    margin-top: 8px;
+    display: inline-flex;
+  }
+}
+
+/* Left column: agrupa email e telefone numa coluna empilhada */
+.acesso-row {
+    grid-column: 1 / 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* cada item de acesso ocupa largura total da coluna esquerda e entradas 100% */
+.item-acesso {
+    display: block;
+}
+.item-acesso strong,
+.item-acesso span { display: inline-block; vertical-align: middle; }
+.item-acesso input.input-senha-perfil { width: 100%; margin-top: 8px; }
+
+/* --------------------------
+   DADOS PESSOAIS: layout conforme imagem
+   - esquerda: 3 itens empilhados
+   - direita: avatar grande com botão editar abaixo
+   -------------------------- */
+.pessoais-grid {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+/* coluna esquerda com 3 itens empilhados */
+.left-col {
+    flex: 1 1 65%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* coluna direita para avatar / ação */
+.right-col {
+    flex: 0 0 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    justify-content: center; /* centraliza verticalmente como na imagem */
+}
+
+/* avatar exemplo (caso exista imagem dentro de right-col) */
+.right-col .avatar,
+.right-col img.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 8px solid #000; /* espessura semelhante à imagem de exemplo */
+    background-color: #fff;
+}
+
+/* label/strong e entradas dentro do pessoais */
+.pessoais-grid p {
+    margin: 0;
+}
+.pessoais-grid input.input-senha-perfil {
+    width: 100%;
+    margin-top: 6px;
+}
+
+/* botão laranja do exemplo */
+.container-pessoais .btn-alterar {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    background-color: var(--secondary-color);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 14px;
+}
+
+/* pequenos ajustes tipográficos para combinar com imagem */
+.container-acesso h2,
+.container-pessoais h2 {
+    margin: 0 0 12px 0;
+    font-weight: 600;
+}
+
+/* responsividade: empilha tudo em telas menores */
+@media (max-width: 880px) {
+    .dados-acesso {
+        grid-template-columns: 1fr;
+    }
+    .senha-acesso { grid-column: 1 / -1; text-align: left; }
+    .pessoais-grid { flex-direction: column; }
+    .right-col { align-items: flex-start; justify-content: flex-start; }
+    .right-col .avatar { width: 96px; height: 96px; border-width: 6px; }
+}
+
+/* mantém textos sempre colados à esquerda dentro dos blocos */
+.container-acesso p,
+.container-pessoais p,
+.text-perfil { text-align: left; }
+
+
+.input-senha-perfil {
+    border: none;
+    background-color: transparent;
+    color: var(--text-secondary);
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 8px 12px;
+    height: 40px;
+    box-sizing: border-box;
+    border-radius: 6px;
+    font-family: inherit;
+    line-height: 1;
+}
+
+/* Botão olho e ícones */
+.botao-olho-perfil {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s;
+    background-image: url("/Nambio/assets/icons/olho-senha-fechado.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px;
+    vertical-align: middle;
+    margin-left: 8px;
+    padding: 0;
+    border-radius: 6px;
+}
+
+.icon-altera {
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s;
+    vertical-align: middle;
+    border-radius: 4px;
+    margin: 0 8px;
+    padding: 0;
+}
+
+/* MAIN LAYOUT */
+.main-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: stretch;
+    box-sizing: border-box;
+}
+
+.text-perfil {
+    width: 100%;
+    text-align: left;
+    margin: 0 0 8px 0;
+}
+
+/* CARD PADRÃO */
+.container-acesso,
+.container-pessoais {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 16px;
+    padding: 20px;
+}
+
+/* --------------------------
+   DADOS DE ACESSO: layout conforme imagem
+   - senha aparece no canto direito superior
+   - email/telefone ficam à esquerda
+   -------------------------- */
+.dados-acesso {
+    display: grid;
+    grid-template-columns: 1fr 320px; /* esquerda flexível, direita fixa para senha */
+    grid-template-rows: auto;
+    gap: 12px 24px;
+    align-items: start;
+    width: 100%;
+}
+
+/* Força o bloco de senha para a coluna direita */
+.senha-acesso {
+    grid-column: 2 / 3;
+    grid-row: 1;
+    align-self: start;
+    text-align: right;
+}
+
+/* Ajustes internos do bloco de senha (alinhar texto e botões) */
+.senha-acesso strong,
+.senha-acesso span {
+    display: inline-block;
+    vertical-align: middle;
+}
+.senha-acesso .icon-altera { margin-left: 8px; vertical-align: middle; }
+.senha-acesso input.input-senha-perfil {
+    display: inline-block;
+    width: calc(100% - 44px); /* deixa espaço para o botão olho */
+    max-width: 220px;
+    margin-top: 8px;
+    vertical-align: middle;
+}
+.senha-acesso .botao-olho-perfil { margin-left: 8px; vertical-align: middle; }
+
+/* Left column: agrupa email e telefone numa coluna empilhada */
+.acesso-row {
+    grid-column: 1 / 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* cada item de acesso ocupa largura total da coluna esquerda e entradas 100% */
+.item-acesso {
+    display: block;
+}
+.item-acesso strong,
+.item-acesso span { display: inline-block; vertical-align: middle; }
+.item-acesso input.input-senha-perfil { width: 100%; margin-top: 8px; }
+
+/* --------------------------
+   DADOS PESSOAIS: layout conforme imagem
+   - esquerda: 3 itens empilhados
+   - direita: avatar grande com botão editar abaixo
+   -------------------------- */
+.pessoais-grid {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+/* coluna esquerda com 3 itens empilhados */
+.left-col {
+    flex: 1 1 65%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* coluna direita para avatar / ação */
+.right-col {
+    flex: 0 0 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    justify-content: center; /* centraliza verticalmente como na imagem */
+}
+
+/* avatar exemplo (caso exista imagem dentro de right-col) */
+.right-col .avatar,
+.right-col img.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 8px solid #000; /* espessura semelhante à imagem de exemplo */
+    background-color: #fff;
+}
+
+/* label/strong e entradas dentro do pessoais */
+.pessoais-grid p {
+    margin: 0;
+}
+.pessoais-grid input.input-senha-perfil {
+    width: 100%;
+    margin-top: 6px;
+}
+
+/* botão laranja do exemplo */
+.container-pessoais .btn-alterar {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    background-color: var(--secondary-color);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 14px;
+}
+
+/* pequenos ajustes tipográficos para combinar com imagem */
+.container-acesso h2,
+.container-pessoais h2 {
+    margin: 0 0 12px 0;
+    font-weight: 600;
+}
+
+/* responsividade: empilha tudo em telas menores */
+@media (max-width: 880px) {
+    .dados-acesso {
+        grid-template-columns: 1fr;
+    }
+    .senha-acesso { grid-column: 1 / -1; text-align: left; }
+    .pessoais-grid { flex-direction: column; }
+    .right-col { align-items: flex-start; justify-content: flex-start; }
+    .right-col .avatar { width: 96px; height: 96px; border-width: 6px; }
+}
+
+/* mantém textos sempre colados à esquerda dentro dos blocos */
+.container-acesso p,
+.container-pessoais p,
+.text-perfil { 
+    text-align: left; 
+}
