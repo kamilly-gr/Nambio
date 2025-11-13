@@ -14,11 +14,15 @@
     border-radius: 23px;
     font-weight: bold;
     border: 0 solid;
-    margin: 20px;
+    margin: 0px;
+    margin-top: 20px;
     cursor: pointer;
     transition: 0.4s ease;
     font-family: 'Poppins', sans-serif;
-    
+    display: flex;
+    text-align: center;
+    width: 251px;
+
 
 
     &:hover {
@@ -26,11 +30,100 @@
     }
 
     &:active {
-        width: 230px;
+        width: 200px;
     }
 }
 
-a{
+a {
     color: white;
     text-decoration: none;
+}
+
+.conteudo-principal {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px;
+    max-width: 85%;
+    margin: 20px auto;
+    align-items: center;
+    gap: 75px;
+
+
+}
+
+.bloco-texto {
+    flex: 1;
+    padding-right: 40px;
+    /* Espaço entre o texto e o card */
+}
+
+
+.card-container {
+
+    width: 600px;
+    height: 400px;
+    perspective: 1000px;
+    display: flex;
+    justify-content: flex-end;
+
+
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.card-container:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.card-front {
+    background-color: #F0BA2F;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.card-back {
+
+    background-image: url(/Nambio/assets/images/formandos.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: rotateY(180deg);
+}
+
+/* --- Estilos Adicionais para o botão e texto parecerem com a imagem original --- */
+.botao-aluno {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+h1 {
+    color: #242323;
 }

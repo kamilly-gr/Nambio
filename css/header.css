@@ -104,3 +104,7 @@ header h1 {
   margin-right: 10px;
   font-family: 'poppins', sans-serif;
 }
+
+.perfil-container {
+  margin: 0px 90px;
+}

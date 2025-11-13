@@ -1,17 +1,20 @@
 <!DOCTYPE html>
+
+
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=h1, initial-scale=1.0">
     <title>Nâmbio</title>
     <link rel="icon" href="/Nambio/assets/icons/logo.svg" type="image/x-icon">
     <link rel="stylesheet" href="/Nambio/css/global.css">
+    <script src="/Nambio/js/script.js" defer></script>
     <script src="/Nambio/js/logados.js" defer></script>
 </head>
 
-
 <body>
+    <!-- //Cabeçalho com logo, categorias e botões de configuração -->
     <header>
         <!-- //Logo do site -->
         <a href="home.html">
@@ -25,8 +28,8 @@
                 <li><a href="home.html">Início</a></li>
                 <li><a href="sobre.html">Sobre</a></li>
                 <li><a href="sejaHost.html">Seja uma Host</a></li>
-                <li><a href="categorias.html">Categorias</a></li>
-                <li><a href="contato.html" style="text-decoration: underline;">Contato</a></li>
+                <li><a href="categorias.html" ">Categorias</a></li>
+                <li><a href=" contato.html">Contato</a></li>
             </ul>
         </div>
 
@@ -52,61 +55,42 @@
             <a href="perfil.html"><img src="/Nambio/assets/icons/perfil.svg" alt="icone de perfil"></a>
         </div>
     </header>
-    <main>
-        <article class="ctn">
-            <article class="ctnLoginAluno">
-                <h1>Entrar</h1>
-                <p>Olá seja bem vindo novamente! para prosseguir conecte-se
-                    com as redes!</p>
 
-                <div class="caixa1">
-                    <img src="/Nambio/assets/icons/facebook-branco.svg" alt="">
-                    <a href="#"> Entrar com Facebook</a>
-                </div>
-
-                <div class="caixa2">
-                    <img src="/Nambio/assets/icons/google.svg" alt="">
-                    <a href="#"> Entrar com o Google</a>
-                </div>
-
-                <hr>
-                
-                <article class="aluno-login">
-                    <p> Ou preencha seus dados abaixo!</p>
-                    <!-- Campo de Email-->
-                    <div class="campo-email-alunoLogin">
-                        <input type="email" placeholder="Digite seu Email!">
-                    </div>
-
-                    <!-- Campo de senha -->
-                    <div class="campo-senha-alunoLogin">
-                        <input type="password" placeholder="Digite sua senha!" id="senha" class="input-senha-login">
-                        <button class="botao-olho" id="botao-senha" onclick="mostrarSenha()"></button>
-                    </div>
-
-                    <article class="lembrarSenha">
-                        <div class="lembraDeMim">
-                            <input type="checkbox" id="lembrar">
-                            <label for="lembrar">Lembrar de mim!</label>
-                        </div>
-
-                        <div class="esqueceuSenha">
-                            <span><a href="#">Esqueceu a senha?</a></span>
-                        </div>
-
-                    </article>
-
-                    <button class="btn-entrar-login"><a href="/Nambio/pages/home.html">Entrar</a></button>
-                </article>
-            </article>
-        </article>
-
-        <div class="pgLogin-Linkcadastro">
-            <p class="linkParaCadastro">Ainda não é um Nâmbio?</p>
-            <span><a href="cadastroAluno.html">Cadastre-se agora!</a></span>
+    <section class="main-container">
+        <div class="text-perfil">
+            <h1>Meu Perfil</h1>
+            <p>Acesse ou altere dados cadastrais de sua conta Nâmbio.</p>
         </div>
+        <div class="container-acesso">
+            <h2>Dados de acesso</h2>
+            <div class="dados-acesso">
+                <p>
+                    <strong>E-mail</strong>
+                    <span>Alterar e-mail
+                        <a onclick=""><img src="/Nambio/assets/icons/icone-alteração.svg" alt="icone de alteração"></a>
+                    </span><br>
+                    kamilly123@gmail.com
+                </p>
+                
+                <p>
+                    <strong>Telefone</strong>
+                    <span>Alterar telefone
+                        <a onclick=""><img src="/Nambio/assets/icons/icone-alteração.svg" alt="icone de alteração"></a>
+                    </span><br>
+                    (11) 9999911991
+                </p>
 
-        <br>
+                <p>
+                    <strong>Senha</strong>
+                    <span>Alterar senha
+                        <a onclick=""><img src="/Nambio/assets/icons/icone-alteração.svg" alt="icone de alteração"></a>
+                    </span><br>
+                    senhateste1234
+                </p>
+
+            </div>
+            <div class="container-pessoais"></div>
+    </section>
 
 
 
@@ -114,7 +98,16 @@
 
 
 
-    </main>
+
+
+
+
+
+
+
+
+
+
     <!-- Footer -->
     <footer>
         <!-- Logo do footer -->
@@ -188,8 +181,6 @@
 
     </footer>
 
-<script src="/Nambio/js/login.js"></script>
 </body>
-
 
 </html>

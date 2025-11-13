@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=h1, initial-scale=1.0">
@@ -7,7 +8,9 @@
     <link rel="icon" href="/Nambio/assets/icons/logo.svg" type="image/x-icon">
     <link rel="stylesheet" href="/Nambio/css/global.css">
     <script src="/Nambio/js/script.js" defer></script>
+    <script src="/Nambio/js/logados.js" defer></script>
 </head>
+
 <body>
     <!-- //Cabeçalho com logo, categorias e botões de configuração -->
     <header>
@@ -20,7 +23,7 @@
         <!-- //Textos com link para levar para outras páginas  -->
         <div class="links">
             <ul>
-                <li><a href="home.html" >Início</a></li>
+                <li><a href="home.html">Início</a></li>
                 <li><a href="sobre.html" style="text-decoration: underline;">Sobre</a></li>
                 <li><a href="sejaHost.html">Seja uma Host</a></li>
                 <li><a href="categorias.html">Categorias</a></li>
@@ -45,20 +48,55 @@
             </div>
 
         </div>
+
+        <div class="perfil-container" style="display: none;">
+            <a href="perfil.html"><img src="/Nambio/assets/icons/perfil.svg" alt="icone de perfil"></a>
+        </div>
     </header>
 
-<div class="conteudo1">
-    <br>
-    <p class="titulo">Sobre Nós </p>
-    <h1>Te ajudando a voar cada vez <br>
-    mais longe e encontrar seus <br> sonhos em outro estado! </h1><br>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,<br> sed do eiusmod tempor incidente ut labore et dolore <br> magna aliqua. Ut enim ad minim veniam, quis nostrud <br> exercitation ullamco laboris nisi ut aliquip ex ea comodo <br> consequat. Duis aute irure dolor in reprehenderit in <br> voluptate velit esse cillum dolore eu fugiat nulla pariatur. <br> Excepteur sint occaecat cupidatat non proident, sunt in <br> culpa qui officia deserunt mollit anim id est laborum.</p>
 
 
-    <button class="btnambio">
-        <a href= "/Nambio/pages/cadastroAluno.html">Se torne um Aluno Nâmbio!</a>
-    </button>
-</div>
+
+    <div class="conteudo-principal">
+
+        <!-- Bloco do Texto (lado esquerdo) -->
+        <div class="bloco-texto">
+            <p class="titulo">Sobre Nós</p>
+            <h1>Te ajudando a voar cada vez mais longe e encontrar seus sonhos em outro estado!</h1> <br>
+            <p>A Nambio nasceu com um propósito claro: facilitar a vida de estudantes que precisam se mudar de cidade ou
+                estado para estudar. Sabemos que essa jornada pode ser desafiadora e complicada, por isso oferecemos uma solução
+                acolhedora e confiável: conectar alunos a famílias anfitriãs: Host Families, que estão prontas para
+                recebê-los de braços abertos.
+                Somos o elo entre quem busca um lar temporário e quem deseja oferecer um ambiente familiar, seguro e
+                inspirador.
+                Nossa missão é
+                apoiar estudantes em sua transição para uma nova cidade ou estado
+                e garantir que cada aluno encontre uma host family compatível com seu perfil e necessidades,
+                além de promover experiências culturais e humanas enriquecedoras para ambas as partes.
+            </p>
+            <a href="cadastroAluno.html" class="btnambio">Torne-se um Aluno Nâmbio</a>
+
+        </div>
+    
+
+        <section>
+            <!-- Bloco do Card Giratório (lado direito) -->
+            <div class="card-container">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <h2>Voe com a Nâmbio!</h2>
+                        <p>Seja mais um formando.</p>
+                    </div>
+                    <div class="card-back">
+                        <!-- A imagem de fundo será aplicada via CSS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div> <!-- Fim do NOVO CONTAINER PRINCIPAL -->
+
+    </div>
+
 
 
 
@@ -78,11 +116,13 @@
             <div class="sobre">
                 <div class="sobreNos">
                     <h2>Sobre nós</h2>
-                    <p>A melhor agência de Intercâmbio Nacional do Brasil, uma empresa que se preocupa
+                    <p class="texto">A melhor agência de Intercâmbio Nacional do Brasil, uma empresa que se preocupa
                         inteiramente com seu futuro, estudo e educação. Somos capazes de te fornecer uma Host Famly,
                         para te acudir durante todo seu tempo de Graduação, e permitir que você tenha uma boa moradia e
                         além de tudo, um lar para chamar de seu.</p>
                 </div>
+
+
 
                 <div class="nosSigaNasRedes">
                     <h2>Nos siga nas redes!</h2>
@@ -134,7 +174,7 @@
 
 
     </footer>
-        
+
 </body>
 
 </html>

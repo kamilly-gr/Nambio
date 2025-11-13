@@ -202,8 +202,7 @@ hr{
     }
 
     &:active{
-        width: 110px;
-        background-color: black;
+        background-color: #884001;
         color: white;
     }
 }

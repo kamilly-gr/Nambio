@@ -7,6 +7,7 @@
     <link rel="icon" href="/Nambio/assets/icons/logo.svg" type="image/x-icon">
     <link rel="stylesheet" href="/Nambio/css/global.css">
     <script src="/Nambio/js/script.js" defer></script>
+    <script src="/Nambio/js/logados.js" defer></script>
 </head>
 <body>
     <!-- //Cabeçalho com logo, categorias e botões de configuração -->
@@ -45,39 +46,93 @@
             </div>
 
         </div>
+
+        <div class="perfil-container" style="display: none;">
+            <a href="perfil.html"><img src="/Nambio/assets/icons/perfil.svg" alt="icone de perfil"></a>
+        </div>
     </header>
 
 
-    <section>
-        <article class="filtros-pg-SP">
-            <form>
-                <input 
-                    type="text" 
-                    id="opcoes" 
-                    placeholder="Selecione a localização!" 
-                    list="faixa"
-                    oninput="mostrarIcone()"      
-                >
-                <img 
-                    src="/Nambio/assets/icons/x9icone para fechar ou tirar.svg" 
-                    alt="Limpar" 
-                    id="clearBtn" 
-                    class="clear-btn"
-                    onclick="limparCampo()"
-                >
-                
-                
-                <datalist id="faixa">
-                    <option value="Capital">São Paulo</option>
-                    <option value="Ourinhos">Minas Gerais</option>
-                    <option value="Ipanema">Rio de Janeiro</option>
-                    <option value="Gramado">Rio grande do sul</option>
-                </datalist>
-            </form>
+    <section class="container-pg-casasSP">
 
-
+        <!-- Parte de localização dos filtros  -->
+        <article class="primeiraParte">
+            <div class="icon-cama">
+                <img src="/Nambio/assets/icons/cama-pg-casas.svg" alt="">
+            </div>
+            <article class="filtros-pg-SP">
+                <form>
+                    <input 
+                        type="text" 
+                        id="opcoes" 
+                        placeholder="Selecione a localização!" 
+                        list="faixa"
+                        oninput="mostrarIcone()"      
+                    >
+                    <img 
+                        src="/Nambio/assets/icons/x9icone para fechar ou tirar.svg" 
+                        alt="Limpar" 
+                        id="clearBtn" 
+                        class="clear-btn"
+                        onclick="limparCampo()"
+                    >
+                    
+                    
+                    <datalist id="faixa">
+                        <option value="Capital">São Paulo</option>
+                        <option value="Ourinhos">Minas Gerais</option>
+                        <option value="Ipanema">Rio de Janeiro</option>
+                        <option value="Gramado">Rio grande do sul</option>
+                    </datalist>
+                </form>
+            </article>
         </article>
 
+        <!-- Segunda parte dos filtros -->
+        <article class="segundaParte">
+            <div class="icon-calendario">
+                <img src="/Nambio/assets/icons/calendario-pg-casas.svg" alt="">
+            </div>
+
+            <article class="data-entrada-pg-SP>
+                <form>
+                    <input 
+                        type ="date" 
+                        id="dataEntrada" 
+                        placeholder="Data de entrada" 
+                        onclick="iconeDoX()"
+                    >
+
+                    <img 
+                        src="/Nambio/assets/icons/x9icone para fechar ou tirar.svg" 
+                        alt="Limpar" 
+                        id="tirarData" 
+                        class="clear-btn"
+                        onclick="lempar()"
+                    >
+                </form>
+                
+            </article>
+        </article>
+
+        <!-- terceira parte dos filtros - Quantidade de alunos -->
+        <article class="terceira-parte">
+            <div class="icon-usuario">
+                <img src="/Nambio/assets/icons/usuarios-pg-casas.svg">
+
+            </div>
+
+            <form action="">
+                <input 
+                type="number" 
+                id="qtdAlunos" 
+                placeholder="Quantidade de alunos" 
+                min="1" 
+                max="10"
+                >
+
+            </form>
+        </article>
     </section>
 
 
