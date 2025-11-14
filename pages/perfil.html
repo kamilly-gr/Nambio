@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-
-
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=h1, initial-scale=1.0">
@@ -15,15 +12,13 @@
 </head>
 
 <body>
-    <!-- //Cabeçalho com logo, categorias e botões de configuração -->
     <header>
-        <!-- //Logo do site -->
         <a href="home.html">
             <h1>
                 <img src="/Nambio/assets/icons/logoNome.svg" alt="Nâmbio">
             </h1>
         </a>
-        <!-- //Textos com link para levar para outras páginas  -->
+
         <div class="links">
             <ul>
                 <li><a href="home.html">Início</a></li>
@@ -34,9 +29,7 @@
             </ul>
         </div>
 
-        <!-- Botôes de login e cadastro -->
         <div class="botoesHeader">
-            <!-- Botão de Cadastro -->
             <div class="dropdownCad">
                 <button class="dropbtn cad">Cadastre-se já!</button>
                 <div class="dropdown-content">
@@ -45,11 +38,9 @@
                 </div>
             </div>
 
-            <!-- Botão de Login -->
             <div class="dropdownLogin">
-                <button onclick="window.location.href='loginAluno.html'" class="dropbtn login">Login</a>
+                <button onclick="window.location.href='loginAluno.html'" class="dropbtn login">Login</button>
             </div>
-
         </div>
 
         <div class="perfil-container" style="display: none;">
@@ -57,7 +48,6 @@
         </div>
     </header>
 
-    
     <section class="main-container">
         <div class="text-perfil">
             <h1>Meu Perfil</h1>
@@ -69,171 +59,138 @@
             <h2>Dados de acesso</h2>
 
             <div class="dados-acesso">
-                <!-- Senha fica em cima -->
-                <p class="item-acesso senha-acesso">
-                    <strong>Senha</strong>
-                    <span>Alterar senha</span>
-                    <button class="icon-altera" onclick="mudarSenha()">
-                        <img src="/Nambio/assets/icons/icone-alteração.svg" alt="icone de alteração">
-                    </button><br>
-                    <input value="senhateste" disabled class="input-senha-perfil" id="senha" />
-                    <button class="botao-olho-perfil" id="botao-senha" onclick="mostrarSenha()"></button>
-                </p>
-
-                <!-- Outros dados de acesso (abaixo da senha) -->
-                <div class="acesso-row">
-                    <p class="item-acesso">
-                        <strong>E-mail</strong>
-                        <span>Alterar e-mail</span>
-                        <button class="icon-altera" onclick="mudarEmail()">
-                            <img src="/Nambio/assets/icons/icone-alteração.svg" alt="icone de alteração">
-                        </button><br>
+                <!-- esquerda: email e telefone (labels + input desabilitado) -->
+                <div class="acesso-left">
+                    <div class="item-acesso">
+                        <div class="label-line">
+                            <strong>E-mail</strong>
+                            <a class="alterar" href="#" onclick="mudarEmail()">Alterar e-mail</a>
+                            <button class="icon-altera" onclick="mudarEmail()" aria-label="alterar e-mail">
+                                <img src="/Nambio/assets/icons/icone-alteração.svg" alt="">
+                            </button>
+                        </div>
                         <input value="kamilly123@gmail.com" disabled class="input-senha-perfil" id="email-acesso" />
-                    </p>
+                    </div>
 
-                    <p class="item-acesso">
-                        <strong>Telefone</strong>
-                        <span>Alterar telefone</span>
-                        <button class="icon-altera" onclick="mudarTele()">
-                            <img src="/Nambio/assets/icons/icone-alteração.svg" alt="icone de alteração">
-                        </button><br>
+                    <div class="item-acesso">
+                        <div class="label-line">
+                            <strong>Telefone</strong>
+                            <a class="alterar" href="#" onclick="mudarTele()">Alterar telefone</a>
+                            <button class="icon-altera" onclick="mudarTele()" aria-label="alterar telefone">
+                                <img src="/Nambio/assets/icons/icone-alteração.svg" alt="">
+                            </button>
+                        </div>
                         <input value="(11)96334-1733" maxlength="11" disabled class="input-senha-perfil" id="tele-acesso" placeholder="()_____-____" />
-                    </p>
+                    </div>
+                </div>
+
+                <!-- direita: senha (label à direita; valor e olho abaixo, centralizados na coluna direita) -->
+                <div class="acesso-right">
+                    <div class="label-line right">
+                        <strong>Senha</strong>
+                        <a class="alterar" href="#" onclick="mudarSenha()">Alterar senha</a>
+                        <button class="icon-altera" onclick="mudarSenha()" aria-label="alterar senha">
+                            <img src="/Nambio/assets/icons/icone-alteração.svg" alt="">
+                        </button>
+                    </div>
+
+                    <div class="senha-value">
+                        <input value="senhateste" disabled class="input-senha-perfil" id="senha" />
+                        <!-- botão do olho fica abaixo, centralizado nesta coluna (como na imagem 2) -->
+                        <button class="botao-olho-perfil" id="botao-senha" onclick="mostrarSenha()" aria-label="mostrar senha"></button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Dados pessoais: grid duas colunas (3 à esquerda, 2 à direita) -->
+        <!-- Dados pessoais -->
         <div class="container-pessoais">
             <h2>Dados pessoais</h2>
 
             <div class="pessoais-grid">
                 <div class="left-col">
-                    <p>
-                        <strong>CPF</strong><br>
+                    <div class="item-pessoal">
+                        <strong>CPF</strong>
                         <input value="11*******22" disabled class="input-senha-perfil" id="cpf" />
-                    </p>
+                    </div>
 
-                    <p>
-                        <strong>Telefone 1</strong><br>
+                    <div class="item-pessoal">
+                        <strong>Telefone 1</strong>
                         <input value="(11)90000-0001" disabled class="input-senha-perfil" id="tele-p1" />
-                    </p>
+                    </div>
 
-                    <p>
-                        <strong>Telefone 2</strong><br>
+                    <div class="item-pessoal">
+                        <strong>Telefone 2</strong>
                         <input value="(11)90000-0002" disabled class="input-senha-perfil" id="tele-p2" />
-                    </p>
+                    </div>
                 </div>
 
                 <div class="right-col">
-                    <p>
-                        <strong>Telefone 3</strong><br>
+                    <div class="item-pessoal">
+                        <strong>Telefone 3</strong>
                         <input value="(11)90000-0003" disabled class="input-senha-perfil" id="tele-p3" />
-                    </p>
+                    </div>
 
-                    <p>
+                    <div class="item-pessoal">
                         <strong>Senha pessoal</strong>
-                        <span>Alterar senha</span>
-                        <button class="icon-altera" onclick="mudarSenhaPessoal()">
-                            <img src="/Nambio/assets/icons/icone-alteração.svg" alt="icone de alteração">
-                        </button><br>
+                        <a class="alterar" href="#" onclick="mudarSenhaPessoal()">Alterar senha</a>
+                        <button class="icon-altera" onclick="mudarSenhaPessoal()" aria-label="alterar senha pessoal">
+                            <img src="/Nambio/assets/icons/icone-alteração.svg" alt="">
+                        </button>
                         <input value="senhateste" disabled class="input-senha-perfil" id="senha-pessoal" />
-                        <button class="botao-olho-perfil" onclick="mostrarSenhaPessoal()"></button>
-                    </p>
+                        <button class="botao-olho-perfil" onclick="mostrarSenhaPessoal()" aria-label="mostrar senha pessoal"></button>
+                    </div>
                 </div>
             </div>
+
+            <button class="btn-alterar">Alterar dados pessoais</button>
         </div>
     </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- Footer -->
     <footer>
-        <!-- Logo do footer -->
         <div class="lg-footer">
-            <h1>
-                <img src="/Nambio/assets/icons/logoNome.svg" alt="Nâmbio">
-            </h1>
+            <h1><img src="/Nambio/assets/icons/logoNome.svg" alt="Nâmbio"></h1>
         </div>
         <div class="conteudo-footer">
-            <!-- Primeira coluna do footer, onde fica a parte sobre nós
-            e a parte das redes  -->
             <div class="sobre">
                 <div class="sobreNos">
                     <h2>Sobre nós</h2>
                     <p>A melhor agência de Intercâmbio Nacional do Brasil, uma empresa que se preocupa
-                        inteiramente com seu futuro, estudo e educação. Somos capazes de te fornecer uma Host Famly,
-                        para te acudir durante todo seu tempo de Graduação, e permitir que você tenha uma boa moradia e
-                        além de tudo, um lar para chamar de seu.</p>
+                        inteiramente com seu futuro, estudo e educação.</p>
                 </div>
 
                 <div class="nosSigaNasRedes">
                     <h2>Nos siga nas redes!</h2>
                     <div class="logos-apps">
-
                         <img src="/Nambio/assets/icons/instagram.svg" alt="instagram" />
-
                         <img src="/Nambio/assets/icons/facebook.svg" alt="facebook" />
-
                         <img src="/Nambio/assets/icons/tiktok.svg" alt="tiktok">
-
                         <img src="/Nambio/assets/icons/twitter.svg" alt="twitter">
-
                     </div>
                 </div>
             </div>
 
-            <!-- Segunda coluna do footer onde fica o acesso a informacao, 
-            ou seja o sobre nós, termos de privacidade etc. -->
             <div class="informacao">
                 <h2>Acesso a informação</h2>
                 <ul>
-                    <li><a href=""></a>Sobre nós</li>
-                    <li><a href=""></a>Termos e condições</li>
-                    <li><a href=""></a>Política de privacidade</li>
-                    <li><a href=""></a>Suporte</li>
-                    <li><a href=""></a>Serviços</li>
+                    <li>Sobre nós</li>
+                    <li>Termos e condições</li>
+                    <li>Política de privacidade</li>
+                    <li>Suporte</li>
+                    <li>Serviços</li>
                 </ul>
-
             </div>
-
-            <!-- terceira coluna do footer, onde fica um input para o usuarios
-            colocar seu e-mail e receber notificações  -->
 
             <div class="novidades">
                 <h2>Quer receber novidades?</h2>
-                <p>Coloque seu email aqui, e fique por dentro de tudo que acontece na Nâmbio!
-                    Locações, universidades e tudo que podemos te oferecer.
-                </p>
+                <p>Coloque seu email aqui, e fique por dentro de tudo que acontece na Nâmbio!</p>
 
                 <article class="novi">
                     <input type="email" placeholder="Digite um email válido!"><br>
                     <button>Enviar</button>
                 </article>
-
-
             </div>
         </div>
-
-
-
-
     </footer>
-
 </body>
-
 </html>
