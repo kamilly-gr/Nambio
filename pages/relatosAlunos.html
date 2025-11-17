@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=h1, initial-scale=1.0">
+    <title>Nâmbio</title>
+    <link rel="icon" href="/Nambio/assets/icons/logo.svg" type="image/x-icon">
+    <link rel="stylesheet" href="/Nambio/css/global.css">
+    <script src="/Nambio/js/script.js" defer></script>
+    <script src="/Nambio/js/logados.js" defer></script>
+</head>
+
+<body>
+    <!-- //Cabeçalho com logo, categorias e botões de configuração -->
+    <header>
+        <!-- //Logo do site -->
+        <a href="home.html">
+            <h1>
+                <img src="/Nambio/assets/icons/logoNome.svg" alt="Nâmbio">
+            </h1>
+        </a>
+        <!-- //Textos com link para levar para outras páginas  -->
+        <div class="links">
+            <ul>
+                <li><a href="home.html">Início</a></li>
+                <li><a href="sobre.html" style="text-decoration: underline;">Sobre</a></li>
+                <li><a href="sejaHost.html">Seja uma Host</a></li>
+                <li><a href="categorias.html">Categorias</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+        </div>
+
+        <!-- Botôes de login e cadastro -->
+        <div class="botoesHeader">
+            <!-- Botão de Cadastro -->
+            <div class="dropdownCad">
+                <button class="dropbtn cad">Cadastre-se já!</button>
+                <div class="dropdown-content">
+                    <a href="/Nambio/pages/cadastroHost.html">Cadastrar-se como Host</a>
+                    <a href="/Nambio/pages/cadastroAluno.html">Cadastrar-se como Aluno</a>
+                </div>
+            </div>
+
+            <!-- Botão de Login -->
+            <div class="dropdownLogin">
+                <button onclick="window.location.href='loginAluno.html'" class="dropbtn login">Login</a>
+            </div>
+
+        </div>
+
+        <div class="perfil-container" style="display: none;">
+            <a href="perfil.html"><img src="/Nambio/assets/icons/perfil.svg" alt="icone de perfil"></a>
+        </div>
+    </header>
