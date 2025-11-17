@@ -1,7 +1,22 @@
-const nome = document.getElementById("nome");
-const nome = document.getElementById("nome");
-const nome = document.getElementById("nome");
-const nome = document.getElementById("nome");
+window.onload = function() {
+    // 1. Recuperar os dados do localStorage
+    const dadosSalvos = localStorage.getItem('usuarioPerfil');
+
+    if (dadosSalvos) {
+        // 2. Converter a string JSON de volta para um objeto JavaScript
+        const usuario = JSON.parse(dadosSalvos);
+
+        // 3. Exibir os dados nos elementos da página
+        document.getElementById('nome').value = usuario.nome;
+        document.getElementById('email-acesso').value = usuario.email;
+        document.getElementById('username').value = usuario.username;
+        document.getElementById('tele-acesso').value = usuario.tel;
+        document.getElementById('nasc').value = usuario.nasc;
+        document.getElementById('senha').value = usuario.senha;
+        document.getElementById('cpf').value = usuario.cpf;
+
+    }
+};
 
 
 // Função de mudar senha
@@ -192,7 +207,7 @@ const prefiroNInput = document.getElementById('prefiroNInput');
 // Variavéis dos outros inputs 
 const nasc = document.getElementById('nasc');
 const nome = document.getElementById('nome');
-const sobrenome = document.getElementById('sobrenome');
+const username = document.getElementById('username');
 const cpf = document.getElementById('cpf');
 
 function verificarRadio() {
@@ -223,7 +238,7 @@ function alterarPesso() {
   // Campos de texto
   const camposTexto = [
     document.getElementById('nome'),
-    document.getElementById('sobrenome'),
+    document.getElementById('username'),
     document.getElementById('nasc'),
     document.getElementById('cpf')
   ];
