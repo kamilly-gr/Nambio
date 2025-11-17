@@ -76,12 +76,15 @@ function finalizarCadastro() {
     return;
   }
 
+  // redireciona para a página inicial
+  window.location.href = 'home.html';
+
   console.log('Cadastro finalizado:');
+  
   alert('Cadastro realizado com sucesso!');
 
   // atualiza o header (marca usuário como logado) antes de redirecionar
   atualizarHeaderAposCadastro();
 
-  // redireciona para a página inicial (caminho absoluto do projeto)
-  window.location.href = 'home.html';
+  
 }

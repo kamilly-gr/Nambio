@@ -180,6 +180,20 @@
     margin-top: 18px;
 }
 
+.btn-sair {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-danger);
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    margin-top: 18px;
+    margin: 0 25px;
+}
+
 /* responsivo */
 @media (max-width: 880px) {
     .dados-acesso {
