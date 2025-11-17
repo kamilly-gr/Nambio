@@ -1,16 +1,16 @@
 const carouselConteudo = document.getElementById('carousel-conteudo');
 const cardsOriginal = Array.from(carouselConteudo.children);
 const totalCards = cardsOriginal.length;
-const cardWidth = cardsOriginal[0].offsetWidth + 16; // width + margin left+right (8px cada)
+const cardWidth = cardsOriginal[0].offsetWidth + 16; // width + margin left + right (8px cada)
 
 const cloneCount = 5;
-// Clone last cloneCount cards and prepend
+// Clona os últimos cloneCount cards e adiciona no início
 for (let i = totalCards - cloneCount; i < totalCards; i++) {
   const clone = cardsOriginal[i].cloneNode(true);
   clone.classList.add('clone');
   carouselConteudo.insertBefore(clone, carouselConteudo.firstChild);
 }
-// Clone first cloneCount cards and append
+// Clona os primeiros cloneCount cards e adiciona no final
 for (let i = 0; i < cloneCount; i++) {
   const clone = cardsOriginal[i].cloneNode(true);
   clone.classList.add('clone');
@@ -21,11 +21,10 @@ const cards = Array.from(carouselConteudo.children);
 let index = cloneCount; // começa com o primeiro card
 let isTransitioning = false;
 
-// Set initial position
+// Define posição inicial
 carouselConteudo.style.transform = `translateX(${-index * cardWidth}px)`;
 
-function moveToIndex(newIndex) {
-  if (isTransitioning) return; // prevent clicks during transition
+function moveToIndex(newIndex) { //evita cliques durante a transição
   isTransitioning = true;
   carouselConteudo.style.transition = 'transform 0.5s ease';
   carouselConteudo.style.transform = `translateX(${-newIndex * cardWidth}px)`;
@@ -33,7 +32,7 @@ function moveToIndex(newIndex) {
 }
 
 carouselConteudo.addEventListener('transitionend', () => {
-  // If index is out of original cards range, jump instantly to the original
+  // Se o índice estiver fora do intervalo dos cards originais, salta instantaneamente para o original
   if (index >= totalCards + cloneCount) {
     carouselConteudo.style.transition = 'none';
     index = cloneCount;
@@ -43,12 +42,12 @@ carouselConteudo.addEventListener('transitionend', () => {
     index = totalCards + cloneCount - 1;
     carouselConteudo.style.transform = `translateX(${-index * cardWidth}px)`;
   }
-  // Force reflow and allow next transition
+  // Força reflow e permite a próxima transição
   void carouselConteudo.offsetWidth;
   isTransitioning = false;
 });
 
-// Arrow buttons event listeners
+// Listeners dos botões de seta
 document.querySelector('.seta-direita').addEventListener('click', () => {
   moveToIndex(index + 1);
 });

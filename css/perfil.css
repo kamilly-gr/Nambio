@@ -1,0 +1,218 @@
+/* Perfil — layout igual à imagem 2 */
+
+/* base para inputs e ícones */
+.input-senha-perfil {
+    border: none;
+    background-color: transparent;
+    color: var(--text-primary);
+    margin: 6px 0 0 0;
+    display: block;
+    padding: 6px 8px;
+    height: auto;
+    box-sizing: border-box;
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+/* ícones de alteração (pequenos) */
+.icon-altera {
+    width: 18px;
+    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    margin-left: 8px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+/* botão olho (pequeno) */
+.botao-olho-perfil {
+    width: 22px;
+    height: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.15s;
+    background-image: url("/Nambio/assets/icons/olho-senha-fechado.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px;
+    margin-top: 8px;
+    padding: 0;
+}
+
+/* main container centralizado */
+.main-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 16px;
+    box-sizing: border-box;
+}
+
+/* card padrão */
+.container-acesso,
+.container-pessoais {
+    background: #ffffff;
+    border-radius: 14px;
+    margin-bottom: 20px;
+}
+
+/* título dos cards */
+.container-acesso h2,
+.container-pessoais h2 {
+    margin: 0 0 14px 0;
+    font-weight: 600;
+}
+
+/* DADOS DE ACESSO: grid com coluna esquerda e coluna direita fixa */
+.dados-acesso {
+    max-width: 1000px;
+    align-items: start;
+    display: grid;
+    grid-template-columns: 1fr 320px; /* esquerda flexível, direita fixa para senha */
+    gap: 8px 24px;
+    align-items: start;
+    width: 100%;
+}
+
+/* esquerda: empilha email e telefone */
+.acesso-left {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 14px;
+    width: 100%;
+}
+
+/* cada item exibe label e valor */
+.item-acesso .label-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+.item-acesso .label-line strong { font-weight: 600; }
+.item-acesso .label-line .alterar {
+    color: var(--secondary-color);
+    font-size: 13px;
+    margin-left: 8px;
+    text-decoration: none;
+}
+
+/* direita: campos alinhados à esquerda (MODIFICADO) */
+.acesso-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start !important; /* antes era flex-end */
+    gap: 8px;
+}
+.acesso-right .label-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.acesso-right .label-line strong { font-weight: 600; }
+
+/* senha: olho ao lado do input (MODIFICADO) */
+.senha-value {
+    display: flex;
+    flex-direction: row !important; /* antes era column */
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+/* input menor na direita */
+.senha-value input.input-senha-perfil {
+    max-width: 220px;
+    width: 100%;
+    margin-top: 4px;
+}
+
+/* botão olho agora alinhado ao lado */
+.senha-value .botao-olho-perfil {
+    margin-top: 0 !important; /* removido offset */
+}
+
+/* DADOS PESSOAIS */
+.pessoais-grid {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+}
+.left-col {
+    flex: 1 1 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.right-col {
+    flex: 0 0 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.item-pessoal strong { display: block; font-weight: 600; margin-bottom: 6px; }
+.item-pessoal input.input-senha-perfil { width: 100%; }
+
+/* botão laranja */
+.btn-alterar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--secondary-color);
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    margin-top: 18px;
+}
+
+/* responsivo */
+@media (max-width: 880px) {
+    .dados-acesso {
+        grid-template-columns: 1fr;
+    }
+    .acesso-right {
+        align-items: flex-start;
+    }
+    .senha-value {
+        align-items: flex-start;
+    }
+    .pessoais-grid {
+        flex-direction: column;
+    }
+}
+
+/* texto sempre alinhado à esquerda */
+.container-acesso p,
+.container-pessoais p,
+.text-perfil { text-align: left; }
+
+/* padding do card */
+.container-acesso {
+    padding: 18px 16px;
+}
+
+/* inputs ocupam 100% da esquerda */
+.item-acesso input.input-senha-perfil {
+    width: 100%;
+    margin-top: 4px;
+    box-sizing: border-box;
+}
+
+/* remove margem superior dos inputs da senha */
+.senha-value input.input-senha-perfil {
+    margin-top: 4px;
+}
