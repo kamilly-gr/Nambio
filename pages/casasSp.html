@@ -94,24 +94,20 @@
                 <img src="/Nambio/assets/icons/calendario-pg-casas.svg" alt="">
             </div>
 
-            <article class="data-entrada-pg-SP>
-                <form>
+            <article class="data-entrada-pg-SP">
                     <input 
                         type ="date" 
-                        id="dataEntrada" 
-                        placeholder="Data de entrada" 
-                        onclick="iconeDoX()"
-                    >
+                        id="dataEntrada"
+                        oninput="iconeDoX()"
+                    />
 
                     <img 
                         src="/Nambio/assets/icons/x9icone para fechar ou tirar.svg" 
                         alt="Limpar" 
                         id="tirarData" 
-                        class="clear-btn"
-                        onclick="lempar()"
+                        class="tirarData"
+                        onclick="apagar()"
                     >
-                </form>
-                
             </article>
         </article>
 
@@ -122,16 +118,15 @@
 
             </div>
 
-            <form action="">
                 <input 
                 type="number" 
-                id="qtdAlunos" 
+                class="quantidade-alunos-pg-SP"
                 placeholder="Quantidade de alunos" 
                 min="1" 
                 max="10"
                 >
 
-            </form>
+            
         </article>
     </section>
 
