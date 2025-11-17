@@ -216,3 +216,8 @@
 
     font-family: "Poppins", sans-serif;
 }
+
+.saber-mais-host a{
+    text-decoration: none;
+    color: white;
+}
