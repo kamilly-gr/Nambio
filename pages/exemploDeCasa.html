@@ -52,129 +52,12 @@
         </div>
     </header>
 
-    <br>
-    <section class="container-pg-casasSP">
-
-        <!-- Parte de localização dos filtros  -->
-        <article class="primeiraParte">
-            <div class="icon-cama">
-                <img src="/Nambio/assets/icons/cama-pg-casas.svg" alt="">
-            </div>
-            <article class="filtros-pg-SP">
-                <form>
-                    <input 
-                        type="text" 
-                        id="opcoes" 
-                        placeholder="Selecione a localização!" 
-                        list="faixa"
-                        oninput="mostrarIcone()"      
-                    >
-                    <img 
-                        src="/Nambio/assets/icons/x9icone para fechar ou tirar.svg" 
-                        alt="Limpar" 
-                        id="clearBtn" 
-                        class="clear-btn"
-                        onclick="limparCampo()"
-                    >
-                    
-                    
-                    <datalist id="faixa">
-                        <option value="Capital">São Paulo</option>
-                        <option value="Ourinhos">Minas Gerais</option>
-                        <option value="Ipanema">Rio de Janeiro</option>
-                        <option value="Gramado">Rio grande do sul</option>
-                    </datalist>
-                </form>
-            </article>
-        </article>
-
-        <!-- Segunda parte dos filtros -->
-        <article class="segundaParte">
-            <div class="icon-calendario">
-                <img src="/Nambio/assets/icons/calendario-pg-casas.svg" alt="">
-            </div>
-
-            <article class="data-entrada-pg-SP">
-                    <input 
-                        type ="date" 
-                        id="dataEntrada"
-                        oninput="iconeDoX()"
-                    />
-
-                    <img 
-                        src="/Nambio/assets/icons/x9icone para fechar ou tirar.svg" 
-                        alt="Limpar" 
-                        id="tirarData" 
-                        class="tirarData"
-                        onclick="apagar()"
-                    >
-            </article>
-        </article>
-
-        <!-- terceira parte dos filtros - Quantidade de alunos -->
-        <article class="terceira-parte">
-            <div class="icon-usuario">
-                <img src="/Nambio/assets/icons/usuarios-pg-casas.svg">
-
-            </div>
-
-                <input 
-                type="number" 
-                class="quantidade-alunos-pg-SP"
-                placeholder="Quantidade de alunos" 
-                min="1" 
-                max="10"
-                >
-
-        </article>
-    </section>
-    <br>
-
-    <section class="card-das-casas">
-        <article class="title-dos-cards">
-            <h2>São Paulo: 137 acomodações encontrados para você</h2>
-            
-        </article>
-
-        <article class="card-casa">
-            <img src="/Nambio/assets/images/casa-sp-1.webp" alt="Casa da Família Bittencourt">
-            <button class="btn-favoritar-casa"  onclick="favoritarCasa(this)"></button>
-            
-            <div class="informacoes-da-casa">
-                <h2>Família Bittencourt</h2>
-                <h4>Jardim da Seira - Paraisópolis</h4>
-                <p>Nossa família está situada em São Paulo, a 200 metros do Shopping Center 
-                    e 4.7 km da Universidade de São Paulo. (USP) 
-                    Somos uma família composta por um Casal e 1 filha linda, de 13 anos.
-                </p>
-
-                <button class="saber-mais-host">
-                    <a href="/Nambio/pages/exemploDeCasa.html"> Saber mais sobre essa Host</a>
-                </button>
-            </div>
-        </article>
-
-        <article class="card-casa">
-            <img src="/Nambio/assets/images/casa-sp-2.png" alt="Casa da Família Bittencourt" class="casa2">
-            <button class="btn-favoritar-casa2"  onclick="favoritarCasa(this)"></button>
-            
-            <div class="informacoes-da-casa">
-                <h2>Família Ribeiro</h2>
-                <h4>Bairro das Jóias - Bela vista</h4>
-                <p>O casa está situado em São Paulo, no Bairro das Jóias, com uma boa 
-                    localização, com 2 quartos, 1 suíte, e 300 metros da Universidade de São Paulo. (USP) 
-                </p>
-
-                <button class="saber-mais-host">
-                    <a href="#"> Saber mais sobre essa Host</a>
-                </button>
-            </div>
-        </article>
-
+    <br><br><br><br>
+    <section class="casa-1">
         
     </section>
-    <br>
 
+    
 
     <!-- Footer -->
     <footer>
@@ -243,7 +126,7 @@
         </div>
 
     </footer>
-    <script src="/Nambio/js/exemploDeCasa.js"></script>
+    <script src="/Nambio/js/casasSp.js"></script>
         
 </body>
 
