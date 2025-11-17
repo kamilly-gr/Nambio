@@ -76,6 +76,32 @@ function finalizarCadastro() {
     return;
   }
 
+// 1. Obter os valores dos inputs
+  const nome = document.getElementById('nome').value;
+  const email = document.getElementById('email').value;
+  const username = document.getElementById('username').value;
+  const tel = document.getElementById('tel').value;
+  const nasc = document.getElementById('nasc').value;
+  const cpf = document.getElementById('cpf').value;
+  const senha = document.getElementById('senha').value;
+  
+
+    
+// 2. Criar um objeto com os dados
+    const dadosUsuario = {
+        nome: nome,
+        email: email,
+        username: username,
+        tel: tel,
+        nasc: nasc,
+        cpf: cpf,
+        senha: senha
+    };
+
+    // 3. Salvar o objeto no localStorage como uma string JSON
+    // O localStorage só armazena strings, então precisamos serializar o objeto.
+    localStorage.setItem('usuarioPerfil', JSON.stringify(dadosUsuario));
+
   // redireciona para a página inicial
   window.location.href = 'home.html';
 
