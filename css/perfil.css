@@ -6,14 +6,12 @@
     background-color: transparent;
     color: var(--text-primary);
     margin: 6px 0 0 0;
-    display: block;
-    padding: 6px 8px;
+    padding: 0px 0px;
     height: auto;
     box-sizing: border-box;
     border-radius: 6px;
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
-    line-height: 1.2;
 }
 
 /* ícones de alteração (pequenos) */
@@ -75,9 +73,8 @@
 /* DADOS DE ACESSO: grid com coluna esquerda e coluna direita fixa */
 .dados-acesso {
     max-width: 1000px;
-    align-items: start;
-    display: grid;
-    grid-template-columns: 1fr 320px; /* esquerda flexível, direita fixa para senha */
+    display: flex;
+    /* grid-template-columns: 1fr 320px; esquerda flexível, direita fixa para senha */
     gap: 8px 24px;
     align-items: start;
     width: 100%;
@@ -87,60 +84,65 @@
 .acesso-left {
     display: flex;
     flex-direction: column;
-    align-items: start;
-    justify-content: start;
+    justify-content: left;
     gap: 14px;
-    width: 100%;
+    width: 50%;
+    text-align: left;
+    margin: 0px;
 }
+
+
 
 /* cada item exibe label e valor */
 .item-acesso .label-line {
-    display: flex;
-    align-items: center;
-    gap: 8px;
     margin-bottom: 4px;
+    vertical-align: middle;
 }
-.item-acesso .label-line strong { font-weight: 600; }
+
+.item-acesso {
+    margin-left: 0px;
+}
+
+.item-acesso .label-line strong { 
+    font-weight: 600;
+    margin-right: 10px;
+ }
+
+ .label-line strong {
+    margin-right: 10px;
+ }
+
 .item-acesso .label-line .alterar {
     color: var(--secondary-color);
     font-size: 13px;
-    margin-left: 8px;
     text-decoration: none;
 }
 
-/* direita: campos alinhados à esquerda (MODIFICADO) */
-.acesso-right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start !important; /* antes era flex-end */
-    gap: 8px;
+.alterar {
+    color: var(--secondary-color);
+    font-size: 13px;
+    text-decoration: none;
 }
-.acesso-right .label-line {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
+
+
 .acesso-right .label-line strong { font-weight: 600; }
+
+.acesso-right {
+    margin: 0px;
+}
 
 /* senha: olho ao lado do input (MODIFICADO) */
 .senha-value {
     display: flex;
-    flex-direction: row !important; /* antes era column */
     align-items: center;
     gap: 8px;
-    width: 100%;
 }
 
 /* input menor na direita */
-.senha-value input.input-senha-perfil {
-    max-width: 220px;
-    width: 100%;
+.senha-value input .input-senha-perfil {
+    max-width: fit-content;
+    width: fit-content;
     margin-top: 4px;
-}
-
-/* botão olho agora alinhado ao lado */
-.senha-value .botao-olho-perfil {
-    margin-top: 0 !important; /* removido offset */
 }
 
 /* DADOS PESSOAIS */
@@ -163,7 +165,7 @@
 }
 
 .item-pessoal strong { display: block; font-weight: 600; margin-bottom: 6px; }
-.item-pessoal input.input-senha-perfil { width: 100%; }
+.item-pessoal input.input-senha-perfil { width: fit-content; }
 
 /* botão laranja */
 .btn-alterar {
@@ -182,10 +184,11 @@
 /* responsivo */
 @media (max-width: 880px) {
     .dados-acesso {
-        grid-template-columns: 1fr;
+        flex-direction: column;
     }
+    .acesso-left,
     .acesso-right {
-        align-items: flex-start;
+        width: 100%;
     }
     .senha-value {
         align-items: flex-start;
@@ -201,13 +204,14 @@
 .text-perfil { text-align: left; }
 
 /* padding do card */
-.container-acesso {
+.container-acesso,
+.container-pessoais {
     padding: 18px 16px;
 }
 
 /* inputs ocupam 100% da esquerda */
 .item-acesso input.input-senha-perfil {
-    width: 100%;
+    width: fit-content;
     margin-top: 4px;
     box-sizing: border-box;
 }
