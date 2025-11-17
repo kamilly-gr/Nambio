@@ -42,6 +42,10 @@
 
 }
 
+.card a{
+  text-decoration: none;
+}
+
 .card-texto {
   padding: 16px 0;
   color: white;
