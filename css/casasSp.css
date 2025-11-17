@@ -5,7 +5,7 @@
     background-color: azure;
     max-width: 57%;
     border-radius: 25px;
-    margin: 25px;
+    margin: 0 auto;
     padding: 5px 10px 5px 10px;
 }
 
@@ -129,3 +129,90 @@
     width: 250px;
 }
 
+
+
+
+/* CARD das casas  */
+.card-das-casas{
+    background-color: white;
+    border-radius: 25px;
+    padding: 40px;
+    margin: 0 auto;
+    max-width: 65%;;
+}
+
+
+.title-dos-cards h2{
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    color: #333333;
+    margin-bottom: 15px;
+}
+
+.card-casa{
+    display: flex;
+    gap: 35px;
+    justify-content: space-between;
+    border: 1px solid #c8b8b8e1;
+    border-radius: 50px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.card-casa img{
+    width: 35%;
+    border-radius: 25px;
+    position: relative;
+}
+.btn-favoritar-casa{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    left: 38%;
+    top:34%;
+    
+
+    background-image: url("/Nambio/assets/icons/coracao.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+.btn-favoritar-casa img{
+    width: 100%;
+}
+
+.btn-favoritar-casa2{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    left: 38%;
+    top:71%;
+    
+
+    background-image: url("/Nambio/assets/icons/coracao.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+.btn-favoritar-casa2 img{
+    width: 100%;
+}
+
+
+.saber-mais-host{
+    background-color: #37B1DA;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 15px 10px 15px;
+    margin-top: 10px;
+
+    font-family: "Poppins", sans-serif;
+}

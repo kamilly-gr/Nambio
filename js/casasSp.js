@@ -33,3 +33,17 @@ function apagar(){
     lempar.style.display = "none"
     data.focus()
 }
+
+function favoritarCasa(botao) {
+    // pega a imagem atual de fundo do botão clicado
+    let imagemAtual = window.getComputedStyle(botao).backgroundImage;
+
+    // se estiver o coração vazio, troca para vermelho; senão volta para vazio
+    if (imagemAtual.includes("coracao.svg")) {
+        botao.style.backgroundImage = "url('/Nambio/assets/icons/coracao-red.svg')";
+    } else {
+        botao.style.backgroundImage = "url('/Nambio/assets/icons/coracao.svg')";
+    }
+}
+
+
