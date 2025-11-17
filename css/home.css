@@ -186,7 +186,9 @@
 }
 
 /* Responsividade geral para containers e imagens */
-.cristo, .cristoContainer, .estudantesContainer {
+.cristo,
+.cristoContainer,
+.estudantesContainer {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
@@ -229,34 +231,56 @@
 
 /* Responsividade */
 @media (max-width: 900px) {
-  .cristo .cristoft { max-width: 320px; left: 30%; transform: translateX(-10%); }
-  .cristo .estudantes { max-width: 220px; left: 65%; }
+  .cristo .cristoft {
+    max-width: 320px;
+    left: 30%;
+    transform: translateX(-10%);
+  }
+
+  .cristo .estudantes {
+    max-width: 220px;
+    left: 65%;
+  }
 }
 
 @media (max-width: 600px) {
-  .cristo .cristoft { max-width: 160px; left: 50%; transform: translateX(-50%); }
-  .cristo .estudantes { max-width: 120px; left: 50%; transform: translateX(-50%); }
+  .cristo .cristoft {
+    max-width: 160px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .cristo .estudantes {
+    max-width: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
-.coments { /*Conatiner todo da parte do japones */
- display: flex;
- width: 100%;
- background-color: #195973;
- height: 254px;
- position: relative;
- overflow: visible;
+.coments {
+  /*Conatiner todo da parte do japones */
+  display: flex;
+  width: 100%;
+  background-color: #195973;
+  height: 254px;
+  position: relative;
+  overflow: visible;
 }
 
-.japones { /* foto do japones */
-  position: relative; /* necessário para z-index funcionar */
+.japones {
+  /* foto do japones */
+  position: relative;
+  /* necessário para z-index funcionar */
   z-index: 2;
   margin-bottom: -116px;
   will-change: transform;
-  margin-left: 100px; 
-  margin-right: 100px ;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
-.oqPensam { /* sessão com o botão de ver mais relatos */
+.oqPensam {
+
+  /* sessão com o botão de ver mais relatos */
   & p {
     color: white;
     font-size: 25px;
@@ -278,12 +302,13 @@
     font-size: 13px;
     cursor: pointer;
     font-family: 'poppins';
- }
+  }
 
- margin-left: 0;
+  margin-left: 0;
 }
 
-.comentRenato { /*comentario do renato */
+.comentRenato {
+  /*comentario do renato */
   width: 700px;
   background-color: white;
   border-radius: 35px;
@@ -291,16 +316,17 @@
 
   /* faz o cartão "sair" para cima do container pai sem usar absolute */
   margin-top: -60px;
-  position: relative; /* mantém contexto para z-index */
+  position: relative;
+  /* mantém contexto para z-index */
   z-index: 3;
 
   /* estilo opcional para destaque */
   padding: 16px;
   overflow: visible;
-  
 
 
-  & p{
+
+  & p {
     width: 100%;
     color: var(--text-secondary);
     font-size: 17px;
@@ -316,7 +342,8 @@
 
 }
 
-.uni { /* parte pequena embaixo azul que fala das universidades */
+.uni {
+  /* parte pequena embaixo azul que fala das universidades */
   width: 100%;
   background-color: var(--primary-color);
   height: 50px;
@@ -339,7 +366,7 @@
   }
 }
 
-.conq{ 
+.conq {
   display: flex;
   justify-content: space-evenly;
   width: 100%;
@@ -365,17 +392,18 @@
     margin-top: 10px;
     font-weight: 600;
   }
+
   & img {
     max-width: 100%;
     height: auto;
     margin-right: 0%;
   }
 
-.conqText {
-  flex-direction: column;
-  margin-left: 0;
-  
-}
+  .conqText {
+    flex-direction: column;
+    margin-left: 0;
+
+  }
 }
 
 .conqImg {
