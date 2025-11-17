@@ -24,7 +24,7 @@
 .icon-lupa {
   position: absolute;
   top: 50%;
-  left: 90%;
+  left: 92%;
   transform: translateY(-50%); /* Centraliza verticalmente */
   color: #888; /* Cor do ícone */
   font-size: 18px; /* Tamanho do ícone */

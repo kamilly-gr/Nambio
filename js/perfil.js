@@ -1,3 +1,9 @@
+const nome = document.getElementById("nome");
+const nome = document.getElementById("nome");
+const nome = document.getElementById("nome");
+const nome = document.getElementById("nome");
+
+
 // Função de mudar senha
 
 function mudarSenha(){
