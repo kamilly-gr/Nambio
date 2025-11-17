@@ -12,6 +12,7 @@
 @import url(casasSp.css);
 @import url(perfil.css);
 @import url(relatosAlunos.css);
+@import url(categorias.css);
 
 *{
     margin: 0 auto;

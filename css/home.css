@@ -345,7 +345,7 @@
 .uni {
   /* parte pequena embaixo azul que fala das universidades */
   width: 100%;
-  background-color: var(--primary-color);
+  background-color: #4196b2;
   height: 50px;
   display: flex;
   align-items: center;
