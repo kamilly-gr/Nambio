@@ -96,8 +96,8 @@
                     </div>
 
                     <div class="senha-value">
-                        <input value="senhateste" disabled class="input-senha-perfil" id="senha" />
-                        <!-- botão do olho fica abaixo, centralizado nesta coluna (como na imagem 2) -->
+                        <input value="senhateste" disabled class="input-senha-perfil" id="senha" type="password" />
+                        <!-- botão do olho fica abaixo, centralizado nesta coluna  -->
                         <button class="botao-olho-perfil" id="botao-senha" onclick="mostrarSenha()"
                             aria-label="mostrar senha"></button>
                     </div>
@@ -136,22 +136,22 @@
                     <div class="item-acesso">
                         <strong>Gênero</strong><br>
                         <div id="mascInput">
-                            <input type="radio" disabled class="input-senha-perfil" id="masc" />
+                            <input type="radio" disabled class="input-senha-perfil" id="masc" name="genero" value="m"/>
                             <label for="masc">Masculino</label><br>
                         </div>
                         <!-- Feminino -->
                         <div id="femInput">
-                            <input type="radio" disabled class="input-senha-perfil" id="fem" />
+                            <input type="radio" disabled class="input-senha-perfil" id="fem" name="genero" value="f" />
                             <label for="fem">Feminino</label><br>
                         </div>
                         <!-- Outros -->
                         <div id="outroInput">
-                            <input type="radio" disabled class="input-senha-perfil" id="outro" />
+                            <input type="radio" disabled class="input-senha-perfil" id="outro" name="genero" value="o"/>
                             <label for="outro">Outros</label><br>
                         </div>
                         <!-- Prefiro não informar -->
                         <div id="prefiroNInput">
-                            <input type="radio" disabled class="input-senha-perfil" id="prefiroN" />
+                            <input type="radio" disabled class="input-senha-perfil" id="prefiroN" name="genero" value="n"/>
                             <label for="prefiroN">Prefiro não informar</label>
                         </div>
                     </div>
