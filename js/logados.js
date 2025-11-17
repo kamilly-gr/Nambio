@@ -12,6 +12,22 @@ function atualizarHeaderAposCadastro() {
   localStorage.setItem('usuarioLogado', 'true');
 }
 
+// --- NOVA FUNÇÃO DE LOGOUT ---
+function fazerLogout() {
+  // Remove a flag de login do localStorage
+  localStorage.removeItem('usuarioLogado');
+
+  // Redireciona o usuário para a página inicial (descomente se quiser)
+  window.location.href = 'home.html'; 
+
+  // Alerta sobre a saida do site
+  alert('Você saiu da sua conta!');
+
+  // Atualiza o visual do header usando a função que já verifica o estado
+  verificarEstadoLogin(); 
+}
+// ----------------------------
+
 // Função para verificar o estado de login ao carregar a página
 function verificarEstadoLogin() {
   // busca elementos por id ou classe (compatibilidade entre páginas)
@@ -27,5 +43,5 @@ function verificarEstadoLogin() {
   if (btnLoginCadastro) btnLoginCadastro.style.display = estaLogado ? 'none' : 'block';
 }
 
-// Executa ao carregar a página
+// Executa ao carregar a página para garantir que o header inicie no estado correto
 document.addEventListener('DOMContentLoaded', verificarEstadoLogin);

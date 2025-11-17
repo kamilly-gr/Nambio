@@ -214,6 +214,7 @@ verificarRadio()
 // Função de alterar todos os dados pessoais
 
 function alterarPesso() {
+  // Campos de texto
   const camposTexto = [
     document.getElementById('nome'),
     document.getElementById('sobrenome'),
@@ -221,6 +222,7 @@ function alterarPesso() {
     document.getElementById('cpf')
   ];
 
+  // Inputs de rádio
   const radios = [
     document.getElementById('masc'),
     document.getElementById('fem'),
@@ -228,6 +230,7 @@ function alterarPesso() {
     document.getElementById('prefiroN')
   ];
 
+  // Containers dos gêneros
   const containersGenero = [
     document.getElementById('mascInput'),
     document.getElementById('femInput'),
@@ -235,86 +238,59 @@ function alterarPesso() {
     document.getElementById('prefiroNInput')
   ];
 
-  if (!camposTexto.every(el => el) || !radios.every(el => el) || !containersGenero.every(el => el)) {
-    console.warn('Elementos faltando');
+  // Validação
+  if (!camposTexto.every(Boolean) || !radios.every(Boolean) || !containersGenero.every(Boolean)) {
+    console.warn('Um ou mais elementos não foram encontrados.');
     return;
   }
 
-  // Salvar estado original dos campos de texto
+  // === SALVAR ESTADO ORIGINAL DOS CAMPOS DE TEXTO (só na primeira vez) ===
   camposTexto.forEach(campo => {
     if (!campo.dataset._saved) {
       campo.dataset._origDisabled = String(campo.disabled);
       campo.dataset._origReadOnly = String(campo.readOnly);
-      campo.dataset._origStyle = campo.style.cssText || '';
-      campo.dataset._origClass = campo.className || '';
+      campo.dataset._origStyle = campo.style.cssText;
+      campo.dataset._origClass = campo.className;
       campo.dataset._saved = 'true';
     }
   });
 
-  // Habilitar campos de texto
+  // === HABILITAR CAMPOS DE TEXTO ===
   camposTexto.forEach(campo => {
     campo.disabled = false;
     campo.readOnly = false;
     campo.classList.remove('disabled');
   });
 
-  // Mostrar todos os containers de gênero
+  // === MOSTRAR TODOS OS CONTAINERS DE GÊNERO ===
   containersGenero.forEach(container => {
-    container.style.display = ''; // ou 'flex'
+    container.style.display = ''; // remove "none", volta ao padrão do CSS
   });
 
-  // === LÓGICA SEGURA DE DESELEÇÃO PARA RADIOS ===
-  // Remover listeners antigos (evitar duplicação)
-  radios.forEach(radio => {
-    if (radio._onClickHandler) {
-      radio.removeEventListener('click', radio._onClickHandler);
-    }
-  });
-
-  // Criar novo handler
-  let ultimoSelecionado = null;
-
-  const handleClick = (e) => {
-    const clicado = e.target;
-
-    if (ultimoSelecionado === clicado && clicado.checked) {
-      // Desmarca todos
-      radios.forEach(r => r.checked = false);
-      ultimoSelecionado = null;
-    } else {
-      ultimoSelecionado = clicado;
-    }
-    verificarRadio(); // atualiza a visibilidade imediatamente
-  };
-
-  // Aplicar o listener a todos os rádios
+  // === GARANTIR QUE OS RADIOS ESTEJAM HABILITADOS (mas NÃO alteramos checked!) ===
   radios.forEach(radio => {
     radio.disabled = false;
-    radio._onClickHandler = handleClick;
-    radio.addEventListener('click', handleClick);
+    // NÃO adicionamos listeners de clique — o comportamento nativo já faz "só um selecionado"
   });
 
-  // === FINALIZAR EDIÇÃO COM ENTER EM QUALQUER CAMPO ===
-  const finalizarEdicao = (e) => {
+  // === FUNÇÃO PARA FINALIZAR EDIÇÃO ===
+  const finalizar = (e) => {
     if (e.key === 'Enter' || e.keyCode === 13) {
       e.preventDefault();
 
-      // Remover listeners
+      // Remove listener de todos os campos
       [...camposTexto, ...radios].forEach(el => {
-        el.removeEventListener('keydown', finalizarEdicao);
-        if (el._onClickHandler) {
-          el.removeEventListener('click', el._onClickHandler);
-          delete el._onClickHandler;
-        }
+        el.removeEventListener('keydown', finalizar);
       });
 
-      // Restaurar campos de texto
+      // Restaura campos de texto
       camposTexto.forEach(campo => {
         campo.disabled = campo.dataset._origDisabled === 'true';
         campo.readOnly = campo.dataset._origReadOnly === 'true';
         campo.style.cssText = campo.dataset._origStyle || '';
         campo.className = campo.dataset._origClass || '';
 
+        // Limpa flags
         delete campo.dataset._saved;
         delete campo.dataset._origDisabled;
         delete campo.dataset._origReadOnly;
@@ -322,18 +298,35 @@ function alterarPesso() {
         delete campo.dataset._origClass;
       });
 
-      // Atualizar visibilidade dos gêneros com o estado FINAL
+      // Atualiza visibilidade dos gêneros com base no estado ATUAL
       verificarRadio();
-
-      // Remover listener global (segurança)
-      document.removeEventListener('keydown', finalizarEdicao);
     }
   };
 
-  // Adicionar listener de Enter em todos os campos editáveis
+  // Adiciona Enter em todos os campos editáveis
   [...camposTexto, ...radios].forEach(campo => {
-    campo.addEventListener('keydown', finalizarEdicao);
+    campo.addEventListener('keydown', finalizar);
   });
 
+  // Foco no primeiro campo
   camposTexto[0]?.focus();
 }
+
+// Ajuste do tamanho do input da senha
+
+const inputSenha = document.getElementById('senha');
+
+function atualizarTamanhoInput() {
+    // Pega o número de caracteres digitados
+    const comprimentoTexto = inputSenha.value.length;
+
+    // Define o atributo 'size' do input para esse comprimento
+    // Adicionamos +1 ou +2 para dar uma pequena margem e não cortar a borda.
+    inputSenha.size = comprimentoTexto + 1; 
+}
+
+// Adiciona o ouvinte de evento 'input'
+inputSenha.addEventListener('input', atualizarTamanhoInput);
+
+// Chama na carga inicial, caso já tenha valor
+atualizarTamanhoInput();
