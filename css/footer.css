@@ -18,15 +18,15 @@ footer {
   justify-content: space-around;
   gap: 150px;
   padding: 0;
-  
+
 }
 
 /* Primeira coluna do rodapé */
 .sobre {
-  
+
   max-width: 450px;
   margin: 0;
-  
+
 }
 
 .nosSigaNasRedes {
@@ -57,7 +57,7 @@ footer {
   max-width: 450px;
 }
 
-.informacao ul{
+.informacao ul {
   padding: 0;
 }
 
@@ -66,44 +66,49 @@ footer {
 }
 
 .informacao ul li a {
-    cursor: pointer;
-  }
+  cursor: pointer;
+}
 
 
 /* terceira linha do site  */
 
-.novidades{
+.novidades {
   max-width: 600px;
-  
+
   max-width: 450px;
   margin: 0;
 
 }
 
 
-.novidades .novi input{
+.novidades .novi input {
   border: none;
   padding: 10px 5px 10px 15px;
   background-color: #D9D9D9;
-  color:#828282;
+  color: #828282;
   border-radius: 26px;
   font-family: 'Poppins', sans-serif;
   width: 350px;
-  margin-top:15px;
+  margin-top: 15px;
   outline: none;
 }
 
-.novidades .novi button{
+.novidades .novi button {
   border: none;
-  padding: 5px 20px 5px 20px ;
+  padding: 5px 20px 5px 20px;
   border-radius: 15px;
   margin-top: 15px;
-  background-color: #3EBAEF ;
+  background-color: #3EBAEF;
   font-family: "Poppins", sans-serif;
   cursor: pointer;
 
-  &:active{
+  &:hover {
+    background-color: #4b9cbe;
+    color: white;
+  }
+
+  &:active {
     background-color: #0687be;
   }
-  
+
 }
