@@ -1,6 +1,6 @@
 .pesquisa-cate-container {
     text-align: center;
-    padding: 25px;
+    margin-top: 50px;
 }
 
 
@@ -12,13 +12,13 @@
 .pesquisa-cate input {
   padding-left: 30px; /* Espaço para o ícone */
   padding-top: 5px;
-  padding-bottom: 5px;
   border: 1px solid #ccc;
   border-radius: var(--border-btn);
-  width: 400px;
+  width: 600px;
   font-family: 'poppins';
-  font-size: 12.20px;
+  font-size: 16px;
   color: var(--text-secondary);
+  height: 60px;
 }
 
 .icon-lupa {
@@ -34,4 +34,165 @@
     height: 25px;
     width: 25px;
    }
+}
+
+/* Partes das faculdades */
+
+.facul-sec {
+    position: relative;
+    display: block; /* O link se comporta como um bloco para conter os divs */
+    width: 100%;
+    height: 650px; /* Defina um tamanho fixo para o contêiner */
+    text-decoration: none;
+    color: white; /* Cor do texto padrão */
+    overflow: hidden; /* Garante que nada saia do contêiner */
+}
+
+/* Estilo base para os dois lados do cartão */
+.img-facul1, 
+.img-facul2, 
+.img-facul3,
+.img-facul4,
+.img-facul5, 
+.img-facul6, 
+.img-facul7,
+.img-facul8 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza o conteúdo verticalmente */
+    align-items: center; /* Centraliza o conteúdo horizontalmente */
+    padding: 20px;
+    text-align: center;
+    transition: opacity 0.4s ease-in-out; /* Transição suave */
+    background-size: cover; /* Garante que a imagem de fundo cubra todo o espaço */
+    background-position: center;
+
+    & strong {
+  font-size: 50px;
+}
+}
+
+/* Define as imagens de fundo específicas */
+.img-facul1 {
+    background-image: url('/Nambio/assets/images/imgusp.png');
+    opacity: 1; /* Visível por padrão */
+}
+
+.img-facul2 {
+    background-image: url('/Nambio/assets/images/imguspIn.png');
+    opacity: 0; /* Invisível por padrão */
+    
+}
+
+.img-facul3 {
+    background-image: url('/Nambio/assets/images/imgufpr.png');
+    opacity: 1; /* Visível por padrão */
+}
+
+.img-facul4 {
+    background-image: url('/Nambio/assets/images/imgufprIn.png');
+    opacity: 0; /* Invisível por padrão */
+}
+
+.img-facul5 {
+    background-image: url('/Nambio/assets/images/imgusp.png');
+    opacity: 1; /* Visível por padrão */
+}
+
+.img-facul6 {
+    background-image: url('/Nambio/assets/images/imguspIn.png');
+    opacity: 0; /* Invisível por padrão */
+}
+
+.img-facul7 {
+    background-image: url('/Nambio/assets/images/imgusp.png');
+    opacity: 1; /* Visível por padrão */
+}
+
+.img-facul8 {
+    background-image: url('/Nambio/assets/images/imguspIn.png');
+    opacity: 0; /* Invisível por padrão */
+}
+
+/* Efeito Hover */
+.facul-sec:hover .img-facul1 {
+    opacity: 0; /* Esconde a frente */
+}
+
+.facul-sec:hover .img-facul2 {
+    opacity: 1; /* Mostra o verso */
+}
+
+/* Efeito Hover */
+.facul-sec:hover .img-facul3 {
+    opacity: 0; /* Esconde a frente */
+}
+
+.facul-sec:hover .img-facul4 {
+    opacity: 1; /* Mostra o verso */
+}
+
+/* Efeito Hover */
+.facul-sec:hover .img-facul5 {
+    opacity: 0; /* Esconde a frente */
+}
+
+.facul-sec:hover .img-facul6 {
+    opacity: 1; /* Mostra o verso */
+}
+
+/* Efeito Hover */
+.facul-sec:hover .img-facul7 {
+    opacity: 0; /* Esconde a frente */
+}
+
+.facul-sec:hover .img-facul8 {
+    opacity: 1; /* Mostra o verso */
+}
+
+.facul-partes-cate {
+  display: flex;
+}
+
+.facul-container {
+  text-align: center;
+}
+
+.facul-titulo {
+  margin: 30px;
+  font-size: 19px;
+}
+
+.img-facul2,
+.img-facul4,
+.img-facul6,
+.img-facul8 {
+  display: block;
+  text-align: left;
+   & h1 {
+    margin-top: 200px;
+   }
+   & p {
+    width: 600px;
+    margin-left: 0px;
+    margin: 10px 0px;
+   }
+   & a {
+    color: var(--primary-color);
+   }
+}
+
+.card-texto-facul {
+    font-family: 'inter';
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.body-categorias .card img {
+    object-fit: contain;
 }

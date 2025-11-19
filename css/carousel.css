@@ -1,7 +1,7 @@
 /* Carrossel com imagens de cidades famosas */
 
 .carousel-container {
-  max-width: 1200px;
+  max-width: 1600px;
   margin: 40px auto;
   position: relative;
   user-select: none;
