@@ -100,22 +100,22 @@
 }
 
 .img-facul5 {
-    background-image: url('/Nambio/assets/images/imgusp.png');
+    background-image: url('/Nambio/assets/images/img-puc-rj.png');
     opacity: 1; /* Visível por padrão */
 }
 
 .img-facul6 {
-    background-image: url('/Nambio/assets/images/imguspIn.png');
+    background-image: url('/Nambio/assets/images/img-puc-rjIn.png');
     opacity: 0; /* Invisível por padrão */
 }
 
 .img-facul7 {
-    background-image: url('/Nambio/assets/images/imgusp.png');
+    background-image: url('/Nambio/assets/images/img-fgv-sp.png');
     opacity: 1; /* Visível por padrão */
 }
 
 .img-facul8 {
-    background-image: url('/Nambio/assets/images/imguspIn.png');
+    background-image: url('/Nambio/assets/images/img-fgv-spIn.png');
     opacity: 0; /* Invisível por padrão */
 }
 
@@ -193,6 +193,6 @@
     font-size: 14px;
 }
 
-.body-categorias .card img {
+.body-categorias .card .img-facul-carrosel {
     object-fit: contain;
 }
