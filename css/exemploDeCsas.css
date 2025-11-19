@@ -109,7 +109,7 @@
 }
 
 .casa-1 .informacoes-da-casa-sp p{
-    font-size: 15px;
+    font-size: 14px;
     color: #333333;
     margin-top: 15px;
     margin-bottom: 15px;
@@ -138,6 +138,13 @@
     justify-content: left;
 }
 
+.informacoes-da-casa-sp .etiquetas p{
+    font-size: 17px;
+    color: #124357;
+    font-weight: bold;
+}
+
+
 .lista-etiquetas{
     display: flex;
     justify-content: center;
@@ -158,6 +165,7 @@
     display: flex;
     justify-content:left;
     gap: 15px;
+    font-size: 15px;
     
     border-radius: 15px;
     align-items: center;
