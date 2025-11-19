@@ -12,7 +12,7 @@
     border-radius: 6px;
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
-    width: auto;
+    width: 100%;
 }
 
 /* ícones de alteração (pequenos) */
@@ -102,6 +102,7 @@
 
 .item-acesso {
     margin-left: 0px;
+    width: 70%;
 }
 
 .item-acesso .label-line strong { 
@@ -140,8 +141,8 @@
 
 /* input menor na direita */
 .senha-value input .input-senha-perfil {
-    max-width: fit-content;
-    width: fit-content;
+    max-width: 100%;
+    width: 100%;
 }
 
 /* DADOS PESSOAIS */
@@ -164,7 +165,7 @@
 }
 
 .item-pessoal strong { display: block; font-weight: 600; margin-bottom: 6px; }
-.item-pessoal input.input-senha-perfil { width: fit-content; }
+.item-pessoal input.input-senha-perfil { width: 100%; }
 
 /* botão laranja */
 .btn-alterar {
@@ -193,6 +194,20 @@
     cursor: pointer;
     margin-top: 18px;
     margin: 0 25px;
+    font-family: 'poppins';
+}
+
+.btn-salvar-altera {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary-color);
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    margin-top: 18px;
     font-family: 'poppins';
 }
 
@@ -226,7 +241,6 @@
 
 /* inputs ocupam 100% da esquerda */
 .item-acesso input.input-senha-perfil {
-    width: fit-content;
     margin-top: 4px;
     box-sizing: border-box;
 }

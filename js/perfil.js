@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (dadosSalvos) {
         const usuario = JSON.parse(dadosSalvos);
 
-        // Preencher campos
         const setValor = (id, valor) => {
             const el = document.getElementById(id);
             if (el) el.value = valor || '';
@@ -17,34 +16,43 @@ document.addEventListener('DOMContentLoaded', function () {
         setValor('tele-acesso', usuario.tel);
         setValor('nasc', usuario.nasc);
         setValor('cpf', usuario.cpf);
-        
-        // Senha: não exibir valor real por segurança
+
+        // Senha: exibir como ••••••, mas guardar a real no dataset
         const senhaInput = document.getElementById('senha');
         if (senhaInput) {
             senhaInput.value = '••••••';
             senhaInput.dataset.senhaReal = usuario.senha || '';
         }
 
-        // Restaurar gênero
+        // Restaurar gênero SE estiver salvo
         if (usuario.genero) {
             const radio = document.getElementById(usuario.genero);
-            if (radio) radio.checked = true;
+            if (radio) {
+                radio.checked = true;
+                // Só após carregar um gênero salvo, aplicamos a regra de exibir só ele
+                verificarRadio();
+            }
         }
+        // Se NENHUM gênero estiver salvo, todos permanecem visíveis (comportamento inicial desejado)
     }
 
-    // Disparar verificação inicial do gênero
-    verificarRadio();
+    // Configurar listeners para os radios (seleção ativa)
+    document.querySelectorAll('input[name="genero"]').forEach(radio => {
+        radio.addEventListener('change', () => {
+            verificarRadio();
+            salvarPerfil(); // salva automaticamente ao escolher gênero
+        });
+    });
 });
 
 // ================================
 // Funções de edição genéricas
 // ================================
 
-function habilitarEdicao(elementoId, mascaraFn = null, callbackSalvamento = null) {
+function habilitarEdicao(elementoId, mascaraFn = null) {
     const el = document.getElementById(elementoId);
     if (!el) return;
 
-    // Salvar estado original
     if (!el.dataset._saved) {
         el.dataset._origDisabled = String(el.disabled);
         el.dataset._origReadOnly = String(el.readOnly);
@@ -53,33 +61,27 @@ function habilitarEdicao(elementoId, mascaraFn = null, callbackSalvamento = null
         el.dataset._saved = 'true';
     }
 
-    // Habilitar
     el.disabled = false;
     el.readOnly = false;
     el.classList.remove('disabled');
     el.focus();
 
-    // Adicionar máscara se necessário
     if (mascaraFn) {
         el.addEventListener('input', mascaraFn);
     }
 
-    // Evitar múltiplos listeners
     if (el.dataset._enterListenerAttached === 'true') return;
 
     const finalizar = (e) => {
         if (e.key === 'Enter' || e.keyCode === 13) {
             e.preventDefault();
 
-            // Remover máscara
             if (mascaraFn) {
                 el.removeEventListener('input', mascaraFn);
             }
 
-            // Salvar dados no localStorage
             salvarPerfil();
 
-            // Restaurar estado original
             el.disabled = el.dataset._origDisabled === 'true';
             el.readOnly = el.dataset._origReadOnly === 'true';
             el.style.cssText = el.dataset._origStyle || '';
@@ -105,17 +107,9 @@ function habilitarEdicao(elementoId, mascaraFn = null, callbackSalvamento = null
 // Funções específicas
 // ================================
 
-function mudarSenha() {
-    habilitarEdicao('senha');
-}
-
-function mudarEmail() {
-    habilitarEdicao('email-acesso');
-}
-
-function mudarTele() {
-    habilitarEdicao('tele-acesso', formatarTelefone);
-}
+function mudarSenha() { habilitarEdicao('senha'); }
+function mudarEmail() { habilitarEdicao('email-acesso'); }
+function mudarTele() { habilitarEdicao('tele-acesso', formatarTelefone); }
 
 // ================================
 // Máscara de Telefone
@@ -135,37 +129,34 @@ function formatarTelefone(event) {
 }
 
 // ================================
-// Gênero
+// Gênero: esconde não selecionados APÓS uma escolha
 // ================================
 
 function verificarRadio() {
-    const containers = [
+    const itens = [
         { id: 'masc', container: 'mascInput' },
         { id: 'fem', container: 'femInput' },
         { id: 'outro', container: 'outroInput' },
         { id: 'prefiroN', container: 'prefiroNInput' }
     ];
 
-    containers.forEach(item => {
-        const container = document.getElementById(item.container);
-        if (container) container.style.display = 'none';
-    });
-
-    const selecionado = containers.find(item => {
+    // Encontrar o selecionado
+    const selecionado = itens.find(item => {
         const radio = document.getElementById(item.id);
         return radio && radio.checked;
     });
 
+    // Esconder todos se houver uma seleção
     if (selecionado) {
-        const container = document.getElementById(selecionado.container);
-        if (container) container.style.display = '';
+        itens.forEach(item => {
+            const container = document.getElementById(item.container);
+            if (container) {
+                container.style.display = (item.id === selecionado.id) ? '' : 'none';
+            }
+        });
     }
+    // Se nenhum estiver selecionado, deixa todos visíveis (não fazemos nada aqui)
 }
-
-// Adicionar listeners aos radios para atualizar visualização
-document.querySelectorAll('input[name="genero"]').forEach(radio => {
-    radio.addEventListener('change', verificarRadio);
-});
 
 // ================================
 // Alterar Dados Pessoais
@@ -176,13 +167,12 @@ function alterarPesso() {
     const radios = ['masc', 'fem', 'outro', 'prefiroN'].map(id => document.getElementById(id));
     const containers = ['mascInput', 'femInput', 'outroInput', 'prefiroNInput'].map(id => document.getElementById(id));
 
-    // Validar existência
     if (![...camposTexto, ...radios, ...containers].every(el => el)) {
         console.warn('Um ou mais elementos não encontrados.');
         return;
     }
 
-    // Habilitar campos de texto
+    // Habilitar campos
     camposTexto.forEach(campo => {
         if (!campo.dataset._saved) {
             campo.dataset._origDisabled = String(campo.disabled);
@@ -196,14 +186,13 @@ function alterarPesso() {
         campo.classList.remove('disabled');
     });
 
-    // Habilitar radios
     radios.forEach(radio => {
         radio.disabled = false;
     });
 
-    // Mostrar todos os containers de gênero
+    // Mostrar TODOS os containers de gênero (para permitir troca)
     containers.forEach(container => {
-        container.style.display = '';
+        if (container) container.style.display = '';
     });
 
     // Finalizar com Enter
@@ -211,7 +200,6 @@ function alterarPesso() {
         if (e.key === 'Enter' || e.keyCode === 13) {
             e.preventDefault();
 
-            // Remover listeners
             [...camposTexto, ...radios].forEach(el => {
                 el.removeEventListener('keydown', finalizar);
             });
@@ -223,7 +211,6 @@ function alterarPesso() {
                 campo.style.cssText = campo.dataset._origStyle || '';
                 campo.className = campo.dataset._origClass || '';
 
-                // Limpar dataset
                 delete campo.dataset._saved;
                 delete campo.dataset._origDisabled;
                 delete campo.dataset._origReadOnly;
@@ -231,15 +218,13 @@ function alterarPesso() {
                 delete campo.dataset._origClass;
             });
 
-            // Desabilitar radios
             radios.forEach(radio => {
                 radio.disabled = true;
             });
 
-            // Atualizar visibilidade dos containers de gênero
+            // Após salvar, aplica a regra: só o selecionado fica visível
             verificarRadio();
 
-            // Salvar perfil
             salvarPerfil();
         }
     };
@@ -252,11 +237,10 @@ function alterarPesso() {
 }
 
 // ================================
-// Salvar Perfil no localStorage
+// Salvar Perfil
 // ================================
 
 function salvarPerfil() {
-    // Obter gênero selecionado
     let genero = '';
     const radios = ['masc', 'fem', 'outro', 'prefiroN'];
     for (const id of radios) {
@@ -273,7 +257,6 @@ function salvarPerfil() {
         username: document.getElementById('username')?.value || '',
         tel: document.getElementById('tele-acesso')?.value || '',
         nasc: document.getElementById('nasc')?.value || '',
-        // Recuperar senha real (não a exibida)
         senha: document.getElementById('senha')?.dataset.senhaReal || '',
         cpf: document.getElementById('cpf')?.value || '',
         genero: genero
@@ -283,7 +266,7 @@ function salvarPerfil() {
 }
 
 // ================================
-// Ajuste do tamanho do input de senha (opcional)
+// Ajuste do tamanho do input de senha
 // ================================
 
 const inputSenha = document.getElementById('senha');
