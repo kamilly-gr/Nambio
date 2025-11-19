@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=h1, initial-scale=1.0">
@@ -13,6 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 
 </head>
+
 <body>
     <!-- //Cabeçalho com logo, categorias e botões de configuração -->
     <header>
@@ -25,7 +27,7 @@
         <!-- //Textos com link para levar para outras páginas  -->
         <div class="links">
             <ul>
-                <li><a href="home.html" >Início</a></li>
+                <li><a href="home.html">Início</a></li>
                 <li><a href="sobre.html">Sobre</a></li>
                 <li><a href="sejaHost.html">Seja uma Host</a></li>
                 <li><a href="categorias.html">Categorias</a></li>
@@ -57,44 +59,44 @@
     </header>
 
     <br>
-    
+
     <section class="casa-1">
         <div class="voltar-casaSP">
             <a href="casasSp.html">
                 <img src="/Nambio/assets/icons/voltar.svg" alt="Voltar né bebe">
             </a>
         </div>
-            
+
 
         <div class="csa-info-1">
             <section id="image-carousel" class="splide" aria-label="Beautiful Images">
                 <div class="splide__track">
-		            <ul class="splide__list">
-			            <li class="splide__slide">
-				            <img src="/Nambio/assets/images/casa-sp-1.webp" alt="casa">
-			            <li class="splide__slide">
-				            <img src="/Nambio/assets/images/foto-casa-1 (1).png" alt="">
-			            </li>
-			            <li class="splide__slide">
-				            <img src="/Nambio/assets/images/foto-casa-2.png" alt="">
-			            </li>
+                    <ul class="splide__list">
                         <li class="splide__slide">
-				            <img src="/Nambio/assets/images/foto-casa-3.png" alt="">
-			            </li>
+                            <img src="/Nambio/assets/images/casa-sp-1.webp" alt="casa">
+                        <li class="splide__slide">
+                            <img src="/Nambio/assets/images/foto-casa-1 (1).png" alt="">
+                        </li>
+                        <li class="splide__slide">
+                            <img src="/Nambio/assets/images/foto-casa-2.png" alt="">
+                        </li>
+                        <li class="splide__slide">
+                            <img src="/Nambio/assets/images/foto-casa-3.png" alt="">
+                        </li>
                         <li class="splide__slide">
                             <img src="/Nambio/assets/images/familia-sp.jpg" alt="">
                         </li>
 
-		            </ul>
+                    </ul>
                 </div>
             </section>
 
             <section class="informacoes-da-casa-sp">
                 <h2>Família Bittencourt</h2>
                 <h4>Rua Bela Cintra, Jardim da Seira - Paraisópolis SP, CEP 59874-366</h4>
-                <p> A Casa da Família Bittencourt se encontra em uma ótima localização, 
+                <p> A Casa da Família Bittencourt se encontra em uma ótima localização,
                     com uma estrutura excepcional, que irá atender qualquer tipo de necessidade,
-                    para garantir o conforto  do(a) Aluno Nâmbio da melhor forma possível.
+                    para garantir o conforto do(a) Aluno Nâmbio da melhor forma possível.
                 </p>
                 <h4><Strong>Número de telefone: </Strong><span>(11)96301-1866</span></h4>
                 <h4><Strong>E-mail de contato: </Strong><span>familiaBittencourt@gmail.com</span></h4>
@@ -126,7 +128,7 @@
 
     <br><br>
 
-    
+
 
     <!-- Footer -->
     <footer>
@@ -169,11 +171,11 @@
             <div class="informacao">
                 <h2>Acesso a informação</h2>
                 <ul>
-                    <li><a href=""></a>Sobre nós</li>
-                    <li><a href=""></a>Termos e condições</li>
-                    <li><a href=""></a>Política de privacidade</li>
-                    <li><a href=""></a>Suporte</li>
-                    <li><a href=""></a>Serviços</li>
+                    <li><a class="acesso" href="">Sobre nós</li></a>
+                    <li><a class="acesso" href="">Termos e condições</li></a>
+                    <li><a class="acesso" href="">Política de privacidade</li></a>
+                    <li><a class="acesso" href="">Suporte</li></a>
+                    <li><a class="acesso" href="">Serviços</li></a>
                 </ul>
 
             </div>
@@ -197,18 +199,18 @@
     </footer>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-        new Splide('#image-carousel', {
-            type      : 'loop',
-            perPage   : 1,
-            autoplay  : true,
-            interval  : 3000, // 3 segundos
-            pauseOnHover: true,
-            arrows    : true,
-            pagination: true,
+            new Splide('#image-carousel', {
+                type: 'loop',
+                perPage: 1,
+                autoplay: true,
+                interval: 3000, // 3 segundos
+                pauseOnHover: true,
+                arrows: true,
+                pagination: true,
             }).mount();
         });
     </script>
-        
+
 </body>
 
 

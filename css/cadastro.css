@@ -95,7 +95,7 @@
         align-items: center;
         text-align: center;
         justify-content: center;
-        
+
         & label {
             margin-left: 45px;
         }
@@ -104,25 +104,28 @@
 
 
 .icon-camera-cadastro {
-  position: absolute;
-  top: 50%;
-  left: 105%;
-  transform: translateY(-50%); /* Centraliza verticalmente */
-  color: #888; /* Cor do ícone */
-  font-size: 18px; /* Tamanho do ícone */
-  height: 25px;
-
-   & img {
+    position: absolute;
+    top: 50%;
+    left: 105%;
+    transform: translateY(-50%);
+    /* Centraliza verticalmente */
+    color: #888;
+    /* Cor do ícone */
+    font-size: 18px;
+    /* Tamanho do ícone */
     height: 25px;
-    width: 25px;
-   }
+
+    & img {
+        height: 25px;
+        width: 25px;
+    }
 }
 
 .add-fotos-casa label {
     position: relative;
 }
 
-.relato {
+.page-cadastroAluno .relato {
     background-color: #DDE0E3;
     border-radius: 13px;
     border: none;
@@ -133,3 +136,4 @@
     outline: none;
     resize: none;
 }
+
