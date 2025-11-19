@@ -183,7 +183,7 @@
 .nova-jornada a{
     padding: 5px 15px 5px 15px;
     border: none;
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     border-radius: 15px;
     font-size: 14px;
     text-decoration: none;
@@ -192,7 +192,8 @@
     font-family: "Poppins", sans-serif;
     
     &:hover{
-        background-color: #be5901;
+        background-color: #4b9cbe;
+        color: white;
     }
 
     &:active{
