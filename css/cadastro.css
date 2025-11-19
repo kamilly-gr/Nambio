@@ -95,7 +95,7 @@
         align-items: center;
         text-align: center;
         justify-content: center;
-        
+
         & label {
             margin-left: 45px;
         }
@@ -104,18 +104,21 @@
 
 
 .icon-camera-cadastro {
-  position: absolute;
-  top: 50%;
-  left: 105%;
-  transform: translateY(-50%); /* Centraliza verticalmente */
-  color: #888; /* Cor do ícone */
-  font-size: 18px; /* Tamanho do ícone */
-  height: 25px;
-
-   & img {
+    position: absolute;
+    top: 50%;
+    left: 105%;
+    transform: translateY(-50%);
+    /* Centraliza verticalmente */
+    color: #888;
+    /* Cor do ícone */
+    font-size: 18px;
+    /* Tamanho do ícone */
     height: 25px;
-    width: 25px;
-   }
+
+    & img {
+        height: 25px;
+        width: 25px;
+    }
 }
 
 .add-fotos-casa label {
@@ -132,4 +135,13 @@
     font-family: 'Poppins', sans-serif;
     outline: none;
     resize: none;
+}
+
+.acesso {
+    color: white;
+    text-decoration: none;
+
+    &:hover {
+        color: #37B1Da;
+    }
 }

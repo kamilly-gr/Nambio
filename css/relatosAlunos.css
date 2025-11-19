@@ -147,3 +147,15 @@
 .peixe{
     color: #4a4a4a;
 }
+
+img{
+    cursor: pointer;
+}
+
+.acesso{
+    color: white;
+    text-decoration: none;
+    &:hover{
+        color: #37B1Da;
+    }
+}

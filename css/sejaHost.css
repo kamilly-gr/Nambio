@@ -55,3 +55,11 @@
     color: rgb(255, 255, 255);
     font-weight: 100;
 }
+
+.acesso{
+    color: white;
+    text-decoration: none;
+    &:hover{
+        color: #37B1Da;
+    }
+}

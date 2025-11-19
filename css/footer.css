@@ -9,6 +9,7 @@ footer {
 .lg-footer h1 img {
   height: 50px;
   margin-bottom: 35px;
+  cursor: pointer;
 }
 
 
@@ -63,6 +64,10 @@ footer {
 .informacao ul li {
   list-style: none;
 }
+
+.informacao ul li a {
+    cursor: pointer;
+  }
 
 
 /* terceira linha do site  */
