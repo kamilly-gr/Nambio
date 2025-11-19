@@ -103,6 +103,11 @@
 .item-acesso {
     margin-left: 0px;
     width: 70%;
+    
+}
+
+.item-acesso div {
+    display: flex;
 }
 
 .item-acesso .label-line strong { 

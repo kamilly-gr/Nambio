@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // 1. Recuperar os dados do localStorage
+    // Carregar dados do localStorage
     const dadosSalvos = localStorage.getItem('usuarioPerfil');
-
     if (dadosSalvos) {
         const usuario = JSON.parse(dadosSalvos);
 
@@ -17,49 +16,99 @@ document.addEventListener('DOMContentLoaded', function () {
         setValor('nasc', usuario.nasc);
         setValor('cpf', usuario.cpf);
 
-        // Senha: exibir como ••••••, mas guardar a real no dataset
         const senhaInput = document.getElementById('senha');
         if (senhaInput) {
             senhaInput.value = '••••••';
             senhaInput.dataset.senhaReal = usuario.senha || '';
         }
 
-        // Restaurar gênero SE estiver salvo
+        // Restaurar gênero
         if (usuario.genero) {
             const radio = document.getElementById(usuario.genero);
-            if (radio) {
-                radio.checked = true;
-                // Só após carregar um gênero salvo, aplicamos a regra de exibir só ele
-                verificarRadio();
-            }
+            if (radio) radio.checked = true;
         }
-        // Se NENHUM gênero estiver salvo, todos permanecem visíveis (comportamento inicial desejado)
     }
 
-    // Configurar listeners para os radios (seleção ativa)
+    // Aplicar estado inicial: todos desabilitados (já estão no HTML, mas garantimos)
+    aplicarModoVisualizacao();
+
+    // Listeners para rádios (só para atualizar visualização ao selecionar)
     document.querySelectorAll('input[name="genero"]').forEach(radio => {
-        radio.addEventListener('change', () => {
-            verificarRadio();
-            salvarPerfil(); // salva automaticamente ao escolher gênero
-        });
+        radio.addEventListener('change', verificarRadio);
     });
 });
 
 // ================================
-// Funções de edição genéricas
+// Funções de utilidade
 // ================================
 
-function habilitarEdicao(elementoId, mascaraFn = null) {
-    const el = document.getElementById(elementoId);
-    if (!el) return;
+function aplicarModoVisualizacao() {
+    const campos = ['nome', 'username', 'nasc', 'cpf', 'email-acesso', 'tele-acesso', 'senha']
+        .map(id => document.getElementById(id))
+        .filter(Boolean);
 
-    if (!el.dataset._saved) {
-        el.dataset._origDisabled = String(el.disabled);
-        el.dataset._origReadOnly = String(el.readOnly);
-        el.dataset._origStyle = el.style.cssText || '';
-        el.dataset._origClass = el.className || '';
-        el.dataset._saved = 'true';
-    }
+    const radios = ['masc', 'fem', 'outro', 'prefiroN']
+        .map(id => document.getElementById(id))
+        .filter(Boolean);
+
+    // Desabilitar campos
+    campos.forEach(campo => {
+        campo.disabled = true;
+        campo.readOnly = true;
+        campo.classList.add('disabled');
+    });
+
+    // Desabilitar rádios
+    radios.forEach(radio => {
+        radio.disabled = true;
+    });
+
+    // Atualizar visibilidade dos gêneros
+    verificarRadio();
+}
+
+function aplicarModoEdicao() {
+    const campos = ['nome', 'username', 'nasc', 'cpf', 'email-acesso', 'tele-acesso', 'senha']
+        .map(id => document.getElementById(id))
+        .filter(Boolean);
+
+    const radios = ['masc', 'fem', 'outro', 'prefiroN']
+        .map(id => document.getElementById(id))
+        .filter(Boolean);
+
+    const containers = ['mascInput', 'femInput', 'outroInput', 'prefiroNInput']
+        .map(id => document.getElementById(id))
+        .filter(Boolean);
+
+    // Habilitar campos
+    campos.forEach(campo => {
+        campo.disabled = false;
+        campo.readOnly = false;
+        campo.classList.remove('disabled');
+    });
+
+    // Habilitar rádios
+    radios.forEach(radio => {
+        radio.disabled = false;
+    });
+
+    // Mostrar todos os containers de gênero
+    containers.forEach(container => {
+        container.style.display = '';
+    });
+
+    // Foco no primeiro campo
+    const primeiro = document.getElementById('nome');
+    if (primeiro) primeiro.focus();
+}
+
+// ================================
+// Edição individual (usada pelos links "Alterar X")
+// ================================
+
+function habilitarEdicaoIndividual(elementoId, mascaraFn = null) {
+    const el = document.getElementById(elementoId);
+    if (!el || !el.disabled) return; // só habilita se estiver desabilitado
 
     el.disabled = false;
     el.readOnly = false;
@@ -67,49 +116,36 @@ function habilitarEdicao(elementoId, mascaraFn = null) {
     el.focus();
 
     if (mascaraFn) {
-        el.addEventListener('input', mascaraFn);
+        const handler = (e) => mascaraFn(e);
+        el.addEventListener('input', handler);
+        el._mascaraHandler = handler; // guardar referência para remover depois
     }
-
-    if (el.dataset._enterListenerAttached === 'true') return;
-
-    const finalizar = (e) => {
-        if (e.key === 'Enter' || e.keyCode === 13) {
-            e.preventDefault();
-
-            if (mascaraFn) {
-                el.removeEventListener('input', mascaraFn);
-            }
-
-            salvarPerfil();
-
-            el.disabled = el.dataset._origDisabled === 'true';
-            el.readOnly = el.dataset._origReadOnly === 'true';
-            el.style.cssText = el.dataset._origStyle || '';
-            el.className = el.dataset._origClass || '';
-
-            // Limpar dataset
-            delete el.dataset._enterListenerAttached;
-            delete el.dataset._saved;
-            delete el.dataset._origDisabled;
-            delete el.dataset._origReadOnly;
-            delete el.dataset._origStyle;
-            delete el.dataset._origClass;
-
-            el.removeEventListener('keydown', finalizar);
-        }
-    };
-
-    el.addEventListener('keydown', finalizar);
-    el.dataset._enterListenerAttached = 'true';
 }
 
-// ================================
-// Funções específicas
-// ================================
+function removerEdicaoIndividual(elementoId) {
+    const el = document.getElementById(elementoId);
+    if (!el) return;
 
-function mudarSenha() { habilitarEdicao('senha'); }
-function mudarEmail() { habilitarEdicao('email-acesso'); }
-function mudarTele() { habilitarEdicao('tele-acesso', formatarTelefone); }
+    // Remover máscara se existir
+    if (el._mascaraHandler) {
+        el.removeEventListener('input', el._mascaraHandler);
+        delete el._mascaraHandler;
+    }
+
+    // Reaplicar modo visualização
+    aplicarModoVisualizacao();
+}
+
+// Funções específicas de edição individual
+function mudarSenha() {
+    habilitarEdicaoIndividual('senha');
+}
+function mudarEmail() {
+    habilitarEdicaoIndividual('email-acesso');
+}
+function mudarTele() {
+    habilitarEdicaoIndividual('tele-acesso', formatarTelefone);
+}
 
 // ================================
 // Máscara de Telefone
@@ -129,7 +165,7 @@ function formatarTelefone(event) {
 }
 
 // ================================
-// Gênero: esconde não selecionados APÓS uma escolha
+// Gênero
 // ================================
 
 function verificarRadio() {
@@ -140,13 +176,11 @@ function verificarRadio() {
         { id: 'prefiroN', container: 'prefiroNInput' }
     ];
 
-    // Encontrar o selecionado
     const selecionado = itens.find(item => {
         const radio = document.getElementById(item.id);
         return radio && radio.checked;
     });
 
-    // Esconder todos se houver uma seleção
     if (selecionado) {
         itens.forEach(item => {
             const container = document.getElementById(item.container);
@@ -154,93 +188,25 @@ function verificarRadio() {
                 container.style.display = (item.id === selecionado.id) ? '' : 'none';
             }
         });
+    } else {
+        // Nenhum selecionado → mostrar todos (só acontece no modo edição)
+        itens.forEach(item => {
+            const container = document.getElementById(item.container);
+            if (container) container.style.display = '';
+        });
     }
-    // Se nenhum estiver selecionado, deixa todos visíveis (não fazemos nada aqui)
 }
 
 // ================================
-// Alterar Dados Pessoais
+// Botões principais
 // ================================
 
 function alterarPesso() {
-    const camposTexto = ['nome', 'username', 'nasc', 'cpf'].map(id => document.getElementById(id));
-    const radios = ['masc', 'fem', 'outro', 'prefiroN'].map(id => document.getElementById(id));
-    const containers = ['mascInput', 'femInput', 'outroInput', 'prefiroNInput'].map(id => document.getElementById(id));
-
-    if (![...camposTexto, ...radios, ...containers].every(el => el)) {
-        console.warn('Um ou mais elementos não encontrados.');
-        return;
-    }
-
-    // Habilitar campos
-    camposTexto.forEach(campo => {
-        if (!campo.dataset._saved) {
-            campo.dataset._origDisabled = String(campo.disabled);
-            campo.dataset._origReadOnly = String(campo.readOnly);
-            campo.dataset._origStyle = campo.style.cssText;
-            campo.dataset._origClass = campo.className;
-            campo.dataset._saved = 'true';
-        }
-        campo.disabled = false;
-        campo.readOnly = false;
-        campo.classList.remove('disabled');
-    });
-
-    radios.forEach(radio => {
-        radio.disabled = false;
-    });
-
-    // Mostrar TODOS os containers de gênero (para permitir troca)
-    containers.forEach(container => {
-        if (container) container.style.display = '';
-    });
-
-    // Finalizar com Enter
-    const finalizar = (e) => {
-        if (e.key === 'Enter' || e.keyCode === 13) {
-            e.preventDefault();
-
-            [...camposTexto, ...radios].forEach(el => {
-                el.removeEventListener('keydown', finalizar);
-            });
-
-            // Restaurar campos de texto
-            camposTexto.forEach(campo => {
-                campo.disabled = campo.dataset._origDisabled === 'true';
-                campo.readOnly = campo.dataset._origReadOnly === 'true';
-                campo.style.cssText = campo.dataset._origStyle || '';
-                campo.className = campo.dataset._origClass || '';
-
-                delete campo.dataset._saved;
-                delete campo.dataset._origDisabled;
-                delete campo.dataset._origReadOnly;
-                delete campo.dataset._origStyle;
-                delete campo.dataset._origClass;
-            });
-
-            radios.forEach(radio => {
-                radio.disabled = true;
-            });
-
-            // Após salvar, aplica a regra: só o selecionado fica visível
-            verificarRadio();
-
-            salvarPerfil();
-        }
-    };
-
-    [...camposTexto, ...radios].forEach(campo => {
-        campo.addEventListener('keydown', finalizar);
-    });
-
-    camposTexto[0]?.focus();
+    aplicarModoEdicao();
 }
 
-// ================================
-// Salvar Perfil
-// ================================
-
 function salvarPerfil() {
+    // Coletar gênero
     let genero = '';
     const radios = ['masc', 'fem', 'outro', 'prefiroN'];
     for (const id of radios) {
@@ -252,21 +218,54 @@ function salvarPerfil() {
     }
 
     const perfil = {
-        nome: document.getElementById('nome')?.value || '',
-        email: document.getElementById('email-acesso')?.value || '',
-        username: document.getElementById('username')?.value || '',
-        tel: document.getElementById('tele-acesso')?.value || '',
+        nome: document.getElementById('nome')?.value.trim() || '',
+        email: document.getElementById('email-acesso')?.value.trim() || '',
+        username: document.getElementById('username')?.value.trim() || '',
+        tel: document.getElementById('tele-acesso')?.value.trim() || '',
         nasc: document.getElementById('nasc')?.value || '',
         senha: document.getElementById('senha')?.dataset.senhaReal || '',
-        cpf: document.getElementById('cpf')?.value || '',
+        cpf: document.getElementById('cpf')?.value.trim() || '',
         genero: genero
     };
 
     localStorage.setItem('usuarioPerfil', JSON.stringify(perfil));
+
+    // Voltar ao modo visualização
+    aplicarModoVisualizacao();
+
+    // Feedback opcional (pode remover)
+    console.log('Perfil salvo com sucesso!');
 }
 
 // ================================
-// Ajuste do tamanho do input de senha
+// Função de mostrar/ocultar senha (adicione se quiser)
+// ================================
+
+function mostrarSenha() {
+    const senhaInput = document.getElementById('senha');
+    const botao = document.getElementById('botao-senha');
+    if (!senhaInput || !botao) return;
+
+    const isPassword = senhaInput.type === 'password';
+    senhaInput.type = isPassword ? 'text' : 'password';
+    botao.style.backgroundImage = isPassword
+        ? 'url("/Nambio/assets/icons/olho-senha-aberto.svg")'
+        : 'url("/Nambio/assets/icons/olho-senha-fechado.svg")';
+}
+
+// ================================
+// Logout (você tem no HTML)
+// ================================
+
+function fazerLogout() {
+    // Exemplo básico — adapte conforme sua lógica de login
+    localStorage.removeItem('usuarioLogado'); // ou como você controla login
+    localStorage.removeItem('usuarioPerfil');
+    window.location.href = 'loginAluno.html';
+}
+
+// ================================
+// Ajuste do tamanho do input de senha (opcional)
 // ================================
 
 const inputSenha = document.getElementById('senha');
@@ -276,5 +275,10 @@ if (inputSenha) {
         inputSenha.size = Math.max(6, comprimentoTexto + 1);
     }
     inputSenha.addEventListener('input', atualizarTamanhoInput);
-    atualizarTamanhoInput();
+    // Inicial
+    if (inputSenha.value === '••••••') {
+        inputSenha.size = 6;
+    } else {
+        atualizarTamanhoInput();
+    }
 }
