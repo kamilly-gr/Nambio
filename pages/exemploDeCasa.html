@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="/Nambio/css/global.css">
     <script src="/Nambio/js/script.js" defer></script>
     <script src="/Nambio/js/logados.js" defer></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+
 </head>
 <body>
     <!-- //Cabeçalho com logo, categorias e botões de configuração -->
@@ -52,9 +56,48 @@
         </div>
     </header>
 
-    <br><br><br><br>
+    <br>
+    
     <section class="casa-1">
-        
+        <div class="voltar-casaSP">
+            <a href="casasSp.html">
+                <img src="/Nambio/assets/icons/voltar.svg" alt="Voltar né bebe">
+            </a>
+        </div>
+            
+
+        <div class="csa-info-1">
+            
+            <section id="image-carousel" class="splide" aria-label="Beautiful Images">
+                <div class="splide__track">
+		            <ul class="splide__list">
+			            <li class="splide__slide">
+				            <img src="/Nambio/assets/images/casa-sp-1.webp" alt="casa">
+			            <li class="splide__slide">
+				            <img src="/Nambio/assets/images/foto-casa-1 (1).png" alt="">
+			            </li>
+			            <li class="splide__slide">
+				            <img src="/Nambio/assets/images/foto-casa-2.png" alt="">
+			            </li>
+                        <li class="splide__slide">
+				            <img src="/Nambio/assets/images/foto-casa-3.png" alt="">
+			            </li>
+		            </ul>
+                </div>
+            </section>
+
+            <section class="informacoes-da-casa-sp">
+                <h2>Família Bittencourt</h2>
+                <h4>Rua Bela Cintra, Jardim da Seira - Paraisópolis SP, CEP 59874-366</h4>
+                <p> A Casa da Família Bittencourt se encontra em uma ótima localização, 
+                    com uma estrutura excepcional, que irá atender qualquer tipo de necessidade,
+                    para garantir o conforto  do(a) Aluno Nâmbio da melhor forma possível.
+                </p>
+
+            </section>
+        </div>
+
+        div
     </section>
 
     
@@ -126,7 +169,19 @@
         </div>
 
     </footer>
-    <script src="/Nambio/js/casasSp.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        new Splide('#image-carousel', {
+            type      : 'loop',
+            perPage   : 1,
+            autoplay  : true,
+            interval  : 3000, // 3 segundos
+            pauseOnHover: true,
+            arrows    : true,
+            pagination: true,
+            }).mount();
+        });
+    </script>
         
 </body>
 
