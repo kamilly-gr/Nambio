@@ -413,7 +413,7 @@
 .relatosbtn {
   color: black;
   text-decoration: none;
-  background-color: var(--secondary-color)
+  background-color: var(--secondary-color);
   padding: 5px 10px 5px 10px;
   border-radius: 10px;
   cursor: pointer;
