@@ -413,4 +413,15 @@
 .relatosbtn {
   color: black;
   text-decoration: none;
+  background-color: #ED6D00;
+  padding: 5px 10px 5px 10px;
+  border-radius: 10px;
+
+  &:hover{
+    background-color: #cf5a00;
+  }
+
+  &:active{
+    
+  }
 }
