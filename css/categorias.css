@@ -86,6 +86,7 @@
 .img-facul2 {
     background-image: url('/Nambio/assets/images/imguspIn.png');
     opacity: 0; /* Invisível por padrão */
+    
 }
 
 .img-facul3 {
@@ -184,4 +185,14 @@
    & a {
     color: var(--primary-color);
    }
+}
+
+.card-texto-facul {
+    font-family: 'inter';
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.body-categorias .card img {
+    object-fit: contain;
 }
