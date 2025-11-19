@@ -1,8 +1,9 @@
-.ctn{
+.ctn {
     display: flex;
     justify-content: center;
 }
-.ctnLoginAluno{
+
+.ctnLoginAluno {
     background-color: white;
     max-width: 40%;
     padding: 25px;
@@ -10,21 +11,21 @@
     border-radius: 50px;
 }
 
-.ctnLoginAluno h1{
+.ctnLoginAluno h1 {
     text-align: center;
     font-size: 35px;
 }
 
-.ctnLoginAluno p{
+.ctnLoginAluno p {
     width: 60%;
     text-align: center;
     font-size: 14px;
     color: #5f5f5f;
     margin-bottom: 15px;
-    
+
 }
 
-.caixa1{
+.caixa1 {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -38,63 +39,63 @@
 
 
 
-    &:hover{
+    &:hover {
         background-color: #1d4f8b;
     }
 
-    &:active{
+    &:active {
         background-color: black;
-        
+
     }
 }
 
-.caixa1 a{
+.caixa1 a {
     text-decoration: none;
     color: white;
-    margin:0;
+    margin: 0;
 }
 
-.caixa1 img{
+.caixa1 img {
     max-width: 15%;
     margin: 0;
-    
+
 }
 
 
 
-.caixa2{
+.caixa2 {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     padding: 5px;
     background-color: #dad8d8;
-    
+
     border-radius: 50px;
     max-width: 45%;
     margin-bottom: 30px;
 
-    &:hover{
+    &:hover {
         background-color: #b5b5b6;
     }
 
-    &:active{
+    &:active {
         background-color: black;
     }
 
 }
 
-.caixa2 img{
+.caixa2 img {
     max-width: 15%;
     margin: 0;
-    padding: 2px ;
+    padding: 2px;
 }
 
-.caixa2 a{
+.caixa2 a {
     text-decoration: none;
     color: #6b6b6b;
-    margin:0;
+    margin: 0;
 
-    &:active{
+    &:active {
         color: white;
     }
 
@@ -102,38 +103,39 @@
 }
 
 
-hr{
+hr {
     max-width: 75%;
-    
+
 }
 
 
 .aluno-login {
     text-align: center;
     padding: 15px;
-    
+
     margin-top: 15px;
-    
+
 }
 
 
-.aluno-login img{
+.aluno-login img {
     max-width: 7%;
     margin: 0;
 
 }
 
 .campo-senha-alunoLogin,
-.campo-email-alunoLogin{
+.campo-email-alunoLogin {
     position: relative;
     max-width: 75%;
 }
 
 
 .campo-senha-alunoLogin input,
-.campo-email-alunoLogin input{
+.campo-email-alunoLogin input {
     width: 100%;
-    padding: 10px 40px 10px 10px; /* espaço para o ícone */
+    padding: 10px 40px 10px 10px;
+    /* espaço para o ícone */
     box-sizing: border-box;
 
     font-size: 14px;
@@ -149,8 +151,10 @@ hr{
 .botao-olho {
     position: absolute;
     right: 10px;
-    top: 37%; /*coloca o topo do botão na metade do elemento pai*/
-    transform: translateY(-50%); /*é usada para centralizar verticalmente um elemento em relação ao seu “ponto de referência” — normalmente o elemento pai. */
+    top: 37%;
+    /*coloca o topo do botão na metade do elemento pai*/
+    transform: translateY(-50%);
+    /*é usada para centralizar verticalmente um elemento em relação ao seu “ponto de referência” — normalmente o elemento pai. */
     width: 30px;
     height: 30px;
     background-color: transparent;
@@ -167,28 +171,28 @@ hr{
 
 
 
-.lembrarSenha{
+.lembrarSenha {
     display: flex;
     justify-content: space-between;
 }
 
 .lembraDeMim label,
-.esqueceuSenha span a{
+.esqueceuSenha span a {
     font-size: 13px;
 }
 
-.lembrarSenha .esqueceuSenha span a{
+.lembrarSenha .esqueceuSenha span a {
     color: #5f5f5f;
     text-decoration: none;
 
-    &:hover{
+    &:hover {
         color: #ED6D00;
     }
 }
 
 
-.btn-entrar-login{
-    padding: 7px 25px 7px 25px ;
+.btn-entrar-login {
+    padding: 7px 25px 7px 25px;
     margin-top: 25px;
     border: none;
     background-color: #ED6D00;
@@ -197,38 +201,43 @@ hr{
     font-size: 17px;
     color: white;
 
-    &:hover{
+    &:hover {
         background-color: #ca5e00;
     }
 
-    &:active{
+    &:active {
         background-color: #884001;
         color: white;
     }
 }
 
-.btn-entrar-login a{
+.btn-entrar-login a {
     text-decoration: none;
     color: white;
 }
 
 
-.pgLogin-Linkcadastro{
+.pgLogin-Linkcadastro {
     text-align: center;
 }
 
-.pgLogin-Linkcadastro .linkParaCadastro{
+.pgLogin-Linkcadastro .linkParaCadastro {
     font-size: 20px;
 }
 
-.pgLogin-Linkcadastro span a{
+.pgLogin-Linkcadastro span a {
     color: #ED6D00;
     text-decoration: none;
     font-size: 17px;
 
     margin-bottom: 25px;
 
-    &:hover{
+    &:hover {
         color: #3EAFD5;
     }
+}
+
+#lembrar {
+    cursor: pointer;
+
 }
