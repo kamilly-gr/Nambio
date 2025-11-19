@@ -83,6 +83,7 @@
     padding: 2px 10px 2px 15px;
     font-family: 'Poppins', sans-serif;
     outline: none;
+    
 }
 
 .formulario .relato textarea {
@@ -94,6 +95,8 @@
     padding: 10px 25px 10px 15px;
     font-family: 'Poppins', sans-serif;
     outline: none;
+    resize: none;
+
 }
 
 .formulario .noti label {
