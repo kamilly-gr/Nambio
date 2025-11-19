@@ -28,7 +28,7 @@ body {
 :root {
     /* Paleta principal */
     --primary-color: #37B1DA;
-    --secondary-color: '1';
+    --secondary-color: #ED6D00;
 
     /* Acentos / feedback */
     --color-accent: #ff6b6b;
