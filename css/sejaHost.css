@@ -167,3 +167,36 @@
 
 }
 
+.nova-jornada{
+    height: 25%;
+    background-color: #1D5872;
+    padding: 25px;
+    text-align: center;
+}
+
+.nova-jornada h1{
+    color: #ffffff;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.nova-jornada a{
+    padding: 5px 15px 5px 15px;
+    border: none;
+    background-color: var(--secondary-color);
+    border-radius: 15px;
+    font-size: 14px;
+    text-decoration: none;
+    color: black;
+
+    font-family: "Poppins", sans-serif;
+    
+    &:hover{
+        background-color: #be5901;
+    }
+
+    &:active{
+        color: white;
+        background-color: #813d01;
+    }
+}
