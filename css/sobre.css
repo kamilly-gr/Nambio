@@ -23,6 +23,7 @@
     text-align: center;
     width: 251px;
     text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
 
 
 
@@ -30,9 +31,7 @@
         background-color: #3594b4;
     }
 
-    &:active {
-        width: 200px;
-    }
+    &:active {}
 }
 
 .simamo {
@@ -133,10 +132,11 @@
     color: #242323;
 }
 
-.acesso{
+.acesso {
     color: white;
     text-decoration: none;
-    &:hover{
+
+    &:hover {
         color: #37B1Da;
     }
 }
