@@ -1,16 +1,16 @@
-.banner-sejaHome{
+.banner-sejaHome {
     background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), url(/Nambio/assets/images/bannerfamilia.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     width: 100%;
     height: 500px;
-    
+
     position: relative;
 }
 
 
-.textoContainer{
+.textoContainer {
     position: absolute;
     width: 25%;
     top: 50%;
@@ -20,7 +20,7 @@
     color: white;
 }
 
-.textoContainer h1{
+.textoContainer h1 {
     font-size: 45px;
 }
 
@@ -29,43 +29,50 @@
 }
 
 
-.btn-seja-host{
+.btn-seja-host {
     background-color: #3EBAEF;
     padding: 7px 15px 7px 15px;
     border: none;
     cursor: pointer;
     margin-top: 15px;
-    border-radius: 15px;
+    border-radius: 30px;
+    box-shadow: 0px 1 px 1 px black;
+
+    &:hover {
+        background-color: #4b9cbe;
+
+    }
+
 }
 
-.btn-seja-host a{
+.btn-seja-host a {
     color: white;
     text-decoration: none;
     font-family: "Poppins", sans-serif;
 }
 
-.informacoes-sejaHome{
+.informacoes-sejaHome {
     background-color: #D0DBE8;
     margin-bottom: 50px;
 }
 
-.informacoes-sejaHome p{
+.informacoes-sejaHome p {
     text-align: center;
     margin: 30px;
 
-    color:black ;
+    color: black;
     font-weight: bold;
     font-size: 25px;
 }
 
-.cards-sejaHome{
+.cards-sejaHome {
     display: flex;
     justify-content: center;
     gap: 30px;
     width: 75%;
 }
 
-.CardsejaHome{
+.CardsejaHome {
     background-color: white;
     font-size: 10px;
     border-radius: 25px;
@@ -73,13 +80,13 @@
     align-content: center;
 }
 
-.CardsejaHome img{
+.CardsejaHome img {
     display: flex;
     margin-top: 20px;
     width: 20%;
 }
 
-.cards-sejaHome h1{
+.cards-sejaHome h1 {
     font-size: 20px;
     text-align: center;
     color: black;
@@ -87,28 +94,30 @@
     margin-top: 15px;
 }
 
-.cards-sejaHome p{
+.cards-sejaHome p {
     font-size: 15px;
     text-align: center;
     color: #767676;
     font-weight: 100;
 }
 
-.title-anfitrioes{
+.title-anfitrioes {
     text-align: center;
     margin-bottom: 25px;
 }
-.oque-dizem{
+
+.oque-dizem {
     text-align: center;
     background-color: white;
     padding: 80px;
 }
-.anfitrioes{
+
+.anfitrioes {
     display: flex;
     justify-content: space-evenly;
 }
 
-.anfitriao{
+.anfitriao {
     display: flex;
     justify-content: space-around;
     text-align: center;
@@ -122,65 +131,66 @@
     border-radius: 25px;
 }
 
-.fotoAnfitriao p{
+.fotoAnfitriao p {
     color: #1D5872;
     font-weight: bold;
 }
 
-.fotoAnfitriao img{
+.fotoAnfitriao img {
     border-radius: 100%;
     width: 130px;
-    border: 5px solid  #1D5872;
+    border: 5px solid #1D5872;
 }
 
-.relatoAnfitriao{
+.relatoAnfitriao {
     color: #1f1e1e;
     text-align: left;
-    
+
 }
 
-.requisitos-anfitriao{
+.requisitos-anfitriao {
     background-color: #ffffff;
     margin: 25px;
 }
 
 
-.requisitos-anfitriao h1{
+.requisitos-anfitriao h1 {
     margin: 45px;
     text-align: center;
 }
 
-.cards-requisitos{
+.cards-requisitos {
     display: flex;
     justify-content: space-between;
     max-width: 75%;
     gap: 50px;
 }
 
-.card-item{
+.card-item {
     text-align: center;
     width: 15%;
-    padding:15px;
+    padding: 15px;
 }
-.cards-requisitos .card-item h3{
+
+.cards-requisitos .card-item h3 {
     font-weight: 100;
 
 }
 
-.nova-jornada{
+.nova-jornada {
     height: 25%;
     background-color: #1D5872;
     padding: 25px;
     text-align: center;
 }
 
-.nova-jornada h1{
+.nova-jornada h1 {
     color: #ffffff;
     font-size: 25px;
     margin-bottom: 10px;
 }
 
-.nova-jornada a{
+.nova-jornada a {
     padding: 5px 15px 5px 15px;
     border: none;
     background-color: var(--primary-color);
@@ -190,13 +200,13 @@
     color: black;
 
     font-family: "Poppins", sans-serif;
-    
-    &:hover{
+
+    &:hover {
         background-color: #4b9cbe;
         color: white;
     }
 
-    &:active{
+    &:active {
         color: white;
         background-color: #813d01;
     }
