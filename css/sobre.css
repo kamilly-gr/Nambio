@@ -97,13 +97,16 @@
 }
 
 .card-front {
-    background-color: #F0BA2F;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.0000000001), rgba(0, 0, 0, 0.0)),url(/Nambio/assets/images/fundo-laranja-sobreCard.png);
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    font-size: 24px;
+    background-size: contain;
+    text-shadow: 1px 1px 2px black;
 }
 
 .card-back {
