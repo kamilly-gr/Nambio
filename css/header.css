@@ -28,6 +28,7 @@ header {
   color: #ffffff;
   padding: 0px 20px;
   font-size: 19px;
+  text-underline-offset: 7px;
 
   &:hover {
     font-weight: 600;
