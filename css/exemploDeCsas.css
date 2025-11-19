@@ -111,5 +111,54 @@
     font-size: 15px;
     color: #333333;
     margin-top: 15px;
+    margin-bottom: 15px;
 }
 
+.csa-info-1 .informacoes-da-casa-sp button{
+    background-color: #37B1DA;
+    padding: 5px 15px 5px 15px;
+    border:none;
+    border-radius: 8px;
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    color: white;
+
+    margin-top: 25px;
+    cursor: pointer;
+
+    &:hover{
+        background-color: #2595b8;
+    }
+
+}
+
+
+.etiquetas{
+    margin: 0 auto;
+    max-width: 80%;
+}
+
+.etiquetas-lista-1{
+    margin-bottom: 25px;
+}
+
+.etiquetas-lista-1 ul,
+.etiquetas-lista-2 ul{
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+}
+
+.etiquetas-lista-1 ul li,
+.etiquetas-lista-2 ul li{
+    display: flex;
+    gap: 15px;
+    border: 2px solid #cccbcb;
+    padding:15px;
+    border-radius: 15px;
+}
+
+.etiquetas-lista-1 ul li img,
+.etiquetas-lista-2 ul li img{
+    width: 22px;
+}
