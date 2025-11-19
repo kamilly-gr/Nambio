@@ -288,10 +288,9 @@ function alterarPesso() {
     container.style.display = ''; // remove "none", volta ao padrão do CSS
   });
 
-  // === GARANTIR QUE OS RADIOS ESTEJAM HABILITADOS (mas NÃO alteramos checked!) ===
+  // GARANTIR QUE OS RADIOS ESTEJAM HABILITADOS 
   radios.forEach(radio => {
     radio.disabled = false;
-    // NÃO adicionamos listeners de clique — o comportamento nativo já faz "só um selecionado"
   });
 
   // === FUNÇÃO PARA FINALIZAR EDIÇÃO ===
