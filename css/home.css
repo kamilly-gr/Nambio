@@ -280,7 +280,7 @@
 }
 
 .oqPensam {
-
+margin-left: 0;
   /* sessão com o botão de ver mais relatos */
   & p {
     color: white;
@@ -298,14 +298,14 @@
     border: none;
     color: black;
     background-color: var(--secondary-color);
-    border-radius: 10px;
+    border-radius:var(--border-btn);
     padding: 8px 10px;
     font-size: 13px;
     cursor: pointer;
     font-family: 'poppins';
   }
 
-  margin-left: 0;
+  
 }
 
 .comentRenato {
@@ -359,7 +359,7 @@
     margin-left: 415px;
 
     & a {
-      color: var(--secondary-color);
+      color: white;
       font-weight: 600;
       font-size: 19px;
     }
@@ -377,7 +377,8 @@
   & span {
     font-size: 40px;
     font-weight: 900;
-    margin-left: 90px;
+    margin-left: 40px;
+    margin-right: 20px;
     width: 300px;
     display: block;
   }
@@ -389,14 +390,16 @@
   & p {
     width: 750px;
     font-size: 13px;
-    margin-left: 90px;
+    margin-left: 40px;
     margin-top: 10px;
+    margin-right: 20px;
   }
 
   & img {
     width: 100%;
     height: 100%;
     cursor: default;
+    margin-right: 0px;
   }
 
   .conqText {
