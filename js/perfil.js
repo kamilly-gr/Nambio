@@ -284,3 +284,57 @@ if (inputSenha) {
         atualizarTamanhoInput();
     }
 }
+
+function mostrarPopupNovaSenha() {
+  const overlay = document.getElementById('popup-nova-senha-overlay');
+  if (overlay) {
+    overlay.style.display = 'flex';
+    // Limpar campos ao abrir
+    document.getElementById('antigaSenha').value = '';
+    document.getElementById('novaSenha').value = '';
+    document.getElementById('confirmNovaSenha').value = '';
+  }
+}
+
+function fecharPopupNovaSenha() {
+  const overlay = document.getElementById('popup-nova-senha-overlay');
+  if (overlay) {
+    overlay.style.display = 'none';
+  }
+}
+
+function criarNovaSenhaPerfil() {
+  const antigaSenha = document.getElementById('antigaSenha').value.trim();
+  const novaSenha = document.getElementById('novaSenha').value.trim();
+  const confirmNovaSenha = document.getElementById('confirmNovaSenha').value.trim();
+
+  // Validação: todos os campos preenchidos
+  if (!antigaSenha || !novaSenha || !confirmNovaSenha) {
+    alert("Por favor, preencha todos os campos.");
+    return;
+  }
+
+  // Validação: nova senha ≠ antiga senha
+  if (novaSenha === antigaSenha) {
+    alert("A sua nova senha não pode ser igual à senha antiga!");
+    return;
+  }
+
+  // Validação: confirmação coincide
+  if (novaSenha !== confirmNovaSenha) {
+    alert("A confirmação da senha não corresponde à nova senha!");
+    return;
+  }
+
+  alert("Nova senha criada com sucesso!");
+
+  // Atualizar no localStorage
+  const dadosSalvos = localStorage.getItem('usuarioPerfil');
+  if (dadosSalvos) {
+    const usuario = JSON.parse(dadosSalvos);
+    usuario.senha = novaSenha;
+    localStorage.setItem('usuarioPerfil', JSON.stringify(usuario));
+  }
+
+  fecharPopupNovaSenha();
+}
