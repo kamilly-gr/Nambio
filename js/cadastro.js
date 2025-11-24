@@ -1,23 +1,51 @@
-function avançarParaEndereco() {
+
+function avançarParaDados(){
   const nome = document.getElementById('nome').value;
   const email = document.getElementById('email').value;
-  const username = document.getElementById('username').value;
-  const tel = document.getElementById('tel').value;
-  const nasc = document.getElementById('nasc').value;
-  const cpf = document.getElementById('cpf').value;
 
-  if (!nome || !email || !username || !tel || !nasc || !cpf) {
+  if (!nome || !email) {
     alert('Preencha todos os campos obrigatórios.');
     return;
   }
 
   document.getElementById('ctnLoginAluno1').style.display = 'none';
   document.getElementById('ctnLoginAluno2').style.display = 'block';
+
 }
 
-function voltarParaUsuario() {
+// botão de voltar na etapa 2 
+function voltarParaEtapa1(){
   document.getElementById('ctnLoginAluno2').style.display = 'none';
   document.getElementById('ctnLoginAluno1').style.display = 'block';
+  
+}
+
+
+
+function avançarParaEndereco() {
+  const tel = document.getElementById('tel').value;
+  const nasc = document.getElementById('nasc').value;
+  const cpf = document.getElementById('cpf').value;
+
+  if (!tel || !nasc || !cpf) {
+    alert('Preencha todos os campos obrigatórios.');
+    return;
+  }
+
+  document.getElementById('ctnLoginAluno2').style.display = 'none';
+  document.getElementById('ctnLoginAluno3').style.display = 'block';
+
+}
+
+
+
+
+
+
+
+function voltarParaEtapa2() {
+  document.getElementById('ctnLoginAluno3').style.display = 'none';
+  document.getElementById('ctnLoginAluno2').style.display = 'block';
 }
 
 const cepInput = document.getElementById('cep');
@@ -61,6 +89,10 @@ cepInput.addEventListener('blur', () => {
       alert('Erro ao consultar o CEP. Tente novamente.');
     });
 });
+
+function avançarParaSenha(){
+
+}
 
 
 function finalizarCadastro() {

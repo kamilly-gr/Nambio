@@ -137,3 +137,8 @@
     resize: none;
 }
 
+
+.ctnLoginAluno2, .ctnLoginAluno3, .ctnLoginAluno4{
+    display: none;
+}
+
