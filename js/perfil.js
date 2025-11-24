@@ -30,7 +30,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Aplicar estado inicial: todos desabilitados (já estão no HTML, mas garantimos)
-    aplicarModoVisualizacao();
+    const caminhoAtual = window.location.pathname;
+
+    if (caminhoAtual.includes("perfil.html")) {
+        // Se o caminho contiver o nome da página desejada, execute a função
+        aplicarModoVisualizacao();
+    }
 
     // Listeners para rádios (só para atualizar visualização ao selecionar)
     document.querySelectorAll('input[name="genero"]').forEach(radio => {
