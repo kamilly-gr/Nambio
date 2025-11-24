@@ -86,14 +86,13 @@
                     </div>
                 </div>
 
-                <!-- direita: senha (label à direita; valor e olho abaixo, centralizados na coluna direita) -->
                 <div class="acesso-right">
                     <div class="label-line">
                         <strong>Senha</strong>
-                        <a class="defNovaSenha" href="#" onclick="">Definir nova senha</a>
+                        <button class="defNovaSenha" onclick="mostrarPopupNovaSenha()">Definir nova senha</button>
                     </div>
 
-                    
+
                 </div>
             </div>
         </div>
@@ -129,22 +128,22 @@
                     <div class="item-acesso">
                         <strong>Gênero</strong><br>
                         <div id="mascInput">
-                            <input type="radio"  id="masc" name="genero" value="m"/>
+                            <input type="radio" id="masc" name="genero" value="m" />
                             <label for="masc">Masculino</label><br>
                         </div>
                         <!-- Feminino -->
                         <div id="femInput">
-                            <input type="radio"  id="fem" name="genero" value="f" />
+                            <input type="radio" id="fem" name="genero" value="f" />
                             <label for="fem">Feminino</label><br>
                         </div>
                         <!-- Outros -->
                         <div id="outroInput">
-                            <input type="radio"  id="outro" name="genero" value="o"/>
+                            <input type="radio" id="outro" name="genero" value="o" />
                             <label for="outro">Outros</label><br>
                         </div>
                         <!-- Prefiro não informar -->
                         <div id="prefiroNInput">
-                            <input type="radio"  id="prefiroN" name="genero" value="n"/>
+                            <input type="radio" id="prefiroN" name="genero" value="n" />
                             <label for="prefiroN">Prefiro não informar</label>
                         </div>
                     </div>
@@ -156,25 +155,32 @@
             <button class="btn-salvar-altera" onclick="salvarPerfil()">Salvar alterações</button>
         </div>
 
-        <div class="container-pessoais">
+        <div id="popup-nova-senha-overlay" class="popup-overlay" style="display: none;">
+            <div class="popup-content">
+                <h3>Definir Nova Senha</h3>
 
-            <div class="antigaSenha">
-                <label for="antigaSenha">Senha Anterior</label><br>
-                <input type="password" id="antigaSenha" placeholder="Inserir senha anterior">
+                <div class="form-group">
+                    <label for="antigaSenha">Senha anterior</label>
+                    <input type="password" id="antigaSenha" placeholder="Inserir senha anterior"
+                        class="input-senha-perfil">
+                </div>
+
+                <div class="form-group">
+                    <label for="novaSenha">Nova senha</label>
+                    <input type="password" id="novaSenha" placeholder="Inserir senha nova" class="input-senha-perfil">
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmNovaSenha">Confirmar senha nova</label>
+                    <input type="password" id="confirmNovaSenha" placeholder="Confirmar senha nova"
+                        class="input-senha-perfil">
+                </div>
+
+                <div class="popup-botoes">
+                    <button class="btn-sair" onclick="fecharPopupNovaSenha()">Cancelar</button>
+                    <button class="btn-salvar-altera" onclick="criarNovaSenhaPerfil()">Salvar nova senha</button>
+                </div>
             </div>
-
-            <div class="novaSenha">
-                <label for="novaSenha">Senha Nova</label><br>
-                <input type="password" id="novaSenha" placeholder="Inserir senha nova">
-            </div>
-
-            <div class="confirmNovaSenha">
-                <label for="confirmNovaSenha">Confirmar senha nova</label><br>
-                <input type="password" id="confirmNovaSenha" placeholder="Confirmar senha nova">
-            </div>
-
-            <button class="btn-alterar" onclick="salvarNovaSenha()">Salvar nova senha</button>
-            <button class="btn-sair" onclick="sairPopup()">Voltar</button>
         </div>
     </section>
 
