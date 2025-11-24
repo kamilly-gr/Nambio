@@ -3,7 +3,7 @@
     justify-content: center;
 }
 
-.ctnLoginAluno {
+.ctnLoginAluno, .ctnLoginAluno2, .ctnLoginAluno3, .ctnLoginAluno4{
     background-color: white;
     max-width: 40%;
     padding: 25px;

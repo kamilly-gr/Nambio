@@ -143,6 +143,13 @@
     resize: none;
 }
 
+<<<<<<< HEAD
+
+.ctnLoginAluno2, .ctnLoginAluno3, .ctnLoginAluno4{
+    display: none;
+}
+
+=======
 .cadastro-host-infos-second {
     display: flex;
 
@@ -159,3 +166,4 @@
         }
     }
 }
+>>>>>>> dba036febaf835f94fefe85f0ec510a4fb5f9c7e
