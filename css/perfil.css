@@ -117,6 +117,7 @@
 
  .label-line strong {
     margin-right: 10px;
+    margin-left: 0px;
  }
 
 .item-acesso .label-line .alterar {
@@ -238,6 +239,10 @@
 .container-pessoais p,
 .text-perfil { text-align: left; }
 
+.text-perfil {
+    margin-left: 5px;
+}
+
 /* padding do card */
 .container-acesso,
 .container-pessoais {
@@ -257,8 +262,22 @@
     text-align: left;
  & input {
     margin: 0px 10px;
- }
+ } 
  & label {
     margin-left: 0px;
  }
+}
+
+.label-line a {
+    margin: 0px;
+    margin-top: 1px;
+}
+
+.defNovaSenha {
+    color: white;
+    font-size: 13px;
+    text-decoration: none;
+    background-color: var(--secondary-color);
+    border-radius: 20px;
+    padding: 2px 10px;
 }

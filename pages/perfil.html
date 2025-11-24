@@ -90,18 +90,10 @@
                 <div class="acesso-right">
                     <div class="label-line">
                         <strong>Senha</strong>
-                        <a class="alterar" href="#" onclick="mudarSenha()">Alterar senha</a>
-                        <button class="icon-altera" onclick="mudarSenha()" aria-label="alterar senha">
-                            <img src="/Nambio/assets/icons/icone-alteração.svg" alt="">
-                        </button>
+                        <a class="defNovaSenha" href="#" onclick="">Definir nova senha</a>
                     </div>
 
-                    <div class="senha-value">
-                        <input value="senhateste" disabled class="input-senha-perfil" id="senha" type="password" />
-                        <!-- botão do olho fica abaixo, centralizado nesta coluna  -->
-                        <button class="botao-olho-perfil" id="botao-senha" onclick="mostrarSenha()"
-                            aria-label="mostrar senha"></button>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -162,6 +154,27 @@
             <button class="btn-alterar" onclick="alterarPesso()">Alterar dados pessoais</button>
             <button class="btn-sair" onclick="fazerLogout()">Sair da minha conta</button>
             <button class="btn-salvar-altera" onclick="salvarPerfil()">Salvar alterações</button>
+        </div>
+
+        <div class="container-pessoais">
+
+            <div class="antigaSenha">
+                <label for="antigaSenha">Senha Anterior</label><br>
+                <input type="password" id="antigaSenha" placeholder="Inserir senha anterior">
+            </div>
+
+            <div class="novaSenha">
+                <label for="novaSenha">Senha Nova</label><br>
+                <input type="password" id="novaSenha" placeholder="Inserir senha nova">
+            </div>
+
+            <div class="confirmNovaSenha">
+                <label for="confirmNovaSenha">Confirmar senha nova</label><br>
+                <input type="password" id="confirmNovaSenha" placeholder="Confirmar senha nova">
+            </div>
+
+            <button class="btn-alterar" onclick="salvarNovaSenha()">Salvar nova senha</button>
+            <button class="btn-sair" onclick="sairPopup()">Voltar</button>
         </div>
     </section>
 

@@ -137,9 +137,6 @@ function removerEdicaoIndividual(elementoId) {
 }
 
 // Funções específicas de edição individual
-function mudarSenha() {
-    habilitarEdicaoIndividual('senha');
-}
 function mudarEmail() {
     habilitarEdicaoIndividual('email-acesso');
 }
