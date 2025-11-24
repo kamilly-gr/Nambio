@@ -53,12 +53,7 @@
             <a href="perfil.html"><img src="/Nambio/assets/icons/perfil.svg" alt="icone de perfil"></a>
         </div>
     </header>
-    <main>
-        <section>
-
-        </section>
-    </main>
-
+    <br><br><br>
     <!-- Partes da tela de cadastro -->
     <form class="ctn" id="formCadastro">
         <div id="ctnLoginAluno1" class="ctnLoginAluno"> <!-- Parte 1 = -->
@@ -75,18 +70,18 @@
                 <input type="email" id="email" placeholder="Inserir e-mail">
             </div>
 
-            <div class="btnAvancarCad">
-            <button type="button" class="btn-entrar-login" onclick="avançarParaDados()">Avançar</button>
-        </div>
+            <div>
+                <button type="button" class="btn-entrar-login" onclick="avançarParaDados()">Avançar</button>
+            </div>
         </div>
         
     </form>
 
     <!-- parte 2 do cadastro  -->
-    <form class="ctn" id="formCadastro">
-        <div id="cntLoginAluno2" class="ctnLoginAluno2"> 
+    <form class="ctn">
+        <div id="ctnLoginAluno2" class="ctnLoginAluno2"> 
             <h1>Cadastro de Aluno</h1>
-            <p>insira seus dados pessoais</p>
+            <p>Insira seus dados pessoais</p>
             
             <div class="tel">
                 <label for="tel">Número de telefone</label><br>
@@ -114,7 +109,7 @@
 
 
     <!-- Parte 3 do cadastro -->
-    <form class="ctn end" id="formCadastro">
+    <form class="ctn end">
         <div id="ctnLoginAluno3" class="ctnLoginAluno3">
             <h1>Cadastro de Aluno</h1>
             <p>Insira suas informações de endereço</p>
@@ -163,7 +158,7 @@
 
     <!-- parte 4 do cadastro -->
 
-    <form class="ctn end" class="formCadastro">
+    <form class="ctn end formCadastro">
         <div id="ctnLoginAluno4" class="ctnLoginAluno4">
             <h1>Cadastro de Aluno</h1>
             <p>Crie sua senha!</p>
@@ -171,10 +166,11 @@
             <div class="senha">
                 <label for="senha">Senha</label><br>
                 <input type="password" id="senha" placeholder="Inserir senha">
+                <button class="botao-olho2" id="botao-senha2" onclick="mostrarSenha2()"></button>
             </div>
             <div class="btnAvancarCad">
                 <button type="button" class="btn-voltar-cad" onclick="voltarParaEtapa3()">Voltar</button>
-                <button type="button" class="btn-entrar-login" onclick="avançarParaSenha()">Avançar</button>
+                <button type="button" class="btn-entrar-login" onclick="finalizarCadastro()">Cadastrar</button>
             </div>
 
 
@@ -182,6 +178,10 @@
         </div>
 
     </form>
+
+
+
+    <br><br><br><br><br>
 
 
 
