@@ -141,23 +141,20 @@ function finalizarCadastro() {
 
 }
 
-
-function mostrarSenha2(){
-    let botao = document.getElementById("botao-senha")
-    let campo = document.getElementById("senha")
-
-    if(campo.type === "password"){
-        campo.type = "text"
-        botao.style.backgroundImage = "url(/Nambio/assets/icons/olho-senha.svg)"
-        botao.style.backgroundRepeat ="no-repeat"
-        botao.style.backgroundPosition ="center"
-        botao.style.backgroundImage = "contain"
-    } else{
-        campo.type = "password"
-        botao.style.backgroundImage = "url(/Nambio/assets/icons/olho-senha-fechado.svg)"
-        botao.style.backgroundRepeat ="no-repeat"
-        botao.style.backgroundPosition ="center"
-        botao.style.backgroundImage = "contain"
+function mostrarSenha() {
+    const senhaInput = document.getElementById('senha');
+    const botao = document.getElementById('botao-senha');
+    
+    if (!senhaInput || !botao) {
+        console.error('❌ Elementos #senha ou #botao-senha não encontrados!');
+        return;
     }
 
+    const isPassword = senhaInput.type === 'password';
+    senhaInput.type = isPassword ? 'text' : 'password';
+
+    botao.classList.toggle('mostrando', isPassword);
+    botao.setAttribute('aria-label', isPassword ? 'Ocultar senha' : 'Mostrar senha');
+
+    console.log('👁️ Modo:', isPassword ? 'texto (mostrando)' : 'senha (oculto)');
 }

@@ -173,24 +173,41 @@
 
 
 
-.botao-olho2 {
+#botao-senha {
     position: absolute;
-    right: 653px;
-    top: 35%;
+    right: 15px;
+    bottom: 5px;
     /*coloca o topo do botão na metade do elemento pai*/
     transform: translateY(-50%);
     /*é usada para centralizar verticalmente um elemento em relação ao seu “ponto de referência” — normalmente o elemento pai. */
     width: 30px;
     height: 30px;
-    background-color: transparent;
-    cursor: pointer;
     border: none;
-    transition: opacity 0.2s;
-
-    background-image: url("/Nambio/assets/icons/olho-senha-fechado.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-
+    background: transparent url("/Nambio/assets/icons/olho-senha-fechado.svg") no-repeat center / 1.2em;
+    cursor: pointer;
 }
 
+#botao-senha.mostrando {
+    position: absolute;
+    right: 15px;
+    bottom: 5px;
+    /*coloca o topo do botão na metade do elemento pai*/
+    transform: translateY(-50%);
+    /*é usada para centralizar verticalmente um elemento em relação ao seu “ponto de referência” — normalmente o elemento pai. */
+    width: 30px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+    background: transparent url("/Nambio/assets/icons/olho-senha.svg") no-repeat center / 1.2em;
+}
+
+.container-btn-avançar-cad {
+    display: flex;
+    text-align: center;
+} 
+
+
+.ctnLoginAluno4 .senha {
+    position: relative;
+    overflow: hidden;
+}

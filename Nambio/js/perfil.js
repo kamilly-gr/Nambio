@@ -239,21 +239,6 @@ function salvarPerfil() {
     console.log('Perfil salvo com sucesso!');
 }
 
-// ================================
-// Função de mostrar/ocultar senha (adicione se quiser)
-// ================================
-
-function mostrarSenha() {
-    const senhaInput = document.getElementById('senha');
-    const botao = document.getElementById('botao-senha');
-    if (!senhaInput || !botao) return;
-
-    const isPassword = senhaInput.type === 'password';
-    senhaInput.type = isPassword ? 'text' : 'password';
-    botao.style.backgroundImage = isPassword
-        ? 'url("/Nambio/assets/icons/olho-senha-aberto.svg")'
-        : 'url("/Nambio/assets/icons/olho-senha-fechado.svg")';
-}
 
 // ================================
 // Logout (você tem no HTML)
@@ -266,9 +251,6 @@ function fazerLogout() {
     window.location.href = 'loginAluno.html';
 }
 
-// ================================
-// Ajuste do tamanho do input de senha (opcional)
-// ================================
 
 const inputSenha = document.getElementById('senha');
 if (inputSenha) {
