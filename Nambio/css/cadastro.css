@@ -1,7 +1,9 @@
 .page-cadastroAluno .ctnLoginAluno div input,
 .page-cadastroAluno .ctnLoginAluno2 div input,
 .page-cadastroAluno .ctnLoginAluno3 div input,
-.page-cadastroAluno .ctnLoginAluno4 div input {
+.page-cadastroAluno .ctnLoginAluno4 div input,
+.page-cadastroAluno .ctnLoginAluno5 div input,
+.page-cadastroAluno .ctnLoginAluno2 div select{
     width: 60%;
     text-align: start;
     font-size: 14px;
@@ -165,7 +167,7 @@
 }
 
 
-.ctnLoginAluno2, .ctnLoginAluno3, .ctnLoginAluno4{
+.ctnLoginAluno2, .ctnLoginAluno3, .ctnLoginAluno4, .ctnLoginAluno5 {
     display: none;
 }
 
@@ -207,7 +209,8 @@
 } 
 
 
-.ctnLoginAluno4 .senha {
+.ctnLoginAluno4 .senha,
+.ctnLoginAluno5 .senha {
     position: relative;
     overflow: hidden;
 }

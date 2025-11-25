@@ -19,17 +19,18 @@ function voltarParaEtapa1() {
 
 
 function avançarParaEndereco() {
-  const tel = document.getElementById('tel').value;
-  const nasc = document.getElementById('nasc').value;
-  const cpf = document.getElementById('cpf').value;
+  const quantComodos = document.getElementById('quantComodos').value;
+  const rendaFam = document.getElementById('rendaFam').value;
+  const addFt = document.getElementById('add-fotos-casa').value;
+  const falesobreVc = document.getElementById('falesobreVc').value;
 
-  if (!tel || !nasc || !cpf) {
+  if (!quantComodos || !rendaFam || !addFt || !falesobreVc) {
     alert('Preencha todos os campos obrigatórios.');
     return;
   }
 
-  document.getElementById('ctnLoginAluno2').style.display = 'none';
-  document.getElementById('ctnLoginAluno3').style.display = 'block';
+  document.getElementById('ctnLoginAluno3').style.display = 'none';
+  document.getElementById('ctnLoginAluno4').style.display = 'block';
 
 }
 
@@ -95,8 +96,8 @@ function avançarParaSenha() {
     return;
   }
 
-  document.getElementById('ctnLoginAluno3').style.display = 'none';
-  document.getElementById('ctnLoginAluno4').style.display = 'block';
+  document.getElementById('ctnLoginAluno4').style.display = 'none';
+  document.getElementById('ctnLoginAluno5').style.display = 'block';
 }
 
 
@@ -155,4 +156,28 @@ function mostrarSenha() {
     botao.setAttribute('aria-label', isPassword ? 'Ocultar senha' : 'Mostrar senha');
 
     console.log('👁️ Modo:', isPassword ? 'texto (mostrando)' : 'senha (oculto)');
+}
+
+function avançarParaInfoHome() {
+    const tel = document.getElementById('tel').value;
+  const nasc = document.getElementById('nasc').value;
+  const cpf = document.getElementById('cpf').value;
+
+  if (!tel || !nasc || !cpf) {
+    alert('Preencha todos os campos obrigatórios.');
+    return;
+  }
+
+  document.getElementById('ctnLoginAluno2').style.display = 'none';
+  document.getElementById('ctnLoginAluno3').style.display = 'block';
+}
+
+function voltarParaEtapa3() {
+    document.getElementById('ctnLoginAluno3').style.display = 'block';
+  document.getElementById('ctnLoginAluno4').style.display = 'none';
+}
+
+function voltarParaEtapa4() {
+    document.getElementById('ctnLoginAluno4').style.display = 'block';
+    document.getElementById('ctnLoginAluno5').style.display = 'none';
 }

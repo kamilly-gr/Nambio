@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         setValor('nome', usuario.nome);
         setValor('email-acesso', usuario.email);
-        setValor('username', usuario.username);
         setValor('tele-acesso', usuario.tel);
         setValor('nasc', usuario.nasc);
         setValor('cpf', usuario.cpf);
@@ -48,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // ================================
 
 function aplicarModoVisualizacao() {
-    const campos = ['nome', 'username', 'nasc', 'cpf', 'email-acesso', 'tele-acesso', 'senha']
+    const campos = ['nome', 'nasc', 'cpf', 'email-acesso', 'tele-acesso', 'senha']
         .map(id => document.getElementById(id))
         .filter(Boolean);
 
@@ -73,7 +72,7 @@ function aplicarModoVisualizacao() {
 }
 
 function aplicarModoEdicao() {
-    const campos = ['nome', 'username', 'nasc', 'cpf', 'email-acesso', 'tele-acesso', 'senha']
+    const campos = ['nome', 'nasc', 'cpf', 'email-acesso', 'tele-acesso', 'senha']
         .map(id => document.getElementById(id))
         .filter(Boolean);
 
@@ -222,7 +221,6 @@ function salvarPerfil() {
     const perfil = {
         nome: document.getElementById('nome')?.value.trim() || '',
         email: document.getElementById('email-acesso')?.value.trim() || '',
-        username: document.getElementById('username')?.value.trim() || '',
         tel: document.getElementById('tele-acesso')?.value.trim() || '',
         nasc: document.getElementById('nasc')?.value || '',
         senha: document.getElementById('senha')?.dataset.senhaReal || '',
