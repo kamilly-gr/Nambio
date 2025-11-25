@@ -241,7 +241,7 @@ function salvarPerfil() {
 
 
 // ================================
-// Logout (você tem no HTML)
+// Logout
 // ================================
 
 function fazerLogout() {

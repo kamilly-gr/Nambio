@@ -183,7 +183,7 @@
     width: 30px;
     height: 30px;
     border: none;
-    background: transparent url("/Nambio/assets/icons/olho-senha-fechado.svg") no-repeat center / 1.2em;
+    background: transparent url("/Nambio/assets/icons/olho-senha-fechado.svg") no-repeat center/ 1.2em;
     cursor: pointer;
 }
 
