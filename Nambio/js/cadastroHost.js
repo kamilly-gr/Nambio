@@ -102,6 +102,7 @@ function avançarParaSenha() {
 
 
 function finalizarCadastro() {
+
   // obter valores com segurança (evita erro se elemento ausente)
   const nome = document.getElementById('nome') ? document.getElementById('nome').value : '';
   const email = document.getElementById('email') ? document.getElementById('email').value : '';
@@ -109,9 +110,17 @@ function finalizarCadastro() {
   const nasc = document.getElementById('nasc') ? document.getElementById('nasc').value : '';
   const cpf = document.getElementById('cpf') ? document.getElementById('cpf').value : '';
   const senha = document.getElementById('senha') ? document.getElementById('senha').value : '';
+  const confirmNovaSenha = document.getElementById('confirmNovaSenha').value.trim();
+  
+  // Validação: todos os campos preenchidos
+  if (!senha || !confirmNovaSenha) {
+    alert("Por favor, preencha todos os campos.");
+    return;
+  }
 
-  if (!senha) {
-    alert('Preencha todos os campos obrigatórios.');
+  // Validação: confirmação coincide
+  if (senha !== confirmNovaSenha) {
+    alert("A confirmação da senha não corresponde à nova senha!");
     return;
   }
 
