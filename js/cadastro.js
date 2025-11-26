@@ -165,3 +165,21 @@ function mostrarSenha() {
 
     console.log('👁️ Modo:', isPassword ? 'texto (mostrando)' : 'senha (oculto)');
 }
+
+function mostrarSenha2() {
+    const senhaInput = document.getElementById('confirmNovaSenha');
+    const botao = document.getElementById('botao-senha2');
+    
+    if (!senhaInput || !botao) {
+        console.error('❌ Elementos #senha ou #botao-senha não encontrados!');
+        return;
+    }
+
+    const isPassword = senhaInput.type === 'password';
+    senhaInput.type = isPassword ? 'text' : 'password';
+
+    botao.classList.toggle('mostrando', isPassword);
+    botao.setAttribute('aria-label', isPassword ? 'Ocultar senha' : 'Mostrar senha');
+
+    console.log('👁️ Modo:', isPassword ? 'texto (mostrando)' : 'senha (oculto)');
+}

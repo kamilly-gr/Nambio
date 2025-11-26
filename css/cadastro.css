@@ -175,7 +175,7 @@
 
 
 
-#botao-senha {
+#botao-senha, #botao-senha2 {
     position: absolute;
     right: 15px;
     bottom: 5px;
@@ -189,7 +189,7 @@
     cursor: pointer;
 }
 
-#botao-senha.mostrando {
+#botao-senha.mostrando, #botao-senha2.mostrando {
     position: absolute;
     right: 15px;
     bottom: 5px;
