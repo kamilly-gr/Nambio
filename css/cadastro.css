@@ -167,11 +167,17 @@
 }
 
 
+<<<<<<< HEAD:css/cadastro.css
+.ctnLoginAluno2, .ctnLoginAluno3{
+=======
 .ctnLoginAluno2, .ctnLoginAluno3, .ctnLoginAluno4, .ctnLoginAluno5 {
+>>>>>>> dcbb9191110b2484249c7b509fd62e8255b3386e:Nambio/css/cadastro.css
     display: none;
 }
 
-
+.senha{
+    position: relative;
+}
 
 
 
