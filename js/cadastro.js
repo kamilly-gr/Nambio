@@ -99,6 +99,25 @@ function avançarParaSenha() {
   document.getElementById('ctnLoginAluno4').style.display = 'block';
 }
 
+function mostrarSenha(){
+    let botao = document.getElementById("botao-senha1")
+    let campo = document.getElementById("senha1")
+
+    if(campo.type === "password"){
+        campo.type = "text"
+        botao.style.backgroundImage = "url(/Nambio/assets/icons/olho-senha.svg)"
+        botao.style.backgroundRepeat ="no-repeat"
+        botao.style.backgroundPosition ="center"
+        botao.style.backgroundImage = "contain"
+    } else{
+        campo.type = "password"
+        botao.style.backgroundImage = "url(/Nambio/assets/icons/olho-senha-fechado.svg)"
+        botao.style.backgroundRepeat ="no-repeat"
+        botao.style.backgroundPosition ="center"
+        botao.style.backgroundImage = "contain"
+    }
+
+}
 
 function finalizarCadastro() {
   // obter valores com segurança (evita erro se elemento ausente)
@@ -108,7 +127,7 @@ function finalizarCadastro() {
   const tel = document.getElementById('tel') ? document.getElementById('tel').value : '';
   const nasc = document.getElementById('nasc') ? document.getElementById('nasc').value : '';
   const cpf = document.getElementById('cpf') ? document.getElementById('cpf').value : '';
-  const senha = document.getElementById('senha') ? document.getElementById('senha').value : '';
+  const senha = document.getElementById('senha2') ? document.getElementById('senha2').value : '';
 
   if (!senha) {
     alert('Preencha todos os campos obrigatórios.');
@@ -141,23 +160,3 @@ function finalizarCadastro() {
 
 }
 
-
-function mostrarSenha2(){
-    let botao = document.getElementById("botao-senha")
-    let campo = document.getElementById("senha")
-
-    if(campo.type === "password"){
-        campo.type = "text"
-        botao.style.backgroundImage = "url(/Nambio/assets/icons/olho-senha.svg)"
-        botao.style.backgroundRepeat ="no-repeat"
-        botao.style.backgroundPosition ="center"
-        botao.style.backgroundImage = "contain"
-    } else{
-        campo.type = "password"
-        botao.style.backgroundImage = "url(/Nambio/assets/icons/olho-senha-fechado.svg)"
-        botao.style.backgroundRepeat ="no-repeat"
-        botao.style.backgroundPosition ="center"
-        botao.style.backgroundImage = "contain"
-    }
-
-}

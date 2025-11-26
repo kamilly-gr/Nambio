@@ -165,11 +165,13 @@
 }
 
 
-.ctnLoginAluno2, .ctnLoginAluno3, .ctnLoginAluno4{
+.ctnLoginAluno2, .ctnLoginAluno3{
     display: none;
 }
 
-
+.senha{
+    position: relative;
+}
 
 
 
