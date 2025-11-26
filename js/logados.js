@@ -12,19 +12,39 @@ function atualizarHeaderAposCadastro() {
   localStorage.setItem('usuarioLogado', 'true');
 }
 
+// Função para atualizar o header após cadastro Host
+function atualizarHeaderAposCadastroHost() {
+  // busca elementos por id ou por classe para suportar variações nas páginas
+  const btnLoginCadastro = document.querySelector('#botoesHeader, .botoesHeader');
+  const btnPerfil = document.querySelector('#perfil-container, .perfil-container, #btn-perfil, .btn-perfil');
+
+  // mostra/oculta se os elementos existirem
+  if (btnPerfil) btnPerfil.style.display = 'block';
+  if (btnLoginCadastro) btnLoginCadastro.style.display = 'none';
+
+  const btnPerfil2 = document.getElementById('.perfil-container a');
+
+  const linkbtnPerfil = document.querySelector(btnPerfil2);
+
+  if (linkbtnPerfil) linkbtnPerfil.href = 'perfilHost.html';
+
+  // Armazena no localStorage que o usuário está logado (sempre que a função for chamada)
+  localStorage.setItem('usuarioLogado', 'true');
+}
+
 // --- NOVA FUNÇÃO DE LOGOUT ---
 function fazerLogout() {
   // Remove a flag de login do localStorage
   localStorage.removeItem('usuarioLogado');
 
   // Redireciona o usuário para a página inicial (descomente se quiser)
-  window.location.href = 'home.html'; 
+  window.location.href = 'home.html';
 
   // Alerta sobre a saida do site
   alert('Você saiu da sua conta!');
 
   // Atualiza o visual do header usando a função que já verifica o estado
-  verificarEstadoLogin(); 
+  verificarEstadoLogin();
 }
 // ----------------------------
 

@@ -142,7 +142,7 @@ function finalizarCadastro() {
   alert('Cadastro realizado com sucesso!');
 
   // atualiza o header (marca usuário como logado) antes de redirecionar
-  atualizarHeaderAposCadastro();
+  atualizarHeaderAposCadastroHost();
 
   // redireciona para a página inicial
   window.location.href = 'home.html';
