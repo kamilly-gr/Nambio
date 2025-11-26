@@ -118,6 +118,7 @@
 .faixa-confira a {
   font-style: italic;
   cursor: pointer;
+  color: #195973;
 }
 
 /* Faixa com celular da Nâmbio */
@@ -433,6 +434,7 @@
   &:hover {
     background-color: #d36300;
     transform: scale(1.05);
+
     a {
       color: rgb(255, 255, 255);
     }
