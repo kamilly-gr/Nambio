@@ -25,7 +25,7 @@
 }
 
 .Nambio {
-    color: #3EBAEF;
+    color: var(--secondary-color)
 }
 
 
@@ -40,7 +40,7 @@
 
     &:hover {
         background-color: #4b9cbe;
-
+        transform: scale(1.05);
     }
 
 }
@@ -49,6 +49,7 @@
     color: white;
     text-decoration: none;
     font-family: "Poppins", sans-serif;
+
 }
 
 .informacoes-sejaHome {
@@ -104,6 +105,7 @@
 .title-anfitrioes {
     text-align: center;
     margin-bottom: 25px;
+    color: var(--secondary-color);
 }
 
 .oque-dizem {
@@ -129,6 +131,7 @@
     background-color: transparent;
     border: 2px solid #b6b5b5;
     border-radius: 25px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .fotoAnfitriao p {
@@ -146,6 +149,7 @@
     color: #1f1e1e;
     text-align: left;
 
+
 }
 
 .requisitos-anfitriao {
@@ -157,6 +161,7 @@
 .requisitos-anfitriao h1 {
     margin: 45px;
     text-align: center;
+    color: var(--primary-color)
 }
 
 .cards-requisitos {
@@ -204,6 +209,7 @@
     &:hover {
         background-color: #4b9cbe;
         color: white;
+        
     }
 
     &:active {

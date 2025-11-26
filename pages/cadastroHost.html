@@ -132,12 +132,12 @@
 
             <div class="quantComodos">
                 <label for="quantComodos">Quantidades de cômodos</label><br>
-                <input type="number" id="quantComodos" min="0" max="20">
+                <input type="number" id="quantComodos" min="0" max="2">
             </div>
 
             <div class="rendaFam">
                 <label for="rendaFam">Renda Familiar</label><br>
-                <input type="number" id="rendaFam" placeholder="R$" min="0">
+                <input type="number" id="rendaFam" placeholder="R$" min="0" max="7">
             </div>
 
 
@@ -240,7 +240,7 @@
             </div>
 
             <div class="form-group">
-                <label for="confirmNovaSenha" id="confirmar-senha">Confirmar senha nova</label>
+                <label for="confirmNovaSenha" id="confirmar-senha">Confirmar senha</label>
                 <input type="password" id="confirmNovaSenha" placeholder="Confirmar senha nova" class="input-senha-perfil">
                 <button type="button" aria-label="Mostrar Senha" id="botao-senha2" onclick="mostrarSenha2()"></button>
             </div>
@@ -248,7 +248,7 @@
 
             <div class="btnAvancarCad">
                 <button type="button" class="btn-voltar-cad" onclick="voltarParaEtapa4()">Voltar</button>
-                <button type="button" class="btn-entrar-login" onclick="finalizarCadastro()">Cadastrar</button>
+                <button type="button" class="btn-entrar-login" onclick="finalizarCadastroHost()">Cadastrar</button>
             </div>
 
 
