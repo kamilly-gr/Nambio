@@ -194,9 +194,15 @@
 }
 
 .facul-titulo {
-    margin: 30px;
-    font-size: 19px;
+    padding: 15px;
+    font-size: 25px;
+    background-color: var(--primary-color);
+    max-width: 100%;
+    color: white;
+    margin-top: 110px;
 }
+
+
 
 .img-facul2,
 .img-facul4,

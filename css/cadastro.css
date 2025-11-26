@@ -216,3 +216,36 @@
     position: relative;
     overflow: hidden;
 }
+
+
+
+
+
+.texto-aluno-cadastro{
+    color: var(--primary-color);
+    font-size: 1px;
+    margin-bottom: 10px;
+    margin-top: 25px;
+    text-align: left;
+    font-weight: bold;
+}
+
+
+.link-cadastro-login{
+    background-color: #0d5964;
+    padding: 25px;
+
+    margin-top: 183px;
+}
+
+
+.link-cadastro-login p{
+    color: white;
+    text-align: center;
+}
+
+.link-cadastro-login p strong a{
+    color: var(--secondary-color);
+    text-decoration: none;
+    cursor: pointer;
+}

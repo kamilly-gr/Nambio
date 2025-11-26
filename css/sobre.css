@@ -5,6 +5,8 @@
 
 .titulo {
     font-size: 196%;
+    color: var(--primary-color);
+    font-weight: bold;
 }
 
 .btnambio {
@@ -138,4 +140,21 @@
     &:hover {
         color: #37B1Da;
     }
+}
+
+
+.fita-sobre-relatos{
+    background-color: var(--third-color);
+    padding: 15px;
+    text-align: center;
+}
+
+.fita-sobre-relatos p{
+    color: white;
+}
+
+.fita-sobre-relatos p strong a {
+    color: var(--primary-color);
+    text-decoration: none;
+    cursor: pointer;
 }
