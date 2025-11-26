@@ -40,7 +40,7 @@
 
     &:hover {
         background-color: #4b9cbe;
-
+        transform: scale(1.05);
     }
 
 }
@@ -49,6 +49,7 @@
     color: white;
     text-decoration: none;
     font-family: "Poppins", sans-serif;
+
 }
 
 .informacoes-sejaHome {
@@ -147,7 +148,7 @@
 .relatoAnfitriao {
     color: #1f1e1e;
     text-align: left;
-    
+
 
 }
 
@@ -208,6 +209,7 @@
     &:hover {
         background-color: #4b9cbe;
         color: white;
+        
     }
 
     &:active {
