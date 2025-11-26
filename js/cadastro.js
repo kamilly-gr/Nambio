@@ -127,9 +127,6 @@ function finalizarCadastro() {
   const tel = document.getElementById('tel') ? document.getElementById('tel').value : '';
   const nasc = document.getElementById('nasc') ? document.getElementById('nasc').value : '';
   const cpf = document.getElementById('cpf') ? document.getElementById('cpf').value : '';
-<<<<<<< HEAD:js/cadastro.js
-  const senha = document.getElementById('senha2') ? document.getElementById('senha2').value : '';
-=======
   const senha = document.getElementById('senha') ? document.getElementById('senha').value : '';
   const confirmNovaSenha = document.getElementById('confirmNovaSenha').value.trim();
   
@@ -138,7 +135,6 @@ function finalizarCadastro() {
     alert("Por favor, preencha todos os campos.");
     return;
   }
->>>>>>> dcbb9191110b2484249c7b509fd62e8255b3386e:Nambio/js/cadastro.js
 
   // Validação: confirmação coincide
   if (senha !== confirmNovaSenha) {
@@ -171,8 +167,6 @@ function finalizarCadastro() {
 
 }
 
-<<<<<<< HEAD:js/cadastro.js
-=======
 function mostrarSenha() {
     const senhaInput = document.getElementById('senha');
     const botao = document.getElementById('botao-senha');
@@ -190,7 +184,6 @@ function mostrarSenha() {
 
     console.log('👁️ Modo:', isPassword ? 'texto (mostrando)' : 'senha (oculto)');
 }
-<<<<<<< HEAD:js/cadastro.js
 
 function mostrarSenha2() {
     const senhaInput = document.getElementById('confirmNovaSenha');
@@ -209,6 +202,3 @@ function mostrarSenha2() {
 
     console.log('👁️ Modo:', isPassword ? 'texto (mostrando)' : 'senha (oculto)');
 }
-=======
->>>>>>> dcbb9191110b2484249c7b509fd62e8255b3386e:Nambio/js/cadastro.js
->>>>>>> b53c2a995fc2f559b50f3cd9c29757ca0e4ca2d6:Nambio/js/cadastro.js
