@@ -19,17 +19,18 @@ function voltarParaEtapa1() {
 
 
 function avançarParaEndereco() {
-  const tel = document.getElementById('tel').value;
-  const nasc = document.getElementById('nasc').value;
-  const cpf = document.getElementById('cpf').value;
+  const quantComodos = document.getElementById('quantComodos').value;
+  const rendaFam = document.getElementById('rendaFam').value;
+  const addFt = document.getElementById('add-fotos-casa').value;
+  const falesobreVc = document.getElementById('falesobreVc').value;
 
-  if (!tel || !nasc || !cpf) {
+  if (!quantComodos || !rendaFam || !addFt || !falesobreVc) {
     alert('Preencha todos os campos obrigatórios.');
     return;
   }
 
-  document.getElementById('ctnLoginAluno2').style.display = 'none';
-  document.getElementById('ctnLoginAluno3').style.display = 'block';
+  document.getElementById('ctnLoginAluno3').style.display = 'none';
+  document.getElementById('ctnLoginAluno4').style.display = 'block';
 
 }
 
@@ -95,42 +96,31 @@ function avançarParaSenha() {
     return;
   }
 
-  document.getElementById('ctnLoginAluno3').style.display = 'none';
-  document.getElementById('ctnLoginAluno4').style.display = 'block';
+  document.getElementById('ctnLoginAluno4').style.display = 'none';
+  document.getElementById('ctnLoginAluno5').style.display = 'block';
 }
 
-function mostrarSenha(){
-    let botao = document.getElementById("botao-senha1")
-    let campo = document.getElementById("senha1")
-
-    if(campo.type === "password"){
-        campo.type = "text"
-        botao.style.backgroundImage = "url(/Nambio/assets/icons/olho-senha.svg)"
-        botao.style.backgroundRepeat ="no-repeat"
-        botao.style.backgroundPosition ="center"
-        botao.style.backgroundImage = "contain"
-    } else{
-        campo.type = "password"
-        botao.style.backgroundImage = "url(/Nambio/assets/icons/olho-senha-fechado.svg)"
-        botao.style.backgroundRepeat ="no-repeat"
-        botao.style.backgroundPosition ="center"
-        botao.style.backgroundImage = "contain"
-    }
-
-}
 
 function finalizarCadastro() {
+
   // obter valores com segurança (evita erro se elemento ausente)
   const nome = document.getElementById('nome') ? document.getElementById('nome').value : '';
   const email = document.getElementById('email') ? document.getElementById('email').value : '';
-  const username = document.getElementById('username') ? document.getElementById('username').value : '';
   const tel = document.getElementById('tel') ? document.getElementById('tel').value : '';
   const nasc = document.getElementById('nasc') ? document.getElementById('nasc').value : '';
   const cpf = document.getElementById('cpf') ? document.getElementById('cpf').value : '';
-  const senha = document.getElementById('senha2') ? document.getElementById('senha2').value : '';
+  const senha = document.getElementById('senha') ? document.getElementById('senha').value : '';
+  const confirmNovaSenha = document.getElementById('confirmNovaSenha').value.trim();
+  
+  // Validação: todos os campos preenchidos
+  if (!senha || !confirmNovaSenha) {
+    alert("Por favor, preencha todos os campos.");
+    return;
+  }
 
-  if (!senha) {
-    alert('Preencha todos os campos obrigatórios.');
+  // Validação: confirmação coincide
+  if (senha !== confirmNovaSenha) {
+    alert("A confirmação da senha não corresponde à nova senha!");
     return;
   }
 
@@ -138,7 +128,6 @@ function finalizarCadastro() {
   const dadosUsuario = {
     nome: nome,
     email: email,
-    username: username,
     tel: tel,
     nasc: nasc,
     cpf: cpf,
@@ -160,3 +149,44 @@ function finalizarCadastro() {
 
 }
 
+function mostrarSenha() {
+    const senhaInput = document.getElementById('senha');
+    const botao = document.getElementById('botao-senha');
+    
+    if (!senhaInput || !botao) {
+        console.error('❌ Elementos #senha ou #botao-senha não encontrados!');
+        return;
+    }
+
+    const isPassword = senhaInput.type === 'password';
+    senhaInput.type = isPassword ? 'text' : 'password';
+
+    botao.classList.toggle('mostrando', isPassword);
+    botao.setAttribute('aria-label', isPassword ? 'Ocultar senha' : 'Mostrar senha');
+
+    console.log('👁️ Modo:', isPassword ? 'texto (mostrando)' : 'senha (oculto)');
+}
+
+function avançarParaInfoHome() {
+    const tel = document.getElementById('tel').value;
+  const nasc = document.getElementById('nasc').value;
+  const cpf = document.getElementById('cpf').value;
+
+  if (!tel || !nasc || !cpf) {
+    alert('Preencha todos os campos obrigatórios.');
+    return;
+  }
+
+  document.getElementById('ctnLoginAluno2').style.display = 'none';
+  document.getElementById('ctnLoginAluno3').style.display = 'block';
+}
+
+function voltarParaEtapa3() {
+    document.getElementById('ctnLoginAluno3').style.display = 'block';
+  document.getElementById('ctnLoginAluno4').style.display = 'none';
+}
+
+function voltarParaEtapa4() {
+    document.getElementById('ctnLoginAluno4').style.display = 'block';
+    document.getElementById('ctnLoginAluno5').style.display = 'none';
+}

@@ -3,7 +3,7 @@
     justify-content: center;
 }
 
-.ctnLoginAluno, .ctnLoginAluno2, .ctnLoginAluno3, .ctnLoginAluno4{
+.ctnLoginAluno, .ctnLoginAluno2, .ctnLoginAluno3, .ctnLoginAluno4, .ctnLoginAluno5{
     background-color: white;
     width: 35%;
     padding: 25px;
@@ -14,12 +14,13 @@
 .ctnLoginAluno h1, 
 .ctnLoginAluno2 h1, 
 .ctnLoginAluno3 h1, 
-.ctnLoginAluno4 h1{
+.ctnLoginAluno4 h1,
+.ctnLoginAluno5 h1{
     text-align: center;
     font-size: 35px;
 }
 
-.ctnLoginAluno p, .ctnLoginAluno2 p, .ctnLoginAluno3 p, .ctnLoginAluno4 p{
+.ctnLoginAluno p, .ctnLoginAluno2 p, .ctnLoginAluno3 p, .ctnLoginAluno4 p, .ctnLoginAluno5 p {
     width: 60%;
     text-align: center;
     font-size: 14px;
@@ -150,27 +151,6 @@ hr {
     outline: none;
 }
 
-
-.botao-olho {
-    position: absolute;
-    right: 10px;
-    top: 37%;
-    /*coloca o topo do botão na metade do elemento pai*/
-    transform: translateY(-50%);
-    /*é usada para centralizar verticalmente um elemento em relação ao seu “ponto de referência” — normalmente o elemento pai. */
-    width: 30px;
-    height: 30px;
-    background-color: transparent;
-    cursor: pointer;
-    border: none;
-    transition: opacity 0.2s;
-
-    background-image: url("/Nambio/assets/icons/olho-senha-fechado.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-
-}
 
 
 

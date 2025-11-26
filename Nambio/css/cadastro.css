@@ -1,7 +1,9 @@
 .page-cadastroAluno .ctnLoginAluno div input,
 .page-cadastroAluno .ctnLoginAluno2 div input,
 .page-cadastroAluno .ctnLoginAluno3 div input,
-.page-cadastroAluno .ctnLoginAluno4 div input {
+.page-cadastroAluno .ctnLoginAluno4 div input,
+.page-cadastroAluno .ctnLoginAluno5 div input,
+.page-cadastroAluno .ctnLoginAluno2 div select{
     width: 60%;
     text-align: start;
     font-size: 14px;
@@ -165,7 +167,11 @@
 }
 
 
+<<<<<<< HEAD:css/cadastro.css
 .ctnLoginAluno2, .ctnLoginAluno3{
+=======
+.ctnLoginAluno2, .ctnLoginAluno3, .ctnLoginAluno4, .ctnLoginAluno5 {
+>>>>>>> dcbb9191110b2484249c7b509fd62e8255b3386e:Nambio/css/cadastro.css
     display: none;
 }
 
@@ -175,24 +181,42 @@
 
 
 
-.botao-olho2 {
+#botao-senha {
     position: absolute;
-    right: 653px;
-    top: 35%;
+    right: 15px;
+    bottom: 5px;
     /*coloca o topo do botão na metade do elemento pai*/
     transform: translateY(-50%);
     /*é usada para centralizar verticalmente um elemento em relação ao seu “ponto de referência” — normalmente o elemento pai. */
     width: 30px;
     height: 30px;
-    background-color: transparent;
-    cursor: pointer;
     border: none;
-    transition: opacity 0.2s;
-
-    background-image: url("/Nambio/assets/icons/olho-senha-fechado.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-
+    background: transparent url("/Nambio/assets/icons/olho-senha-fechado.svg") no-repeat center/ 1.2em;
+    cursor: pointer;
 }
 
+#botao-senha.mostrando {
+    position: absolute;
+    right: 15px;
+    bottom: 5px;
+    /*coloca o topo do botão na metade do elemento pai*/
+    transform: translateY(-50%);
+    /*é usada para centralizar verticalmente um elemento em relação ao seu “ponto de referência” — normalmente o elemento pai. */
+    width: 30px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+    background: transparent url("/Nambio/assets/icons/olho-senha.svg") no-repeat center / 1.2em;
+}
+
+.container-btn-avançar-cad {
+    display: flex;
+    text-align: center;
+} 
+
+
+.ctnLoginAluno4 .senha,
+.ctnLoginAluno5 .senha {
+    position: relative;
+    overflow: hidden;
+}
