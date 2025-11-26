@@ -1,8 +1,8 @@
-function avançarParaDados(){
+function avançarParaDados() {
   const nome = document.getElementById('nome').value;
   const email = document.getElementById('email').value;
 
-  if(!nome || !email){
+  if (!nome || !email) {
     alert('Preencha todos os campos obrigatórios.');
     return;
   }
@@ -101,7 +101,7 @@ function avançarParaSenha() {
 }
 
 
-function finalizarCadastro() {
+function finalizarCadastroHost() {
 
   // obter valores com segurança (evita erro se elemento ausente)
   const nome = document.getElementById('nome') ? document.getElementById('nome').value : '';
@@ -110,8 +110,28 @@ function finalizarCadastro() {
   const nasc = document.getElementById('nasc') ? document.getElementById('nasc').value : '';
   const cpf = document.getElementById('cpf') ? document.getElementById('cpf').value : '';
   const senha = document.getElementById('senha') ? document.getElementById('senha').value : '';
+  const estadoCivil = document.getElementById('estadoCiv') ? document.getElementById('estadoCiv').value : '';
+  const quantComodos = document.getElementById('quantComodos') ? document.getElementById('quantComodos').value : '';
+  const rendaFam = document.getElementById('rendaFam') ? document.getElementById('rendaFam').value : '';
+  const addFotosCasa = document.getElementById('add-fotos-casa') ? document.getElementById('add-fotos-casa').value : '';
+  const isProprioChecked = document.getElementById('proprio') ? document.getElementById('proprio').checked : '';
+  const isAlugadoChecked = document.getElementById('alugado') ? document.getElementById('alugado').checked : '';
+  const falesobreVc = document.getElementById('falesobreVc') ? document.getElementById('falesobreVc').value : '';
+
+
+
+  // Você ainda precisaria de lógica extra para saber qual valor pegar depois:
+
+  let tipoImovel = '';
+
+  if (isProprioChecked) {
+    tipoImovel = 'proprio';
+  } else if (isAlugadoChecked) {
+    tipoImovel = 'alugado';
+  }
+
   const confirmNovaSenha = document.getElementById('confirmNovaSenha').value.trim();
-  
+
   // Validação: todos os campos preenchidos
   if (!senha || !confirmNovaSenha) {
     alert("Por favor, preencha todos os campos.");
@@ -131,7 +151,14 @@ function finalizarCadastro() {
     tel: tel,
     nasc: nasc,
     cpf: cpf,
-    senha: senha
+    senha: senha,
+    estadoCivil: estadoCivil,
+    quantComodos: quantComodos,
+    rendaFam: rendaFam,
+    addFotosCasa: addFotosCasa,
+    tipoImovel: tipoImovel,
+    falesobreVc: falesobreVc,
+    tipo: 'host'
   };
 
   // 3. Salvar o objeto no localStorage como uma string JSON
@@ -150,25 +177,25 @@ function finalizarCadastro() {
 }
 
 function mostrarSenha() {
-    const senhaInput = document.getElementById('senha');
-    const botao = document.getElementById('botao-senha');
-    
-    if (!senhaInput || !botao) {
-        console.error('❌ Elementos #senha ou #botao-senha não encontrados!');
-        return;
-    }
+  const senhaInput = document.getElementById('senha');
+  const botao = document.getElementById('botao-senha');
 
-    const isPassword = senhaInput.type === 'password';
-    senhaInput.type = isPassword ? 'text' : 'password';
+  if (!senhaInput || !botao) {
+    console.error('❌ Elementos #senha ou #botao-senha não encontrados!');
+    return;
+  }
 
-    botao.classList.toggle('mostrando', isPassword);
-    botao.setAttribute('aria-label', isPassword ? 'Ocultar senha' : 'Mostrar senha');
+  const isPassword = senhaInput.type === 'password';
+  senhaInput.type = isPassword ? 'text' : 'password';
 
-    console.log('👁️ Modo:', isPassword ? 'texto (mostrando)' : 'senha (oculto)');
+  botao.classList.toggle('mostrando', isPassword);
+  botao.setAttribute('aria-label', isPassword ? 'Ocultar senha' : 'Mostrar senha');
+
+  console.log('👁️ Modo:', isPassword ? 'texto (mostrando)' : 'senha (oculto)');
 }
 
 function avançarParaInfoHome() {
-    const tel = document.getElementById('tel').value;
+  const tel = document.getElementById('tel').value;
   const nasc = document.getElementById('nasc').value;
   const cpf = document.getElementById('cpf').value;
 
@@ -182,29 +209,29 @@ function avançarParaInfoHome() {
 }
 
 function voltarParaEtapa3() {
-    document.getElementById('ctnLoginAluno3').style.display = 'block';
+  document.getElementById('ctnLoginAluno3').style.display = 'block';
   document.getElementById('ctnLoginAluno4').style.display = 'none';
 }
 
 function voltarParaEtapa4() {
-    document.getElementById('ctnLoginAluno4').style.display = 'block';
-    document.getElementById('ctnLoginAluno5').style.display = 'none';
+  document.getElementById('ctnLoginAluno4').style.display = 'block';
+  document.getElementById('ctnLoginAluno5').style.display = 'none';
 }
 
 function mostrarSenha2() {
-    const senhaInput = document.getElementById('confirmNovaSenha');
-    const botao = document.getElementById('botao-senha2');
-    
-    if (!senhaInput || !botao) {
-        console.error('❌ Elementos #senha ou #botao-senha não encontrados!');
-        return;
-    }
+  const senhaInput = document.getElementById('confirmNovaSenha');
+  const botao = document.getElementById('botao-senha2');
 
-    const isPassword = senhaInput.type === 'password';
-    senhaInput.type = isPassword ? 'text' : 'password';
+  if (!senhaInput || !botao) {
+    console.error('❌ Elementos #senha ou #botao-senha não encontrados!');
+    return;
+  }
 
-    botao.classList.toggle('mostrando', isPassword);
-    botao.setAttribute('aria-label', isPassword ? 'Ocultar senha' : 'Mostrar senha');
+  const isPassword = senhaInput.type === 'password';
+  senhaInput.type = isPassword ? 'text' : 'password';
 
-    console.log('👁️ Modo:', isPassword ? 'texto (mostrando)' : 'senha (oculto)');
+  botao.classList.toggle('mostrando', isPassword);
+  botao.setAttribute('aria-label', isPassword ? 'Ocultar senha' : 'Mostrar senha');
+
+  console.log('👁️ Modo:', isPassword ? 'texto (mostrando)' : 'senha (oculto)');
 }

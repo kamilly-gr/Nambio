@@ -149,7 +149,8 @@ function finalizarCadastro() {
     tel: tel,
     nasc: nasc,
     cpf: cpf,
-    senha: senha
+    senha: senha,
+    tipo: 'aluno'
   };
 
   // 3. Salvar o objeto no localStorage como uma string JSON
