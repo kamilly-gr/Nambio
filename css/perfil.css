@@ -349,3 +349,7 @@
     height: 50px;
     border-radius: 50%;
 }
+
+.label-line-right {
+    margin-top: 25px;
+}

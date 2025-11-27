@@ -12,17 +12,6 @@ function atualizarHeaderAposCadastro() {
   localStorage.setItem('usuarioLogado', 'true');
 }
 
-// Função para atualizar o header após cadastro Host
-function atualizarHeaderAposCadastroHost() {
-  const btnLoginCadastro = document.querySelector('#botoesHeader, .botoesHeader');
-  const btnPerfil = document.querySelector('#perfil-container, .perfil-container, #btn-perfil, .btn-perfil');
-
-  if (btnPerfil) btnPerfil.style.display = 'block';
-  if (btnLoginCadastro) btnLoginCadastro.style.display = 'none';
-
-  localStorage.setItem('usuarioLogado', 'true');
-}
-
 // --- FUNÇÃO DE LOGOUT ---
 function fazerLogout() {
   // Remove a flag de login do localStorage
