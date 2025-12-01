@@ -1,5 +1,5 @@
 // ================================
-// FUNÇÕES GLOBAIS (acessíveis via onclick no HTML)
+// FUNÇÕES GLOBAIS (acessíveis via HTML)
 // ================================
 
 function mudarEmail() {
@@ -19,16 +19,14 @@ function salvarPerfil() {
     const ehHost = caminho.includes('perfilHost.html');
     const chave = ehHost ? 'usuarioPerfilHost' : 'usuarioPerfil';
 
+    // Coletar gênero
     let genero = '';
-    const radios = ['masc', 'fem', 'outro', 'prefiroN'];
-    for (const id of radios) {
+    ['masc', 'fem', 'outro', 'prefiroN'].forEach(id => {
         const radio = document.getElementById(id);
-        if (radio && radio.checked) {
-            genero = id;
-            break;
-        }
-    }
+        if (radio?.checked) genero = id;
+    });
 
+    // Dados comuns
     const perfil = {
         nome: document.getElementById('nome')?.value.trim() || '',
         email: document.getElementById('email-acesso')?.value.trim() || '',
@@ -39,11 +37,13 @@ function salvarPerfil() {
         genero: genero
     };
 
+    // Dados específicos de host
     if (ehHost) {
         perfil.quantComodos = document.getElementById('quantComodos')?.value.trim() || '';
         perfil.rendaFam = document.getElementById('rendaFam')?.value.trim() || '';
         perfil.tipoImovel = document.getElementById('tipoImovel')?.value.trim() || '';
         perfil.falesobreVc = document.getElementById('falesobreVc')?.value.trim() || '';
+        perfil.estadoCivil = document.getElementById('estadoCiv')?.value.trim() || '';
     }
 
     localStorage.setItem(chave, JSON.stringify(perfil));
@@ -52,9 +52,16 @@ function salvarPerfil() {
 }
 
 function fazerLogout() {
+    // Primeiro remove os dados
     localStorage.removeItem('usuarioLogado');
     localStorage.removeItem('usuarioPerfil');
     localStorage.removeItem('usuarioPerfilHost');
+    
+    // Depois atualiza o header
+    if (typeof verificarEstadoLogin === 'function') {
+        verificarEstadoLogin();
+    }
+    
     window.location.href = 'loginAluno.html';
 }
 
@@ -62,17 +69,15 @@ function mostrarPopupNovaSenha() {
     const overlay = document.getElementById('popup-nova-senha-overlay');
     if (overlay) {
         overlay.style.display = 'flex';
-        document.getElementById('antigaSenha').value = '';
-        document.getElementById('novaSenha').value = '';
-        document.getElementById('confirmNovaSenha').value = '';
+        ['antigaSenha', 'novaSenha', 'confirmNovaSenha'].forEach(id => {
+            document.getElementById(id).value = '';
+        });
     }
 }
 
 function fecharPopupNovaSenha() {
     const overlay = document.getElementById('popup-nova-senha-overlay');
-    if (overlay) {
-        overlay.style.display = 'none';
-    }
+    if (overlay) overlay.style.display = 'none';
 }
 
 function criarNovaSenhaPerfil() {
@@ -93,10 +98,10 @@ function criarNovaSenhaPerfil() {
         return;
     }
 
-    const caminho = window.location.pathname;
-    const ehHost = caminho.includes('perfilHost.html');
+    const ehHost = window.location.pathname.includes('perfilHost.html');
     const chave = ehHost ? 'usuarioPerfilHost' : 'usuarioPerfil';
     const dados = localStorage.getItem(chave);
+    
     if (dados) {
         const usuario = JSON.parse(dados);
         usuario.senha = nova;
@@ -107,21 +112,19 @@ function criarNovaSenhaPerfil() {
     fecharPopupNovaSenha();
 }
 
-function acionarTrocaDeFoto() {
-    document.getElementById('inputFotoPerfil')?.click();
-}
-
 // ================================
-// FUNÇÕES AUXILIARES (também globais, usadas internamente)
+// FUNÇÕES AUXILIARES
 // ================================
 
 function habilitarEdicaoIndividual(elementoId, mascaraFn = null) {
     const el = document.getElementById(elementoId);
     if (!el || !el.disabled) return;
+    
     el.disabled = false;
     el.readOnly = false;
     el.classList.remove('disabled');
     el.focus();
+    
     if (mascaraFn) {
         const handler = (e) => mascaraFn(e);
         el.addEventListener('input', handler);
@@ -130,79 +133,73 @@ function habilitarEdicaoIndividual(elementoId, mascaraFn = null) {
 }
 
 function aplicarModoVisualizacao() {
-    const caminho = window.location.pathname;
-    const ehHost = caminho.includes('perfilHost.html');
-    const idsCampos = ehHost
-        ? ['nome', 'nasc', 'cpf', 'email-acesso', 'tele-acesso', 'senha', 'quantComodos', 'rendaFam', 'tipoImovel', 'falesobreVc']
-        : ['nome', 'nasc', 'cpf', 'email-acesso', 'tele-acesso', 'senha'];
-
-    const campos = idsCamrops
-        .map(id => document.getElementById(id))
-        .filter(el => el !== null);
-
-    const radios = ['masc', 'fem', 'outro', 'prefiroN']
-        .map(id => document.getElementById(id))
-        .filter(el => el !== null);
-
-    campos.forEach(campo => {
-        campo.disabled = true;
-        campo.readOnly = true;
-        campo.classList.add('disabled');
+    const ehHost = window.location.pathname.includes('perfilHost.html');
+    const idsComuns = ['nome', 'nasc', 'cpf', 'email-acesso', 'tele-acesso', 'senha'];
+    const idsHost = ['quantComodos', 'rendaFam', 'tipoImovel', 'falesobreVc', 'estadoCiv'];
+    
+    const idsTodos = ehHost ? [...idsComuns, ...idsHost] : idsComuns;
+    
+    // Processar campos
+    idsTodos.forEach(id => {
+        const campo = document.getElementById(id);
+        if (campo) {
+            campo.disabled = true;
+            campo.readOnly = true;
+            campo.classList.add('disabled');
+        }
     });
 
-    radios.forEach(radio => {
-        radio.disabled = true;
+    // Processar rádios de gênero
+    ['masc', 'fem', 'outro', 'prefiroN'].forEach(id => {
+        const radio = document.getElementById(id);
+        if (radio) radio.disabled = true;
     });
 
     verificarRadio();
 }
 
 function aplicarModoEdicao() {
-    const caminho = window.location.pathname;
-    const ehHost = caminho.includes('perfilHost.html');
-    const idsCampos = ehHost
-        ? ['nome', 'nasc', 'cpf', 'email-acesso', 'tele-acesso', 'senha', 'quantComodos', 'rendaFam', 'tipoImovel', 'falesobreVc']
-        : ['nome', 'nasc', 'cpf', 'email-acesso', 'tele-acesso', 'senha'];
-
-    const campos = idsCampos
-        .map(id => document.getElementById(id))
-        .filter(el => el !== null);
-
-    const radios = ['masc', 'fem', 'outro', 'prefiroN']
-        .map(id => document.getElementById(id))
-        .filter(el => el !== null);
-
-    const containers = ['mascInput', 'femInput', 'outroInput', 'prefiroNInput']
-        .map(id => document.getElementById(id))
-        .filter(el => el !== null);
-
-    campos.forEach(campo => {
-        campo.disabled = false;
-        campo.readOnly = false;
-        campo.classList.remove('disabled');
+    const ehHost = window.location.pathname.includes('perfilHost.html');
+    const idsComuns = ['nome', 'nasc', 'cpf', 'email-acesso', 'tele-acesso', 'senha'];
+    const idsHost = ['quantComodos', 'rendaFam', 'tipoImovel', 'falesobreVc', 'estadoCiv'];
+    
+    const idsTodos = ehHost ? [...idsComuns, ...idsHost] : idsComuns;
+    
+    // Habilitar campos
+    idsTodos.forEach(id => {
+        const campo = document.getElementById(id);
+        if (campo) {
+            campo.disabled = false;
+            campo.readOnly = false;
+            campo.classList.remove('disabled');
+        }
     });
 
-    radios.forEach(radio => {
-        radio.disabled = false;
+    // Habilitar rádios
+    ['masc', 'fem', 'outro', 'prefiroN'].forEach(id => {
+        const radio = document.getElementById(id);
+        if (radio) radio.disabled = false;
     });
 
-    containers.forEach(container => {
-        container.style.display = '';
+    // Mostrar containers de gênero
+    ['mascInput', 'femInput', 'outroInput', 'prefiroNInput'].forEach(id => {
+        const container = document.getElementById(id);
+        if (container) container.style.display = '';
     });
 
-    const nomeInput = document.getElementById('nome');
-    if (nomeInput) nomeInput.focus();
+    // Focar no primeiro campo
+    document.getElementById('nome')?.focus();
 }
 
 function formatarTelefone(event) {
     let input = event.target;
-    input.value = input.value.replace(/\D/g, "");
-    let v = input.value;
-    if (v.length > 0) v = "(" + v;
-    if (v.length > 3) v = v.slice(0, 3) + ") " + v.slice(3);
-    if (v.length > 10) v = v.slice(0, 10) + "-" + v.slice(10);
-    if (v.length > 15) v = v.slice(0, 15);
-    input.value = v;
+    let valor = input.value.replace(/\D/g, '');
+    
+    if (valor.length > 0) valor = `(${valor}`;
+    if (valor.length > 3) valor = `${valor.slice(0, 3)}) ${valor.slice(3)}`;
+    if (valor.length > 10) valor = `${valor.slice(0, 10)}-${valor.slice(10, 15)}`;
+    
+    input.value = valor;
 }
 
 function verificarRadio() {
@@ -212,143 +209,153 @@ function verificarRadio() {
         { id: 'outro', container: 'outroInput' },
         { id: 'prefiroN', container: 'prefiroNInput' }
     ];
+
+    // Detectar se está no modo visualização através do campo 'nome' estar desabilitado
+    const modoVisualizacao = document.getElementById('nome')?.disabled === true;
+
+    if (modoVisualizacao) {
+        // No modo visualização: MOSTRAR TODOS OS CONTAINERS
+        itens.forEach(item => {
+            const container = document.getElementById(item.container);
+            if (container) {
+                container.style.display = ''; // Mostra todos
+            }
+        });
+        return; // Para aqui, não executa a lógica de edição
+    }
+
+    // ---- LÓGICA ORIGINAL (SÓ PARA MODO EDIÇÃO) ----
     const selecionado = itens.find(item => {
         const radio = document.getElementById(item.id);
         return radio && radio.checked;
     });
+
     if (selecionado) {
         itens.forEach(item => {
-            const cont = document.getElementById(item.container);
-            if (cont) cont.style.display = (item.id === selecionado.id) ? '' : 'none';
+            const container = document.getElementById(item.container);
+            if (container) {
+                container.style.display = (item.id === selecionado.id) ? '' : 'none';
+            }
         });
     } else {
+        // Nenhum selecionado → mostrar todos (só acontece no modo edição)
         itens.forEach(item => {
-            const cont = document.getElementById(item.container);
-            if (cont) cont.style.display = '';
+            const container = document.getElementById(item.container);
+            if (container) container.style.display = '';
         });
-    }
-}
-
-function mudarFotoDePerfil(event) {
-    const input = event.target;
-    if (input.files && input.files[0]) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const imgSrc = e.target.result;
-            const img = document.getElementById('imgPerfilHeader');
-            if (img) img.src = imgSrc;
-            localStorage.setItem('fotoPerfilURL', imgSrc);
-            console.log("Foto de perfil atualizada.");
-        };
-        reader.readAsDataURL(input.files[0]);
     }
 }
 
 function carregarFotoSalva() {
     const img = document.getElementById('imgPerfilHeader');
-    const foto = localStorage.getItem('fotoPerfilURL');
-    if (img && foto) {
-        img.src = foto;
+    const fotoSalva = localStorage.getItem('fotoPerfilURL');
+    
+    if (img && fotoSalva) {
+        img.src = fotoSalva;
+        img.classList.remove('icone-padrao');
+        img.classList.add('foto-usuario-customizada');
     }
 }
 
 // ================================
-// EXECUÇÃO CONDICIONAL (só em páginas de perfil)
+// INICIALIZAÇÃO CONDICIONAL
 // ================================
 
-const caminho = window.location.pathname;
-const ehPaginaDePerfil = caminho.includes('perfil.html') || caminho.includes('perfilHost.html');
+document.addEventListener('DOMContentLoaded', function() {
+    const caminho = window.location.pathname;
+    const ehPaginaPerfil = caminho.includes('perfil.html') || caminho.includes('perfilHost.html');
+    
+    if (!ehPaginaPerfil) {
+        console.log('perfil.js: não inicializado - não é página de perfil');
+        return;
+    }
 
-if (ehPaginaDePerfil) {
-    document.addEventListener('DOMContentLoaded', function () {
-        const ehHost = caminho.includes('perfilHost.html');
-        const chavePerfil = ehHost ? 'usuarioPerfilHost' : 'usuarioPerfil';
+    const ehHost = caminho.includes('perfilHost.html');
+    const chave = ehHost ? 'usuarioPerfilHost' : 'usuarioPerfil';
+    const dados = localStorage.getItem(chave);
+    
+    if (dados) {
+        const usuario = JSON.parse(dados);
+        carregarDados(usuario, ehHost);
+    }
 
-        const dadosSalvos = localStorage.getItem(chavePerfil);
-        if (dadosSalvos) {
-            const usuario = JSON.parse(dadosSalvos);
+    inicializarPagina(ehHost);
+});
 
-            const setValor = (id, valor) => {
-                const el = document.getElementById(id);
-                if (el) el.value = valor || '';
-            };
+function carregarDados(usuario, ehHost) {
+    const setValor = (id, valor) => {
+        const el = document.getElementById(id);
+        if (el) el.value = valor || '';
+    };
 
-            setValor('nome', usuario.nome);
-            setValor('email-acesso', usuario.email);
-            setValor('tele-acesso', usuario.tel);
-            setValor('nasc', usuario.nasc);
-            setValor('cpf', usuario.cpf);
+    // Dados comuns
+    setValor('nome', usuario.nome);
+    setValor('email-acesso', usuario.email);
+    setValor('tele-acesso', usuario.tel);
+    setValor('nasc', usuario.nasc);
+    setValor('cpf', usuario.cpf);
 
-            const senhaInput = document.getElementById('senha');
-            if (senhaInput) {
-                senhaInput.value = '••••••';
-                senhaInput.dataset.senhaReal = usuario.senha || '';
-            }
+    // Senha
+    const senhaInput = document.getElementById('senha');
+    if (senhaInput) {
+        senhaInput.value = '••••••';
+        senhaInput.dataset.senhaReal = usuario.senha || '';
+    }
 
-            if (usuario.genero) {
-                const radio = document.getElementById(usuario.genero);
-                if (radio) radio.checked = true;
-            }
+    // Gênero
+    if (usuario.genero) {
+        const radio = document.getElementById(usuario.genero);
+        if (radio) radio.checked = true;
+    }
 
-            if (ehHost) {
-                setValor('quantComodos', usuario.quantComodos);
-                setValor('rendaFam', usuario.rendaFam);
-                setValor('tipoImovel', usuario.tipoImovel);
-                setValor('falesobreVc', usuario.falesobreVc);
-                setValor('add-fotos-casa', usuario.addFotosCasa);
-                setValor('estadoCiv', usuario.estadoCivil);
-            }
-        }
+    // Dados específicos de host
+    if (ehHost) {
+        setValor('quantComodos', usuario.quantComodos);
+        setValor('rendaFam', usuario.rendaFam);
+        setValor('tipoImovel', usuario.tipoImovel);
+        setValor('falesobreVc', usuario.falesobreVc);
+        setValor('estadoCiv', usuario.estadoCivil);
+    }
+}
 
-        aplicarModoVisualizacao();
+function inicializarPagina(ehHost) {
+    aplicarModoVisualizacao();
 
-        document.querySelectorAll('input[name="genero"]').forEach(radio => {
-            radio.addEventListener('change', verificarRadio);
-        });
-
-        const inputSenha = document.getElementById('senha');
-        if (inputSenha) {
-            function atualizarTamanhoInput() {
-                const len = inputSenha.value.length;
-                inputSenha.size = Math.max(6, len + 1);
-            }
-            inputSenha.addEventListener('input', atualizarTamanhoInput);
-            if (inputSenha.value === '••••••') {
-                inputSenha.size = 6;
-            } else {
-                atualizarTamanhoInput();
-            }
-        }
-
-        carregarFotoSalva();
-
-        // Listener para foto de perfil
-        const inputFoto = document.getElementById('inputFotoPerfil');
-        if (inputFoto) {
-            inputFoto.addEventListener('change', mudarFotoDePerfil);
-        }
-
-        // === Opcional: adicionar limites de dígitos ===
-        const inputComodos = document.getElementById('quantComodos');
-        if (inputComodos) {
-            inputComodos.addEventListener('input', function () {
-                let v = this.value.replace(/\D/g, '');
-                if (v.length > 2) v = v.slice(0, 2);
-                const num = v === '' ? '' : parseInt(v, 10);
-                this.value = num || '';
-            });
-        }
-
-        const inputRenda = document.getElementById('rendaFam');
-        if (inputRenda) {
-            inputRenda.addEventListener('input', function () {
-                let v = this.value.replace(/\D/g, '');
-                if (v.length > 6) v = v.slice(0, 6);
-                const num = v === '' ? '' : parseInt(v, 10);
-                this.value = num || '';
-            });
-        }
+    // Listeners de gênero
+    document.querySelectorAll('input[name="genero"]').forEach(radio => {
+        radio.addEventListener('change', verificarRadio);
     });
-} else {
-    console.log('perfil.js: não executado – não é página de perfil.');
+
+    // Ajuste dinâmico do campo de senha
+    const senhaInput = document.getElementById('senha');
+    if (senhaInput) {
+        const atualizarTamanho = () => {
+            senhaInput.size = Math.max(6, senhaInput.value.length + 1);
+        };
+        
+        senhaInput.addEventListener('input', atualizarTamanho);
+        atualizarTamanho();
+    }
+
+    // Foto de perfil
+    carregarFotoSalva();
+
+    // Limites de dígitos (só em perfil de host)
+    if (ehHost) {
+        const limiteDigitos = (id, max) => {
+            const campo = document.getElementById(id);
+            if (!campo) return;
+            
+            campo.addEventListener('input', function() {
+                let valor = this.value.replace(/\D/g, '');
+                if (valor.length > max) valor = valor.slice(0, max);
+                this.value = valor ? parseInt(valor, 10) : '';
+            });
+        };
+
+        limiteDigitos('quantComodos', 2);
+        limiteDigitos('rendaFam', 6);
+    }
+
+    console.log(`Página de perfil inicializada (${ehHost ? 'Host' : 'Aluno'})`);
 }

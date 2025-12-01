@@ -1,112 +1,115 @@
-// Função para atualizar o header após login/cadastro
-function atualizarHeaderAposCadastro() {
-  // busca elementos por id ou por classe para suportar variações nas páginas
-  const btnLoginCadastro = document.querySelector('#botoesHeader, .botoesHeader');
-  const btnPerfil = document.querySelector('#perfil-container, .perfil-container, #btn-perfil, .btn-perfil');
+// ================================
+// FUNÇÕES DE HEADER E ESTADO DE LOGIN
+// ================================
 
-  // mostra/oculta se os elementos existirem
-  if (btnPerfil) btnPerfil.style.display = 'block';
-  if (btnLoginCadastro) btnLoginCadastro.style.display = 'none';
+/**
+ * Atualiza o header após login/cadastro
+ * @param {string} tipoUsuario - 'aluno' ou 'host'
+ */
+function atualizarHeaderAposCadastro(tipoUsuario = 'aluno') {
+    const btnLoginCadastro = document.querySelector('#botoesHeader, .botoesHeader');
+    const btnPerfil = document.querySelector('#perfil-container, .perfil-container');
 
-  // Armazena no localStorage que o usuário está logado (sempre que a função for chamada)
-  localStorage.setItem('usuarioLogado', 'true');
+    if (btnPerfil) btnPerfil.style.display = 'block';
+    if (btnLoginCadastro) btnLoginCadastro.style.display = 'none';
+
+    // Salva tipo de usuário e estado de login
+    localStorage.setItem('tipoUsuario', tipoUsuario);
+    localStorage.setItem('usuarioLogado', 'true');
+    
+    console.log(`Header atualizado para ${tipoUsuario}`);
 }
 
-// --- FUNÇÃO DE LOGOUT ---
-function fazerLogout() {
-  // Remove a flag de login do localStorage
-  localStorage.removeItem('usuarioLogado');
-
-  // Redireciona o usuário para a página inicial (descomente se quiser)
-  window.location.href = 'home.html';
-
-  // Alerta sobre a saida do site
-  alert('Você saiu da sua conta!');
-
-  // Atualiza o visual do header usando a função que já verifica o estado
-  verificarEstadoLogin();
-}
-// ----------------------------
-
-// Função para verificar o estado de login ao carregar a página
-function verificarEstadoLogin() {
-  const btnLoginCadastro = document.querySelector('#botoesHeader, .botoesHeader');
-  const btnPerfil = document.querySelector('#perfil-container, .perfil-container, #btn-perfil, .btn-perfil');
-
-  const imgPerfilHeader = document.getElementById('imgPerfilHeader');
-
-  if (!btnPerfil && !btnLoginCadastro) return;
-
-  const estaLogado = localStorage.getItem('usuarioLogado') === 'true';
-  const fotoPerfilURL = localStorage.getItem('fotoPerfilURL'); // <-- Pega a URL salva
-
-  // Mostrar/ocultar botões
-  if (btnPerfil) btnPerfil.style.display = estaLogado ? 'block' : 'none';
-  if (btnLoginCadastro) btnLoginCadastro.style.display = estaLogado ? 'none' : 'block';
-
-    // --- Lógica para carregar a foto de perfil ---
-  if (estaLogado && imgPerfilHeader && fotoPerfilURL) {
-    // Define a src da imagem como a URL salva pelo input de upload
-    imgPerfilHeader.src = fotoPerfilURL;
-    // Adiciona classes CSS para estilizar a foto
-    imgPerfilHeader.classList.remove('icone-padrao'); 
-    imgPerfilHeader.classList.add('foto-usuario-customizada');
-  }
-
-  // If que ajusta o link do perfil conforme o tipo de usuário // aluno ou host.
-  if (estaLogado && btnPerfil) {
-    const link = btnPerfil.querySelector('a');
-    if (link) {
-      const usuario = JSON.parse(localStorage.getItem('usuarioPerfil'));
-      if (usuario && usuario.tipo === 'host') {
-        link.href = 'perfilHost.html'; // padrão para host
-      } else {
-        link.href = 'perfil.html'; // padrão para aluno
-      }
+/**
+ * Carrega foto de perfil salva no localStorage
+ */
+function carregarFotoPerfil() {
+    const imgElement = document.getElementById('imgPerfilHeader');
+    const fotoSalva = localStorage.getItem('fotoPerfilURL');
+    
+    if (imgElement && fotoSalva) {
+        imgElement.src = fotoSalva;
+        imgElement.classList.remove('icone-padrao');
+        imgElement.classList.add('foto-usuario-customizada');
     }
-  }
 }
 
-// Função 1: Chamada quando o botão visível é clicado
+/**
+ * Verifica estado de login ao carregar a página
+ */
+function verificarEstadoLogin() {
+    const btnLoginCadastro = document.querySelector('#botoesHeader, .botoesHeader');
+    const btnPerfil = document.querySelector('#perfil-container, .perfil-container');
+    const estaLogado = localStorage.getItem('usuarioLogado') === 'true';
+
+    if (!btnPerfil && !btnLoginCadastro) return;
+
+    // Mostrar/ocultar botões com base no login
+    if (btnPerfil) btnPerfil.style.display = estaLogado ? 'block' : 'none';
+    if (btnLoginCadastro) btnLoginCadastro.style.display = estaLogado ? 'none' : 'block';
+
+    // Carregar foto de perfil se logado
+    if (estaLogado) {
+        carregarFotoPerfil();
+        
+        // Ajustar link do perfil conforme tipo de usuário
+        const linkPerfil = btnPerfil?.querySelector('a');
+        if (linkPerfil) {
+            const tipoUsuario = localStorage.getItem('tipoUsuario');
+            linkPerfil.href = (tipoUsuario === 'host') ? 'perfilHost.html' : 'perfil.html';
+        }
+    }
+}
+
+/**
+ * Função para troca de foto de perfil (global)
+ */
 function acionarTrocaDeFoto() {
-    // Simula um clique no input de arquivo oculto
-    document.getElementById('inputFotoPerfil').click();
+    const input = document.getElementById('inputFotoPerfil');
+    if (input) input.click();
 }
 
-// Função 2: Chamada automaticamente quando o usuário seleciona um arquivo se o input de arquivo existir na página
-const inputFoto = document.getElementById('inputFotoPerfil');
-if (inputFoto) {
-    inputFoto.addEventListener('change', mudarFotoDePerfil);
-}
-
-
-// Função 3: A lógica principal que processa a imagem (a mesma da resposta anterior)
+/**
+ * Processa nova foto de perfil
+ * @param {Event} event - Evento de mudança do input de arquivo
+ */
 function mudarFotoDePerfil(event) {
     const input = event.target;
+    if (!input.files?.[0]) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const imgSrc = e.target.result;
+        const imgElement = document.getElementById('imgPerfilHeader');
+        
+        if (imgElement) {
+            imgElement.src = imgSrc;
+            imgElement.classList.remove('icone-padrao');
+            imgElement.classList.add('foto-usuario-customizada');
+        }
+        
+        localStorage.setItem('fotoPerfilURL', imgSrc);
+        console.log("Foto de perfil atualizada e salva no LocalStorage.");
+    };
     
-    if (input.files && input.files[0]) {
-        const reader = new FileReader();
-        
-        reader.onload = function(e) {
-            const imgSrc = e.target.result;
-            
-            // 1. Atualiza a imagem no header da página atual (se o elemento existir na tela)
-            const imgElement = document.getElementById('imgPerfilHeader');
-            if (imgElement) {
-                imgElement.src = imgSrc;
-            }
-
-            // 2. Salva a imagem no localStorage para persistência
-            localStorage.setItem('fotoPerfilURL', imgSrc);
-
-            console.log("Foto de perfil atualizada e salva no LocalStorage.");
-        };
-        
-        // Lê o arquivo como uma URL de dados
-        reader.readAsDataURL(input.files[0]);
-    }
+    reader.readAsDataURL(input.files[0]);
 }
 
-// Executa ao carregar a página para garantir que o header inicie no estado correto
-document.addEventListener('DOMContentLoaded', verificarEstadoLogin);
+// ================================
+// INICIALIZAÇÃO
+// ================================
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Verificar estado inicial de login
+    verificarEstadoLogin();
+    
+    // Configurar listeners para foto de perfil
+    const inputFoto = document.getElementById('inputFotoPerfil');
+    if (inputFoto) {
+        // Remover listeners anteriores para evitar duplicação
+        inputFoto.removeEventListener('change', mudarFotoDePerfil);
+        inputFoto.addEventListener('change', mudarFotoDePerfil);
+    }
+    
+    console.log("logados.js inicializado");
+});

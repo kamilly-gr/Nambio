@@ -1,5 +1,9 @@
-DOMcontentLoaded = () => {
-
+document.addEventListener('DOMContentLoaded', function() {
+  
+  // ================================
+  // LIMITADORES DE DIGITOS (mantendo sua estrutura)
+  // ================================
+  
   function limitarDigitos(id, maxDigits) {
     const campo = document.getElementById(id);
     if (!campo) return;
@@ -16,11 +20,11 @@ DOMcontentLoaded = () => {
       // Converte para número (opcional, para evitar "000123")
       const num = valor === '' ? '' : parseInt(valor, 10);
 
-      // Atualiza o valor (mantém como string para não perder zeros à esquerda se quiser)
+      // Atualiza o valor
       e.target.value = num === 0 && valor === '' ? '' : (num || '');
     });
 
-    // (Opcional) Impede digitação de letras em tempo real
+    // Impede digitação de letras em tempo real
     campo.addEventListener('keydown', function (e) {
       if (e.key.length === 1 && /\D/.test(e.key) && e.key !== 'Backspace' && e.key !== 'Delete') {
         e.preventDefault();
@@ -33,244 +37,258 @@ DOMcontentLoaded = () => {
 
   // Aplica limite de 6 dígitos para renda familiar
   limitarDigitos('rendaFam', 6);
-};
+  
+  // ================================
+  // FUNÇÕES DE NAVEGAÇÃO ENTRE TELAS
+  // (mantendo EXATAMENTE sua estrutura original)
+  // ================================
+  
+  window.avançarParaDados = function() {
+    const nome = document.getElementById('nome').value;
+    const email = document.getElementById('email').value;
 
-function avançarParaDados() {
-  const nome = document.getElementById('nome').value;
-  const email = document.getElementById('email').value;
-
-  if (!nome || !email) {
-    alert('Preencha todos os campos obrigatórios.');
-    return;
-  }
-
-  document.getElementById('ctnLoginAluno1').style.display = 'none';
-  document.getElementById('ctnLoginAluno2').style.display = 'block';
-
-}
-
-function voltarParaEtapa1() {
-  document.getElementById('ctnLoginAluno1').style.display = 'block';
-  document.getElementById('ctnLoginAluno2').style.display = 'none';
-}
-
-
-function avançarParaEndereco() {
-  const quantComodos = document.getElementById('quantComodos').value;
-  const rendaFam = document.getElementById('rendaFam').value;
-  const addFt = document.getElementById('add-fotos-casa').value;
-  const falesobreVc = document.getElementById('falesobreVc').value;
-
-
-
-  if (!quantComodos || !rendaFam || !addFt || !falesobreVc) {
-    alert('Preencha todos os campos obrigatórios.');
-    return;
-  }
-
-  document.getElementById('ctnLoginAluno3').style.display = 'none';
-  document.getElementById('ctnLoginAluno4').style.display = 'block';
-
-}
-
-
-function voltarParaEtapa2() {
-  document.getElementById('ctnLoginAluno2').style.display = 'block';
-  document.getElementById('ctnLoginAluno3').style.display = 'none';
-}
-
-const cepInput = document.getElementById('cep');
-const logradouroInput = document.getElementById('logradouro');
-const bairroInput = document.getElementById('bairro');
-const cidadeInput = document.getElementById('cidade');
-const ufInput = document.getElementById('uf');
-
-if (cepInput) {
-  cepInput.addEventListener('blur', () => {
-    let cep = (cepInput.value || '').toString().replace(/\D/g, ''); // remove tudo que não for número
-
-    // Limpa os campos ao sair do input
-    if (logradouroInput) logradouroInput.value = '';
-    if (bairroInput) bairroInput.value = '';
-    if (cidadeInput) cidadeInput.value = '';
-    if (ufInput) ufInput.value = '';
-
-    if (cep.length !== 8) {
-      alert('CEP inválido. Digite um CEP com 8 números.');
+    if (!nome || !email) {
+      alert('Preencha todos os campos obrigatórios.');
       return;
     }
 
-    // Requisição para a API do ViaCEP
-    fetch(`https://viacep.com.br/ws/${cep}/json/`)
-      .then(response => response.json())
-      .then(data => {
-        // Verifica se a API retornou dados válidos
-        if (data.erro) {
-          alert('CEP não encontrado.');
-          return;
-        }
-
-        // Preenche os campos do formulário
-        if (logradouroInput) logradouroInput.value = data.logradouro || '';
-        if (bairroInput) bairroInput.value = data.bairro || '';
-        if (cidadeInput) cidadeInput.value = data.localidade || '';
-        if (ufInput) ufInput.value = data.uf || '';
-      })
-      .catch(error => {
-        console.error('Erro ao buscar CEP:', error);
-        alert('Erro ao consultar o CEP. Tente novamente.');
-      });
-  });
-}
-
-
-function avançarParaSenha() {
-  const logradouro = logradouroInput.value;
-  const bairro = bairroInput.value;
-  const cidade = cidadeInput.value;
-  const uf = ufInput.value;
-
-  if (!logradouro || !bairro || !uf || !cidade) {
-    alert('Preencha todos os campos obrigatórios.');
-    return;
-  }
-
-  document.getElementById('ctnLoginAluno4').style.display = 'none';
-  document.getElementById('ctnLoginAluno5').style.display = 'block';
-}
-
-
-function finalizarCadastroHost() {
-
-  // obter valores com segurança (evita erro se elemento ausente)
-  const nome = document.getElementById('nome') ? document.getElementById('nome').value : '';
-  const email = document.getElementById('email') ? document.getElementById('email').value : '';
-  const tel = document.getElementById('tel') ? document.getElementById('tel').value : '';
-  const nasc = document.getElementById('nasc') ? document.getElementById('nasc').value : '';
-  const cpf = document.getElementById('cpf') ? document.getElementById('cpf').value : '';
-  const senha = document.getElementById('senha') ? document.getElementById('senha').value : '';
-  const estadoCivil = document.getElementById('estadoCiv') ? document.getElementById('estadoCiv').value : '';
-  const quantComodos = document.getElementById('quantComodos') ? document.getElementById('quantComodos').value : '';
-  const rendaFam = document.getElementById('rendaFam') ? document.getElementById('rendaFam').value : '';
-  const addFotosCasa = document.getElementById('add-fotos-casa') ? document.getElementById('add-fotos-casa').value : '';
-  const isProprioChecked = document.getElementById('proprio') ? document.getElementById('proprio').checked : '';
-  const isAlugadoChecked = document.getElementById('alugado') ? document.getElementById('alugado').checked : '';
-  const falesobreVc = document.getElementById('falesobreVc') ? document.getElementById('falesobreVc').value : '';
-
-
-
-  // Você ainda precisaria de lógica extra para saber qual valor pegar depois:
-
-  let tipoImovel = '';
-
-  if (isProprioChecked) {
-    tipoImovel = 'proprio';
-  } else if (isAlugadoChecked) {
-    tipoImovel = 'alugado';
-  }
-
-  const confirmNovaSenha = document.getElementById('confirmNovaSenha').value.trim();
-
-  // Validação: todos os campos preenchidos
-  if (!senha || !confirmNovaSenha) {
-    alert("Por favor, preencha todos os campos.");
-    return;
-  }
-
-  // Validação: confirmação coincide
-  if (senha !== confirmNovaSenha) {
-    alert("A confirmação da senha não corresponde à nova senha!");
-    return;
-  }
-
-  // 2. Criar um objeto com os dados
-  const dadosUsuarioHost = {
-    nome: nome,
-    email: email,
-    tel: tel,
-    nasc: nasc,
-    cpf: cpf,
-    senha: senha,
-    estadoCivil: estadoCivil,
-    quantComodos: quantComodos,
-    rendaFam: rendaFam,
-    addFotosCasa: addFotosCasa,
-    tipoImovel: tipoImovel,
-    falesobreVc: falesobreVc,
-    tipo: 'host'
+    document.getElementById('ctnLoginAluno1').style.display = 'none';
+    document.getElementById('ctnLoginAluno2').style.display = 'block';
   };
 
-  // 3. Salvar o objeto no localStorage como uma string JSON
-  // O localStorage só armazena strings, então precisamos serializar o objeto.
-  localStorage.setItem('usuarioPerfilHost', JSON.stringify(dadosUsuarioHost));
+  window.voltarParaEtapa1 = function() {
+    document.getElementById('ctnLoginAluno1').style.display = 'block';
+    document.getElementById('ctnLoginAluno2').style.display = 'none';
+  };
 
-  console.log('Cadastro finalizado:');
-  alert('Cadastro realizado com sucesso!');
+  window.avançarParaInfoHome = function() {
+    const tel = document.getElementById('tel').value;
+    const nasc = document.getElementById('nasc').value;
+    const cpf = document.getElementById('cpf').value;
 
-  // atualiza o header (marca usuário como logado) antes de redirecionar
-  atualizarHeaderAposCadastro();
+    if (!tel || !nasc || !cpf) {
+      alert('Preencha todos os campos obrigatórios.');
+      return;
+    }
 
-  // redireciona para a página inicial
-  window.location.href = 'home.html';
+    document.getElementById('ctnLoginAluno2').style.display = 'none';
+    document.getElementById('ctnLoginAluno3').style.display = 'block';
+  };
 
-}
+  window.voltarParaEtapa2 = function() {
+    document.getElementById('ctnLoginAluno2').style.display = 'block';
+    document.getElementById('ctnLoginAluno3').style.display = 'none';
+  };
 
-function mostrarSenha() {
-  const senhaInput = document.getElementById('senha');
-  const botao = document.getElementById('botao-senha');
+  window.avançarParaEndereco = function() {
+    const quantComodos = document.getElementById('quantComodos').value;
+    const rendaFam = document.getElementById('rendaFam').value;
+    const falesobreVc = document.getElementById('falesobreVc').value;
+    
+    // Verifica se pelo menos um tipo de imóvel está selecionado
+    const isProprioChecked = document.getElementById('proprio')?.checked;
+    const isAlugadoChecked = document.getElementById('alugado')?.checked;
+    
+    const tipoImovelSelecionado = isProprioChecked || isAlugadoChecked;
 
-  if (!senhaInput || !botao) {
-    console.error('❌ Elementos #senha ou #botao-senha não encontrados!');
-    return;
+    if (!quantComodos || !rendaFam || !falesobreVc || !tipoImovelSelecionado) {
+      alert('Preencha todos os campos e selecione o tipo de imóvel.');
+      return;
+    }
+
+    document.getElementById('ctnLoginAluno3').style.display = 'none';
+    document.getElementById('ctnLoginAluno4').style.display = 'block';
+  };
+
+  window.voltarParaEtapa3 = function() {
+    document.getElementById('ctnLoginAluno3').style.display = 'block';
+    document.getElementById('ctnLoginAluno4').style.display = 'none';
+  };
+
+  window.avançarParaSenha = function() {
+    const logradouro = document.getElementById('logradouro')?.value;
+    const bairro = document.getElementById('bairro')?.value;
+    const cidade = document.getElementById('cidade')?.value;
+    const uf = document.getElementById('uf')?.value;
+
+    if (!logradouro || !bairro || !uf || !cidade) {
+      alert('Preencha todos os campos obrigatórios.');
+      return;
+    }
+
+    document.getElementById('ctnLoginAluno4').style.display = 'none';
+    document.getElementById('ctnLoginAluno5').style.display = 'block';
+  };
+
+  window.voltarParaEtapa4 = function() {
+    document.getElementById('ctnLoginAluno4').style.display = 'block';
+    document.getElementById('ctnLoginAluno5').style.display = 'none';
+  };
+
+  // ================================
+  // BUSCA DE CEP (CORRIGIDA)
+  // ================================
+  
+  const cepInput = document.getElementById('cep');
+  const logradouroInput = document.getElementById('logradouro');
+  const bairroInput = document.getElementById('bairro');
+  const cidadeInput = document.getElementById('cidade');
+  const ufInput = document.getElementById('uf');
+
+  if (cepInput) {
+    cepInput.addEventListener('blur', function() {
+      let cep = (cepInput.value || '').toString().replace(/\D/g, '');
+
+      // Limpa os campos ao sair do input
+      if (logradouroInput) logradouroInput.value = '';
+      if (bairroInput) bairroInput.value = '';
+      if (cidadeInput) cidadeInput.value = '';
+      if (ufInput) ufInput.value = '';
+
+      if (cep.length !== 8) {
+        alert('CEP inválido. Digite um CEP com 8 números.');
+        return;
+      }
+
+      // URL CORRIGIDA (sem espaços!)
+      fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(response => {
+          if (!response.ok) throw new Error('Erro na resposta da API');
+          return response.json();
+        })
+        .then(data => {
+          if (data.erro) {
+            alert('CEP não encontrado.');
+            return;
+          }
+
+          // Preenche os campos do formulário
+          if (logradouroInput) logradouroInput.value = data.logradouro || '';
+          if (bairroInput) bairroInput.value = data.bairro || '';
+          if (cidadeInput) cidadeInput.value = data.localidade || '';
+          if (ufInput) ufInput.value = data.uf || '';
+        })
+        .catch(error => {
+          console.error('Erro ao buscar CEP:', error);
+          alert('Erro ao consultar o CEP. Tente novamente.');
+        });
+    });
   }
 
-  const isPassword = senhaInput.type === 'password';
-  senhaInput.type = isPassword ? 'text' : 'password';
+  // ================================
+  // FINALIZAR CADASTRO (CORRIGIDA)
+  // ================================
+  
+  window.finalizarCadastroHost = function() {
+    // Obter valores com segurança
+    const nome = document.getElementById('nome')?.value || '';
+    const email = document.getElementById('email')?.value || '';
+    const tel = document.getElementById('tel')?.value || '';
+    const nasc = document.getElementById('nasc')?.value || '';
+    const cpf = document.getElementById('cpf')?.value || '';
+    const senha = document.getElementById('senha')?.value || '';
+    const estadoCivil = document.getElementById('estadoCiv')?.value || '';
+    const quantComodos = document.getElementById('quantComodos')?.value || '';
+    const rendaFam = document.getElementById('rendaFam')?.value || '';
+    const falesobreVc = document.getElementById('falesobreVc')?.value || '';
+    const confirmNovaSenha = document.getElementById('confirmNovaSenha')?.value || '';
 
-  botao.classList.toggle('mostrando', isPassword);
-  botao.setAttribute('aria-label', isPassword ? 'Ocultar senha' : 'Mostrar senha');
+    // Verifica tipo de imóvel
+    let tipoImovel = '';
+    if (document.getElementById('proprio')?.checked) tipoImovel = 'proprio';
+    else if (document.getElementById('alugado')?.checked) tipoImovel = 'alugado';
 
-  console.log('👁️ Modo:', isPassword ? 'texto (mostrando)' : 'senha (oculto)');
-}
+    // Validação de senha
+    if (!senha || !confirmNovaSenha) {
+      alert("Por favor, preencha todos os campos de senha.");
+      return;
+    }
 
-function avançarParaInfoHome() {
-  const tel = document.getElementById('tel').value;
-  const nasc = document.getElementById('nasc').value;
-  const cpf = document.getElementById('cpf').value;
+    if (senha !== confirmNovaSenha) {
+      alert("A confirmação da senha não corresponde à nova senha!");
+      return;
+    }
 
-  if (!tel || !nasc || !cpf) {
-    alert('Preencha todos os campos obrigatórios.');
-    return;
-  }
+    // Validação de tipo de imóvel
+    if (!tipoImovel) {
+      alert("Por favor, selecione o tipo de imóvel (próprio ou alugado).");
+      return;
+    }
 
-  document.getElementById('ctnLoginAluno2').style.display = 'none';
-  document.getElementById('ctnLoginAluno3').style.display = 'block';
-}
+    // 2. Criar um objeto com os dados
+    const dadosUsuarioHost = {
+      nome: nome,
+      email: email,
+      tel: tel,
+      nasc: nasc,
+      cpf: cpf,
+      senha: senha,
+      estadoCivil: estadoCivil,
+      quantComodos: quantComodos,
+      rendaFam: rendaFam,
+      tipoImovel: tipoImovel,
+      falesobreVc: falesobreVc,
+      logradouro: logradouroInput?.value || '',
+      bairro: bairroInput?.value || '',
+      cidade: cidadeInput?.value || '',
+      uf: ufInput?.value || '',
+      tipo: 'host'
+    };
 
-function voltarParaEtapa3() {
-  document.getElementById('ctnLoginAluno3').style.display = 'block';
-  document.getElementById('ctnLoginAluno4').style.display = 'none';
-}
+    // 3. Salvar no localStorage
+    localStorage.setItem('usuarioPerfilHost', JSON.stringify(dadosUsuarioHost));
 
-function voltarParaEtapa4() {
-  document.getElementById('ctnLoginAluno4').style.display = 'block';
-  document.getElementById('ctnLoginAluno5').style.display = 'none';
-}
+    console.log('Cadastro finalizado:');
+    alert('Cadastro realizado com sucesso!');
 
-function mostrarSenha2() {
-  const senhaInput = document.getElementById('confirmNovaSenha');
-  const botao = document.getElementById('botao-senha2');
+    // Atualiza o header (marca usuário como logado) ANTES de redirecionar
+    if (typeof atualizarHeaderAposCadastro === 'function') {
+      atualizarHeaderAposCadastro('host'); // IMPORTANTE: passar 'host' como parâmetro
+    } else {
+      // Fallback caso a função não exista
+      localStorage.setItem('usuarioLogado', 'true');
+      localStorage.setItem('tipoUsuario', 'host');
+    }
 
-  if (!senhaInput || !botao) {
-    console.error('❌ Elementos #senha ou #botao-senha não encontrados!');
-    return;
-  }
+    // Redireciona para a página inicial
+    window.location.href = 'home.html';
+  };
 
-  const isPassword = senhaInput.type === 'password';
-  senhaInput.type = isPassword ? 'text' : 'password';
+  // ================================
+  // MOSTRAR/OCULTAR SENHA
+  // ================================
+  
+  window.mostrarSenha = function() {
+    const senhaInput = document.getElementById('senha');
+    const botao = document.getElementById('botao-senha');
 
-  botao.classList.toggle('mostrando', isPassword);
-  botao.setAttribute('aria-label', isPassword ? 'Ocultar senha' : 'Mostrar senha');
+    if (!senhaInput || !botao) {
+      console.error('❌ Elementos #senha ou #botao-senha não encontrados!');
+      return;
+    }
 
-  console.log('👁️ Modo:', isPassword ? 'texto (mostrando)' : 'senha (oculto)');
-}
+    const isPassword = senhaInput.type === 'password';
+    senhaInput.type = isPassword ? 'text' : 'password';
+
+    botao.classList.toggle('mostrando', isPassword);
+    botao.setAttribute('aria-label', isPassword ? 'Ocultar senha' : 'Mostrar senha');
+  };
+
+  window.mostrarSenha2 = function() {
+    const senhaInput = document.getElementById('confirmNovaSenha');
+    const botao = document.getElementById('botao-senha2');
+
+    if (!senhaInput || !botao) {
+      console.error('❌ Elementos #confirmNovaSenha ou #botao-senha2 não encontrados!');
+      return;
+    }
+
+    const isPassword = senhaInput.type === 'password';
+    senhaInput.type = isPassword ? 'text' : 'password';
+
+    botao.classList.toggle('mostrando', isPassword);
+    botao.setAttribute('aria-label', isPassword ? 'Ocultar senha' : 'Mostrar senha');
+  };
+  
+  console.log("cadastroHost.js inicializado com sucesso");
+});
