@@ -1,320 +1,338 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Carregar dados do localStorage
-    const dadosSalvos = localStorage.getItem('usuarioPerfil');
-    if (dadosSalvos) {
-        const usuario = JSON.parse(dadosSalvos);
+// Só executar se estiver em perfil.html ou perfilHost.html
+if (!window.location.pathname.includes('perfil.html')) {
+    // Não é página de perfil → sair silenciosamente
+    // (isso evita erros em cadastros, login, etc.)
+    console.log('perfil.js: não executado – não é página de perfil.');
+} else {
+    // ================================
+    // LÓGICA DO PERFIL (só roda em perfil.html ou perfilHost.html)
+    // ================================
 
-        const setValor = (id, valor) => {
-            const el = document.getElementById(id);
-            if (el) el.value = valor || '';
-        };
+    document.addEventListener('DOMContentLoaded', function () {
+        const caminho = window.location.pathname;
+        const ehHost = caminho.includes('perfilHost.html');
+        const chavePerfil = ehHost ? 'usuarioPerfilHost' : 'usuarioPerfil';
 
-        setValor('nome', usuario.nome);
-        setValor('email-acesso', usuario.email);
-        setValor('tele-acesso', usuario.tel);
-        setValor('nasc', usuario.nasc);
-        setValor('cpf', usuario.cpf);
+        const dadosSalvos = localStorage.getItem(chavePerfil);
+        if (dadosSalvos) {
+            const usuario = JSON.parse(dadosSalvos);
 
-        const senhaInput = document.getElementById('senha');
-        if (senhaInput) {
-            senhaInput.value = '••••••';
-            senhaInput.dataset.senhaReal = usuario.senha || '';
+            const setValor = (id, valor) => {
+                const el = document.getElementById(id);
+                if (el) el.value = valor || '';
+            };
+
+            setValor('nome', usuario.nome);
+            setValor('email-acesso', usuario.email);
+            setValor('tele-acesso', usuario.tel);
+            setValor('nasc', usuario.nasc);
+            setValor('cpf', usuario.cpf);
+
+            const senhaInput = document.getElementById('senha');
+            if (senhaInput) {
+                senhaInput.value = '••••••';
+                senhaInput.dataset.senhaReal = usuario.senha || '';
+            }
+
+            if (usuario.genero) {
+                const radio = document.getElementById(usuario.genero);
+                if (radio) radio.checked = true;
+            }
+
+            if (ehHost) {
+                setValor('quantComodos', usuario.quantComodos);
+                setValor('rendaFam', usuario.rendaFam);
+                setValor('tipoImovel', usuario.tipoImovel);
+                setValor('falesobreVc', usuario.falesobreVc);
+            }
         }
 
-        // Restaurar gênero
-        if (usuario.genero) {
-            const radio = document.getElementById(usuario.genero);
-            if (radio) radio.checked = true;
+        aplicarModoVisualizacao();
+
+        document.querySelectorAll('input[name="genero"]').forEach(radio => {
+            radio.addEventListener('change', verificarRadio);
+        });
+
+        const inputSenha = document.getElementById('senha');
+        if (inputSenha) {
+            function atualizarTamanhoInput() {
+                const len = inputSenha.value.length;
+                inputSenha.size = Math.max(6, len + 1);
+            }
+            inputSenha.addEventListener('input', atualizarTamanhoInput);
+            if (inputSenha.value === '••••••') {
+                inputSenha.size = 6;
+            } else {
+                atualizarTamanhoInput();
+            }
+        }
+
+        carregarFotoSalva();
+    });
+
+    // ================================
+    // Todas as funções de perfil (sem alteração)
+    // ================================
+
+    function getCamposComuns() {
+        return ['nome', 'nasc', 'cpf', 'email-acesso', 'tele-acesso', 'senha'];
+    }
+
+    function getCamposHost() {
+        return ['quantComodos', 'rendaFam', 'tipoImovel', 'falesobreVc'];
+    }
+
+    function aplicarModoVisualizacao() {
+        const ehHost = window.location.pathname.includes('perfilHost.html');
+        const idsCampos = ehHost
+            ? [...getCamposComuns(), ...getCamposHost()]
+            : getCamposComuns();
+
+        const campos = idsCampos
+            .map(id => document.getElementById(id))
+            .filter(el => el !== null);
+
+        const radios = ['masc', 'fem', 'outro', 'prefiroN']
+            .map(id => document.getElementById(id))
+            .filter(el => el !== null);
+
+        campos.forEach(campo => {
+            campo.disabled = true;
+            campo.readOnly = true;
+            campo.classList.add('disabled');
+        });
+
+        radios.forEach(radio => {
+            radio.disabled = true;
+        });
+
+        verificarRadio();
+    }
+
+    function aplicarModoEdicao() {
+        const ehHost = window.location.pathname.includes('perfilHost.html');
+        const idsCampos = ehHost
+            ? [...getCamposComuns(), ...getCamposHost()]
+            : getCamposComuns();
+
+        const campos = idsCampos
+            .map(id => document.getElementById(id))
+            .filter(el => el !== null);
+
+        const radios = ['masc', 'fem', 'outro', 'prefiroN']
+            .map(id => document.getElementById(id))
+            .filter(el => el !== null);
+
+        const containers = ['mascInput', 'femInput', 'outroInput', 'prefiroNInput']
+            .map(id => document.getElementById(id))
+            .filter(el => el !== null);
+
+        campos.forEach(campo => {
+            campo.disabled = false;
+            campo.readOnly = false;
+            campo.classList.remove('disabled');
+        });
+
+        radios.forEach(radio => {
+            radio.disabled = false;
+        });
+
+        containers.forEach(container => {
+            container.style.display = '';
+        });
+
+        const nomeInput = document.getElementById('nome');
+        if (nomeInput) nomeInput.focus();
+    }
+
+    function salvarPerfil() {
+        const ehHost = window.location.pathname.includes('perfilHost.html');
+        const chave = ehHost ? 'usuarioPerfilHost' : 'usuarioPerfil';
+
+        let genero = '';
+        const radios = ['masc', 'fem', 'outro', 'prefiroN'];
+        for (const id of radios) {
+            const radio = document.getElementById(id);
+            if (radio && radio.checked) {
+                genero = id;
+                break;
+            }
+        }
+
+        const perfil = {
+            nome: document.getElementById('nome')?.value.trim() || '',
+            email: document.getElementById('email-acesso')?.value.trim() || '',
+            tel: document.getElementById('tele-acesso')?.value.trim() || '',
+            nasc: document.getElementById('nasc')?.value || '',
+            senha: document.getElementById('senha')?.dataset.senhaReal || '',
+            cpf: document.getElementById('cpf')?.value.trim() || '',
+            genero: genero
+        };
+
+        if (ehHost) {
+            perfil.quantComodos = document.getElementById('quantComodos')?.value.trim() || '';
+            perfil.rendaFam = document.getElementById('rendaFam')?.value.trim() || '';
+            perfil.tipoImovel = document.getElementById('tipoImovel')?.value.trim() || '';
+            perfil.falesobreVc = document.getElementById('falesobreVc')?.value.trim() || '';
+        }
+
+        localStorage.setItem(chave, JSON.stringify(perfil));
+        aplicarModoVisualizacao();
+        console.log(`Perfil salvo em "${chave}" com sucesso!`);
+    }
+
+    function fazerLogout() {
+        localStorage.removeItem('usuarioLogado');
+        localStorage.removeItem('usuarioPerfil');
+        localStorage.removeItem('usuarioPerfilHost');
+        window.location.href = 'loginAluno.html';
+    }
+
+    // === Funções auxiliares (sem mudança) ===
+
+    function habilitarEdicaoIndividual(elementoId, mascaraFn = null) {
+        const el = document.getElementById(elementoId);
+        if (!el || !el.disabled) return;
+        el.disabled = false;
+        el.readOnly = false;
+        el.classList.remove('disabled');
+        el.focus();
+        if (mascaraFn) {
+            const handler = (e) => mascaraFn(e);
+            el.addEventListener('input', handler);
+            el._mascaraHandler = handler;
         }
     }
 
-    // Aplicar estado inicial: todos desabilitados (já estão no HTML, mas garantimos)
-    const caminhoAtual = window.location.pathname;
-
-    if (caminhoAtual.includes("perfil.html")) {
-        // Se o caminho contiver o nome da página desejada, execute a função
+    function removerEdicaoIndividual(elementoId) {
+        const el = document.getElementById(elementoId);
+        if (!el) return;
+        if (el._mascaraHandler) {
+            el.removeEventListener('input', el._mascaraHandler);
+            delete el._mascaraHandler;
+        }
         aplicarModoVisualizacao();
     }
 
-    // Listeners para rádios (só para atualizar visualização ao selecionar)
-    document.querySelectorAll('input[name="genero"]').forEach(radio => {
-        radio.addEventListener('change', verificarRadio);
-    });
-});
+    function mudarEmail() { habilitarEdicaoIndividual('email-acesso'); }
+    function mudarTele() { habilitarEdicaoIndividual('tele-acesso', formatarTelefone); }
 
-// ================================
-// Funções de utilidade
-// ================================
-
-function aplicarModoVisualizacao() {
-    const campos = ['nome', 'nasc', 'cpf', 'email-acesso', 'tele-acesso', 'senha']
-        .map(id => document.getElementById(id))
-        .filter(Boolean);
-
-    const radios = ['masc', 'fem', 'outro', 'prefiroN']
-        .map(id => document.getElementById(id))
-        .filter(Boolean);
-
-    // Desabilitar campos
-    campos.forEach(campo => {
-        campo.disabled = true;
-        campo.readOnly = true;
-        campo.classList.add('disabled');
-    });
-
-    // Desabilitar rádios
-    radios.forEach(radio => {
-        radio.disabled = true;
-    });
-
-    // Atualizar visibilidade dos gêneros
-    verificarRadio();
-}
-
-function aplicarModoEdicao() {
-    const campos = ['nome', 'nasc', 'cpf', 'email-acesso', 'tele-acesso', 'senha']
-        .map(id => document.getElementById(id))
-        .filter(Boolean);
-
-    const radios = ['masc', 'fem', 'outro', 'prefiroN']
-        .map(id => document.getElementById(id))
-        .filter(Boolean);
-
-    const containers = ['mascInput', 'femInput', 'outroInput', 'prefiroNInput']
-        .map(id => document.getElementById(id))
-        .filter(Boolean);
-
-    // Habilitar campos
-    campos.forEach(campo => {
-        campo.disabled = false;
-        campo.readOnly = false;
-        campo.classList.remove('disabled');
-    });
-
-    // Habilitar rádios
-    radios.forEach(radio => {
-        radio.disabled = false;
-    });
-
-    // Mostrar todos os containers de gênero
-    containers.forEach(container => {
-        container.style.display = '';
-    });
-
-    // Foco no primeiro campo
-    const primeiro = document.getElementById('nome');
-    if (primeiro) primeiro.focus();
-}
-
-// ================================
-// Edição individual (usada pelos links "Alterar X")
-// ================================
-
-function habilitarEdicaoIndividual(elementoId, mascaraFn = null) {
-    const el = document.getElementById(elementoId);
-    if (!el || !el.disabled) return; // só habilita se estiver desabilitado
-
-    el.disabled = false;
-    el.readOnly = false;
-    el.classList.remove('disabled');
-    el.focus();
-
-    if (mascaraFn) {
-        const handler = (e) => mascaraFn(e);
-        el.addEventListener('input', handler);
-        el._mascaraHandler = handler; // guardar referência para remover depois
-    }
-}
-
-function removerEdicaoIndividual(elementoId) {
-    const el = document.getElementById(elementoId);
-    if (!el) return;
-
-    // Remover máscara se existir
-    if (el._mascaraHandler) {
-        el.removeEventListener('input', el._mascaraHandler);
-        delete el._mascaraHandler;
+    function formatarTelefone(event) {
+        let input = event.target;
+        input.value = input.value.replace(/\D/g, "");
+        let v = input.value;
+        if (v.length > 0) v = "(" + v;
+        if (v.length > 3) v = v.slice(0, 3) + ") " + v.slice(3);
+        if (v.length > 10) v = v.slice(0, 10) + "-" + v.slice(10);
+        if (v.length > 15) v = v.slice(0, 15);
+        input.value = v;
     }
 
-    // Reaplicar modo visualização
-    aplicarModoVisualizacao();
-}
-
-// Funções específicas de edição individual
-function mudarEmail() {
-    habilitarEdicaoIndividual('email-acesso');
-}
-function mudarTele() {
-    habilitarEdicaoIndividual('tele-acesso', formatarTelefone);
-}
-
-// ================================
-// Máscara de Telefone
-// ================================
-
-function formatarTelefone(event) {
-    let input = event.target;
-    input.value = input.value.replace(/\D/g, "");
-
-    let value = input.value;
-    if (value.length > 0) value = "(" + value;
-    if (value.length > 3) value = value.slice(0, 3) + ") " + value.slice(3);
-    if (value.length > 10) value = value.slice(0, 10) + "-" + value.slice(10);
-    if (value.length > 15) value = value.slice(0, 15);
-
-    input.value = value;
-}
-
-// ================================
-// Gênero
-// ================================
-
-function verificarRadio() {
-    const itens = [
-        { id: 'masc', container: 'mascInput' },
-        { id: 'fem', container: 'femInput' },
-        { id: 'outro', container: 'outroInput' },
-        { id: 'prefiroN', container: 'prefiroNInput' }
-    ];
-
-    const selecionado = itens.find(item => {
-        const radio = document.getElementById(item.id);
-        return radio && radio.checked;
-    });
-
-    if (selecionado) {
-        itens.forEach(item => {
-            const container = document.getElementById(item.container);
-            if (container) {
-                container.style.display = (item.id === selecionado.id) ? '' : 'none';
-            }
+    function verificarRadio() {
+        const itens = [
+            { id: 'masc', container: 'mascInput' },
+            { id: 'fem', container: 'femInput' },
+            { id: 'outro', container: 'outroInput' },
+            { id: 'prefiroN', container: 'prefiroNInput' }
+        ];
+        const selecionado = itens.find(item => {
+            const radio = document.getElementById(item.id);
+            return radio && radio.checked;
         });
-    } else {
-        // Nenhum selecionado → mostrar todos (só acontece no modo edição)
-        itens.forEach(item => {
-            const container = document.getElementById(item.container);
-            if (container) container.style.display = '';
-        });
-    }
-}
-
-// ================================
-// Botões principais
-// ================================
-
-function alterarPesso() {
-    aplicarModoEdicao();
-}
-
-function salvarPerfil() {
-    // Coletar gênero
-    let genero = '';
-    const radios = ['masc', 'fem', 'outro', 'prefiroN'];
-    for (const id of radios) {
-        const radio = document.getElementById(id);
-        if (radio && radio.checked) {
-            genero = id;
-            break;
+        if (selecionado) {
+            itens.forEach(item => {
+                const cont = document.getElementById(item.container);
+                if (cont) cont.style.display = (item.id === selecionado.id) ? '' : 'none';
+            });
+        } else {
+            itens.forEach(item => {
+                const cont = document.getElementById(item.container);
+                if (cont) cont.style.display = '';
+            });
         }
     }
 
-    const perfil = {
-        nome: document.getElementById('nome')?.value.trim() || '',
-        email: document.getElementById('email-acesso')?.value.trim() || '',
-        tel: document.getElementById('tele-acesso')?.value.trim() || '',
-        nasc: document.getElementById('nasc')?.value || '',
-        senha: document.getElementById('senha')?.dataset.senhaReal || '',
-        cpf: document.getElementById('cpf')?.value.trim() || '',
-        genero: genero
-    };
+    // === Foto de Perfil ===
 
-    localStorage.setItem('usuarioPerfil', JSON.stringify(perfil));
-
-    // Voltar ao modo visualização
-    aplicarModoVisualizacao();
-
-    // Feedback opcional (pode remover)
-    console.log('Perfil salvo com sucesso!');
-}
-
-
-// ================================
-// Logout
-// ================================
-
-function fazerLogout() {
-    // Exemplo básico — adapte conforme sua lógica de login
-    localStorage.removeItem('usuarioLogado'); // ou como você controla login
-    localStorage.removeItem('usuarioPerfil');
-    window.location.href = 'loginAluno.html';
-}
-
-
-const inputSenha = document.getElementById('senha');
-if (inputSenha) {
-    function atualizarTamanhoInput() {
-        const comprimentoTexto = inputSenha.value.length;
-        inputSenha.size = Math.max(6, comprimentoTexto + 1);
+    function acionarTrocaDeFoto() {
+        document.getElementById('inputFotoPerfil')?.click();
     }
-    inputSenha.addEventListener('input', atualizarTamanhoInput);
-    // Inicial
-    if (inputSenha.value === '••••••') {
-        inputSenha.size = 6;
-    } else {
-        atualizarTamanhoInput();
+
+    function mudarFotoDePerfil(event) {
+        const input = event.target;
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imgSrc = e.target.result;
+                const img = document.getElementById('imgPerfilHeader');
+                if (img) img.src = imgSrc;
+                localStorage.setItem('fotoPerfilURL', imgSrc);
+                console.log("Foto de perfil atualizada.");
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
     }
-}
 
-function mostrarPopupNovaSenha() {
-  const overlay = document.getElementById('popup-nova-senha-overlay');
-  if (overlay) {
-    overlay.style.display = 'flex';
-    // Limpar campos ao abrir
-    document.getElementById('antigaSenha').value = '';
-    document.getElementById('novaSenha').value = '';
-    document.getElementById('confirmNovaSenha').value = '';
-  }
-}
+    const inputFoto = document.getElementById('inputFotoPerfil');
+    if (inputFoto) {
+        inputFoto.addEventListener('change', mudarFotoDePerfil);
+    }
 
-function fecharPopupNovaSenha() {
-  const overlay = document.getElementById('popup-nova-senha-overlay');
-  if (overlay) {
-    overlay.style.display = 'none';
-  }
-}
+    function carregarFotoSalva() {
+        const img = document.getElementById('imgPerfilHeader');
+        const foto = localStorage.getItem('fotoPerfilURL');
+        if (img && foto) {
+            img.src = foto;
+        }
+    }
 
-function criarNovaSenhaPerfil() {
-  const antigaSenha = document.getElementById('antigaSenha').value.trim();
-  const novaSenha = document.getElementById('novaSenha').value.trim();
-  const confirmNovaSenha = document.getElementById('confirmNovaSenha').value.trim();
+    // === Popup de Senha ===
 
-  // Validação: todos os campos preenchidos
-  if (!antigaSenha || !novaSenha || !confirmNovaSenha) {
-    alert("Por favor, preencha todos os campos.");
-    return;
-  }
+    function mostrarPopupNovaSenha() {
+        const overlay = document.getElementById('popup-nova-senha-overlay');
+        if (overlay) {
+            overlay.style.display = 'flex';
+            document.getElementById('antigaSenha').value = '';
+            document.getElementById('novaSenha').value = '';
+            document.getElementById('confirmNovaSenha').value = '';
+        }
+    }
 
-  // Validação: nova senha ≠ antiga senha
-  if (novaSenha === antigaSenha) {
-    alert("A sua nova senha não pode ser igual à senha antiga!");
-    return;
-  }
+    function fecharPopupNovaSenha() {
+        const overlay = document.getElementById('popup-nova-senha-overlay');
+        if (overlay) {
+            overlay.style.display = 'none';
+        }
+    }
 
-  // Validação: confirmação coincide
-  if (novaSenha !== confirmNovaSenha) {
-    alert("A confirmação da senha não corresponde à nova senha!");
-    return;
-  }
+    function criarNovaSenhaPerfil() {
+        const antiga = document.getElementById('antigaSenha').value.trim();
+        const nova = document.getElementById('novaSenha').value.trim();
+        const confirma = document.getElementById('confirmNovaSenha').value.trim();
 
-  alert("Nova senha criada com sucesso!");
+        if (!antiga || !nova || !confirma) {
+            alert("Preencha todos os campos.");
+            return;
+        }
+        if (nova === antiga) {
+            alert("Nova senha não pode ser igual à antiga!");
+            return;
+        }
+        if (nova !== confirma) {
+            alert("Senhas não coincidem!");
+            return;
+        }
 
-  // Atualizar no localStorage
-  const dadosSalvos = localStorage.getItem('usuarioPerfil');
-  if (dadosSalvos) {
-    const usuario = JSON.parse(dadosSalvos);
-    usuario.senha = novaSenha;
-    localStorage.setItem('usuarioPerfil', JSON.stringify(usuario));
-  }
+        const ehHost = window.location.pathname.includes('perfilHost.html');
+        const chave = ehHost ? 'usuarioPerfilHost' : 'usuarioPerfil';
+        const dados = localStorage.getItem(chave);
+        if (dados) {
+            const usuario = JSON.parse(dados);
+            usuario.senha = nova;
+            localStorage.setItem(chave, JSON.stringify(usuario));
+        }
 
-  fecharPopupNovaSenha();
+        alert("Senha atualizada com sucesso!");
+        fecharPopupNovaSenha();
+    }
 }

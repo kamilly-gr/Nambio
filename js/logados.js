@@ -73,8 +73,7 @@ function acionarTrocaDeFoto() {
     document.getElementById('inputFotoPerfil').click();
 }
 
-// Função 2: Chamada automaticamente quando o usuário seleciona um arquivo
-// Você precisa adicionar um 'event listener' para isso
+// Função 2: Chamada automaticamente quando o usuário seleciona um arquivo se o input de arquivo existir na página
 const inputFoto = document.getElementById('inputFotoPerfil');
 if (inputFoto) {
     inputFoto.addEventListener('change', mudarFotoDePerfil);
@@ -95,17 +94,15 @@ function mudarFotoDePerfil(event) {
             const imgElement = document.getElementById('imgPerfilHeader');
             if (imgElement) {
                 imgElement.src = imgSrc;
-                // Adicione classes CSS se quiser estilizar a foto customizada
-                // imgElement.classList.add('foto-usuario-customizada'); 
             }
 
-            // 2. Salva a imagem (como string Base64) no localStorage para persistência
+            // 2. Salva a imagem no localStorage para persistência
             localStorage.setItem('fotoPerfilURL', imgSrc);
 
             console.log("Foto de perfil atualizada e salva no LocalStorage.");
         };
         
-        // Lê o arquivo como uma URL de dados (Base64)
+        // Lê o arquivo como uma URL de dados
         reader.readAsDataURL(input.files[0]);
     }
 }

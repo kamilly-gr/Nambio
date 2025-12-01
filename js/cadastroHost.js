@@ -145,7 +145,7 @@ function finalizarCadastroHost() {
   }
 
   // 2. Criar um objeto com os dados
-  const dadosUsuario = {
+  const dadosUsuarioHost = {
     nome: nome,
     email: email,
     tel: tel,
@@ -163,7 +163,7 @@ function finalizarCadastroHost() {
 
   // 3. Salvar o objeto no localStorage como uma string JSON
   // O localStorage só armazena strings, então precisamos serializar o objeto.
-  localStorage.setItem('usuarioPerfil', JSON.stringify(dadosUsuario));
+  localStorage.setItem('usuarioPerfil', JSON.stringify(dadosUsuarioHost));
 
   console.log('Cadastro finalizado:');
   alert('Cadastro realizado com sucesso!');

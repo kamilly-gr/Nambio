@@ -96,11 +96,50 @@
 
                     <div class="label-line-right">
                         <strong>Foto de perfil</strong>
-                        <input type="file" id="inputFotoPerfil" accept="image/png, image/jpeg, image/gif, image/svg" style="display: none;">
+                        <input type="file" id="inputFotoPerfil" accept="image/png, image/jpeg, image/gif, image/svg"
+                            style="display: none;">
                         <button class="defNovaSenha" onclick="acionarTrocaDeFoto()">Trocar foto de perfil</button>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Dados da Host Family -->
+        <div class="container-pessoais">
+            <h2>Dados da Host Family</h2>
+
+            <div class="dados-acesso">
+                <div class="acesso-left">
+                    <div class="item-acesso">
+                        <strong>Quantidade de cômodos</strong><br>
+                        <input value="4" disabled class="input-senha-perfil" id="quantComodos" />
+                    </div>
+
+                    <div class="item-acesso">
+                        <strong>Renda Familiar</strong><br>
+                        <input value="7.000" disabled class="input-senha-perfil" id="rendaFam" />
+                    </div>
+
+                    <div class="item-acesso">
+                        <strong>Tipo de Imovel</strong><br>
+                        <input value="Alugado" disabled class="input-senha-perfil" id="tipoImovel" />
+                    </div>
+
+                </div>
+
+                <div class="right-col">
+                    <div class="item-acesso">
+                        <strong>Fale Sobre Você</strong><br>
+                        <input disabled class="input-senha-perfil" id="falesobreVc" />
+                    </div>
+
+                    <div class="item-acesso">
+                        <strong>Fotos da Casa</strong><br>
+                        <input type="image" id="add-fotos-casa" />
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <!-- Dados pessoais -->
@@ -117,6 +156,11 @@
                     <div class="item-acesso">
                         <strong>Nome Completo</strong><br>
                         <input value="Matheus" disabled class="input-senha-perfil" id="nome" />
+                    </div>
+
+                    <div class="item-acesso">
+                        <strong>Estado Civil</strong><br>
+                        <input disabled class="input-senha-perfil" id="estadoCiv" />
                     </div>
 
                 </div>
