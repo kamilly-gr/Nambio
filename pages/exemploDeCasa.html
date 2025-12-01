@@ -101,7 +101,11 @@
                 <h4><Strong>Número de telefone: </Strong><span>(11)96301-1866</span></h4>
                 <h4><Strong>E-mail de contato: </Strong><span>familiaBittencourt@gmail.com</span></h4>
 
-                <button class="conhcer-familia">Quero conhecer essa Família!</button>
+                <button class="conhcer-familia" id="conhecer-familia" onclick="confirmacao()">Quero conhecer essa Família!</button>
+                <div class="confirmacao-tag" id="COnfirmacao-tag">
+                    <div class="check" ><img  src="/Nambio/assets/icons/check.svg" alt="confirmação"></div>
+                    <div class="confirmacao-text">Enviamos uma Email para essa Familia!</div>
+                </div>
                 <div class="etiquetas">
                     <p>Essa casa contém:</p>
                     <div class="lista-etiquetas">
@@ -198,19 +202,7 @@
         </div>
 
     </footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            new Splide('#image-carousel', {
-                type: 'loop',
-                perPage: 1,
-                autoplay: true,
-                interval: 3000, // 3 segundos
-                pauseOnHover: true,
-                arrows: true,
-                pagination: true,
-            }).mount();
-        });
-    </script>
+    <script src="/Nambio/js/exemploDeCasa.js"></script>
 
 </body>
 

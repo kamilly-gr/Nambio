@@ -178,3 +178,27 @@
     margin: 0;
 }
 
+
+.confirmacao-tag{
+    display: none;
+
+    margin-top: 20px;
+    align-items: center;
+    justify-content: left;
+
+}
+
+.confirmacao-tag .check{
+    width: 10%;
+    margin: 0;
+}
+
+.confirmacao-tag .check img{
+    width: 55%;
+}
+
+.confirmacao-text{
+    color: #059c05;
+    margin: 0;
+    font-weight: bold;
+}
