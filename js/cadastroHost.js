@@ -24,6 +24,8 @@ function avançarParaEndereco() {
   const addFt = document.getElementById('add-fotos-casa').value;
   const falesobreVc = document.getElementById('falesobreVc').value;
 
+
+
   if (!quantComodos || !rendaFam || !addFt || !falesobreVc) {
     alert('Preencha todos os campos obrigatórios.');
     return;
