@@ -245,9 +245,17 @@
 
             <div class="senha">
                 <label for="senha">Senha</label><br>
-                <input type="password" id="senha" placeholder="Inserir senha">
+                <input type="password" id="senha" placeholder="Inserir senha" oninput="senhaRequirements()">
                 <button type="button" aria-label="Mostrar Senha" id="botao-senha" onclick="mostrarSenha()"></button>
+
             </div>
+            <ul>
+                <li id="caracteresRN">Mínimo de 8 caracteres</li>
+                <li id="minusculaRN">Ao menos uma letra minúscula</li>
+                <li id="maiusculaRN">Ao menos uma letra maiúscula</li>
+                <li id="numeroRN">Ao menos um número</li>
+                <li id="especialRN">Ao menos um carácter especial (#$*)</li>
+            </ul>
 
             <div class="form-group">
                 <label for="confirmNovaSenha" id="confirmar-senha">Confirmar senha</label>

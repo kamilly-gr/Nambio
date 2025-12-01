@@ -193,6 +193,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const falesobreVc = document.getElementById('falesobreVc')?.value || '';
     const confirmNovaSenha = document.getElementById('confirmNovaSenha')?.value || '';
 
+    // Validação de requisitos de senha
+
+    if (!texto.length >= 8 || !texto.match(/[a-z]/) || !texto.match(/[A-Z]/) || !texto.match(/[0-9]/) || !texto.match(/[#\$%\^&\*\(\)_\+\-=\[\]\{\};':"\\|,.<>\/\?]/)) {
+      alert("A senha não atende aos requisitos mínimos.");
+      return;
+    }
+
+
     // Verifica tipo de imóvel
     let tipoImovel = '';
     if (document.getElementById('proprio')?.checked) tipoImovel = 'proprio';
@@ -238,7 +246,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     dadosUsuarioHost.fotosCasa = fotosCasaBase64; // Salva o array de fotos da casa em Base64
-    
+
     // 3. Salvar no localStorage
     localStorage.setItem('usuarioPerfilHost', JSON.stringify(dadosUsuarioHost));
 
@@ -334,5 +342,54 @@ document.addEventListener('DOMContentLoaded', function () {
       reader.readAsDataURL(file);
     });
   }
+
+
+
   console.log("cadastroHost.js inicializado com sucesso");
 });
+
+let texto = document.getElementById("senha").value;
+let caracteresRN = document.getElementById("caracteresRN");
+let minusculaRN = document.getElementById("minusculaRN");
+let maiusculaRN = document.getElementById("maiusculaRN");
+let numeroRN = document.getElementById("numeroRN");
+let especialRN = document.getElementById("especialRN");
+
+function senhaRequirements() {
+  console.log(texto.length)
+
+  if (texto.length >= 8) {
+    caracteresRN.classList.add("ativado");
+  }
+  else {
+    caracteresRN.classList.remove("ativado");
+  }
+
+  if (texto.match(/[a-z]/)) {
+    minusculaRN.classList.add("ativado");
+  }
+  else {
+    minusculaRN.classList.remove("ativado");
+  }
+
+  if (texto.match(/[A-Z]/)) {
+    maiusculaRN.classList.add("ativado");
+  }
+  else {
+    maiusculaRN.classList.remove("ativado");
+  }
+  if (texto.match(/[0-9]/)) {
+    numeroRN.classList.add("ativado");
+  }
+  else {
+    numeroRN.classList.remove("ativado");
+  }
+  if (texto.match(/[#\$%\^&\*\(\)_\+\-=\[\]\{\};':"\\|,.<>\/\?]/)) {
+    especialRN.classList.add("ativado");
+  }
+  else {
+    especialRN.classList.remove("ativado");
+
+  }
+
+}
