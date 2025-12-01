@@ -12,17 +12,6 @@ function atualizarHeaderAposCadastro() {
   localStorage.setItem('usuarioLogado', 'true');
 }
 
-// Função para atualizar o header após cadastro Host
-function atualizarHeaderAposCadastroHost() {
-  const btnLoginCadastro = document.querySelector('#botoesHeader, .botoesHeader');
-  const btnPerfil = document.querySelector('#perfil-container, .perfil-container, #btn-perfil, .btn-perfil');
-
-  if (btnPerfil) btnPerfil.style.display = 'block';
-  if (btnLoginCadastro) btnLoginCadastro.style.display = 'none';
-
-  localStorage.setItem('usuarioLogado', 'true');
-}
-
 // --- FUNÇÃO DE LOGOUT ---
 function fazerLogout() {
   // Remove a flag de login do localStorage
@@ -44,21 +33,33 @@ function verificarEstadoLogin() {
   const btnLoginCadastro = document.querySelector('#botoesHeader, .botoesHeader');
   const btnPerfil = document.querySelector('#perfil-container, .perfil-container, #btn-perfil, .btn-perfil');
 
+  const imgPerfilHeader = document.getElementById('imgPerfilHeader');
+
   if (!btnPerfil && !btnLoginCadastro) return;
 
   const estaLogado = localStorage.getItem('usuarioLogado') === 'true';
+  const fotoPerfilURL = localStorage.getItem('fotoPerfilURL'); // <-- Pega a URL salva
 
   // Mostrar/ocultar botões
   if (btnPerfil) btnPerfil.style.display = estaLogado ? 'block' : 'none';
   if (btnLoginCadastro) btnLoginCadastro.style.display = estaLogado ? 'none' : 'block';
 
-  // ➕ AJUSTAR O LINK DO PERFIL COM BASE NO TIPO DE USUÁRIO
+    // --- Lógica para carregar a foto de perfil ---
+  if (estaLogado && imgPerfilHeader && fotoPerfilURL) {
+    // Define a src da imagem como a URL salva pelo input de upload
+    imgPerfilHeader.src = fotoPerfilURL;
+    // Adiciona classes CSS para estilizar a foto
+    imgPerfilHeader.classList.remove('icone-padrao'); 
+    imgPerfilHeader.classList.add('foto-usuario-customizada');
+  }
+
+  // If que ajusta o link do perfil conforme o tipo de usuário // aluno ou host.
   if (estaLogado && btnPerfil) {
     const link = btnPerfil.querySelector('a');
     if (link) {
       const usuario = JSON.parse(localStorage.getItem('usuarioPerfil'));
       if (usuario && usuario.tipo === 'host') {
-        link.href = 'perfilHost.html';
+        link.href = 'perfilHost.html'; // padrão para host
       } else {
         link.href = 'perfil.html'; // padrão para aluno
       }
@@ -66,5 +67,49 @@ function verificarEstadoLogin() {
   }
 }
 
+// Função 1: Chamada quando o botão visível é clicado
+function acionarTrocaDeFoto() {
+    // Simula um clique no input de arquivo oculto
+    document.getElementById('inputFotoPerfil').click();
+}
+
+// Função 2: Chamada automaticamente quando o usuário seleciona um arquivo
+// Você precisa adicionar um 'event listener' para isso
+const inputFoto = document.getElementById('inputFotoPerfil');
+if (inputFoto) {
+    inputFoto.addEventListener('change', mudarFotoDePerfil);
+}
+
+
+// Função 3: A lógica principal que processa a imagem (a mesma da resposta anterior)
+function mudarFotoDePerfil(event) {
+    const input = event.target;
+    
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            const imgSrc = e.target.result;
+            
+            // 1. Atualiza a imagem no header da página atual (se o elemento existir na tela)
+            const imgElement = document.getElementById('imgPerfilHeader');
+            if (imgElement) {
+                imgElement.src = imgSrc;
+                // Adicione classes CSS se quiser estilizar a foto customizada
+                // imgElement.classList.add('foto-usuario-customizada'); 
+            }
+
+            // 2. Salva a imagem (como string Base64) no localStorage para persistência
+            localStorage.setItem('fotoPerfilURL', imgSrc);
+
+            console.log("Foto de perfil atualizada e salva no LocalStorage.");
+        };
+        
+        // Lê o arquivo como uma URL de dados (Base64)
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
 // Executa ao carregar a página para garantir que o header inicie no estado correto
 document.addEventListener('DOMContentLoaded', verificarEstadoLogin);
+

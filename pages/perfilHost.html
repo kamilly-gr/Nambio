@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nâmbio</title>
+    <link rel="icon" href="/Nambio/assets/icons/logo.svg" type="image/x-icon">
+    <link rel="stylesheet" href="/Nambio/css/global.css">
+    <script src="/Nambio/js/logados.js" defer></script>
+    <script src="/Nambio/js/perfil.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <a href="home.html">
+            <h1>
+                <img src="/Nambio/assets/icons/logoNome.svg" alt="Nâmbio">
+            </h1>
+        </a>
+
+        <div class="links">
+            <ul>
+                <li><a href="home.html">Início</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="sejaHost.html">Seja uma Host</a></li>
+                <li><a href="categorias.html">Categorias</a></li>
+                <li><a href=" contato.html">Contato</a></li>
+            </ul>
+        </div>
+
+        <div class="botoesHeader">
+            <div class="dropdownCad">
+                <button class="dropbtn cad">Cadastre-se já!</button>
+                <div class="dropdown-content">
+                    <a href="/Nambio/pages/cadastroHost.html">Cadastrar-se como Host</a>
+                    <a href="/Nambio/pages/cadastroAluno.html">Cadastrar-se como Aluno</a>
+                </div>
+            </div>
+
+            <div class="dropdownLogin">
+                <button onclick="window.location.href='loginAluno.html'" class="dropbtn login">Login</button>
+            </div>
+        </div>
+
+        <div class="perfil-container" style="display: none;">
+            <a href="perfil.html">
+                <img src="/Nambio/assets/icons/perfil.svg" alt="icone de perfil" id="imgPerfilHeader"
+                    class="icone-padrao">
+            </a>
+        </div>
+    </header>
+
+    <section class="main-container">
+        <div class="text-perfil">
+            <h1>Meu Perfil</h1>
+            <p>Acesse ou altere dados cadastrais de sua conta Nâmbio.</p>
+        </div>
+
+        <!-- Dados de acesso -->
+        <div class="container-acesso">
+            <h2>Dados de acesso</h2>
+
+            <div class="dados-acesso">
+                <!-- esquerda: email e telefone (labels + input desabilitado) -->
+                <div class="acesso-left">
+                    <div class="item-acesso">
+                        <div class="label-line">
+                            <strong>E-mail</strong>
+                            <a class="alterar" href="#" onclick="mudarEmail()">Alterar e-mail</a>
+                            <button class="icon-altera" onclick="mudarEmail()" aria-label="alterar e-mail">
+                                <img src="/Nambio/assets/icons/icone-alteração.svg" alt="">
+                            </button>
+                        </div>
+                        <input value="kamilly123@gmail.com" disabled class="input-senha-perfil" id="email-acesso" />
+                    </div>
+
+                    <div class="item-acesso">
+                        <div class="label-line">
+                            <strong>Telefone</strong>
+                            <a class="alterar" href="#" onclick="mudarTele()">Alterar telefone</a>
+                            <button class="icon-altera" onclick="mudarTele()" aria-label="alterar telefone">
+                                <img src="/Nambio/assets/icons/icone-alteração.svg" alt="">
+                            </button>
+                        </div>
+                        <input value="(11)96334-1733" maxlength="15" disabled class="input-senha-perfil"
+                            id="tele-acesso" placeholder="()_____-____" />
+                    </div>
+                </div>
+
+                <div class="acesso-right">
+                    <div class="label-line-right">
+                        <strong>Senha</strong>
+                        <button class="defNovaSenha" onclick="mostrarPopupNovaSenha()">Definir nova senha</button>
+                    </div>
+
+                    <div class="label-line-right">
+                        <strong>Foto de perfil</strong>
+                        <input type="file" id="inputFotoPerfil" accept="image/png, image/jpeg, image/gif, image/svg" style="display: none;">
+                        <button class="defNovaSenha" onclick="acionarTrocaDeFoto()">Trocar foto de perfil</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dados pessoais -->
+        <div class="container-pessoais">
+            <h2>Dados pessoais</h2>
+
+            <div class="dados-acesso">
+                <div class="acesso-left">
+                    <div class="item-acesso">
+                        <strong>CPF</strong><br>
+                        <input value="11*******22" disabled class="input-senha-perfil" id="cpf" />
+                    </div>
+
+                    <div class="item-acesso">
+                        <strong>Nome Completo</strong><br>
+                        <input value="Matheus" disabled class="input-senha-perfil" id="nome" />
+                    </div>
+
+                </div>
+
+                <div class="right-col">
+                    <div class="item-acesso">
+                        <strong>Data de nascimento</strong><br>
+                        <input type="date" value="2008-12-19" disabled class="input-senha-perfil" id="nasc" />
+                    </div>
+
+                    <div class="item-acesso">
+                        <strong>Gênero</strong><br>
+                        <div id="mascInput">
+                            <input type="radio" id="masc" name="genero" value="m" />
+                            <label for="masc">Masculino</label><br>
+                        </div>
+                        <!-- Feminino -->
+                        <div id="femInput">
+                            <input type="radio" id="fem" name="genero" value="f" />
+                            <label for="fem">Feminino</label><br>
+                        </div>
+                        <!-- Outros -->
+                        <div id="outroInput">
+                            <input type="radio" id="outro" name="genero" value="o" />
+                            <label for="outro">Outros</label><br>
+                        </div>
+                        <!-- Prefiro não informar -->
+                        <div id="prefiroNInput">
+                            <input type="radio" id="prefiroN" name="genero" value="n" />
+                            <label for="prefiroN">Prefiro não informar</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-alterar" onclick="alterarPesso()">Alterar dados pessoais</button>
+            <button class="btn-sair" onclick="fazerLogout()">Sair da minha conta</button>
+            <button class="btn-salvar-altera" onclick="salvarPerfil()">Salvar alterações</button>
+        </div>
+
+        <div id="popup-nova-senha-overlay" class="popup-overlay" style="display: none;">
+            <div class="popup-content">
+                <h3>Definir Nova Senha</h3>
+
+                <div class="form-group">
+                    <label for="antigaSenha">Senha anterior</label>
+                    <input type="password" id="antigaSenha" placeholder="Inserir senha anterior"
+                        class="input-senha-perfil">
+                </div>
+
+                <div class="form-group">
+                    <label for="novaSenha">Nova senha</label>
+                    <input type="password" id="novaSenha" placeholder="Inserir senha nova" class="input-senha-perfil">
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmNovaSenha">Confirmar senha nova</label>
+                    <input type="password" id="confirmNovaSenha" placeholder="Confirmar senha nova"
+                        class="input-senha-perfil">
+                </div>
+
+                <div class="popup-botoes">
+                    <button class="btn-sair" onclick="fecharPopupNovaSenha()">Cancelar</button>
+                    <button class="btn-salvar-altera" onclick="criarNovaSenhaPerfil()">Salvar nova senha</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="lg-footer">
+            <h1><img src="/Nambio/assets/icons/logoNome.svg" alt="Nâmbio"></h1>
+        </div>
+        <div class="conteudo-footer">
+            <div class="sobre">
+                <div class="sobreNos">
+                    <h2>Sobre nós</h2>
+                    <p>A melhor agência de Intercâmbio Nacional do Brasil, uma empresa que se preocupa
+                        inteiramente com seu futuro, estudo e educação.</p>
+                </div>
+
+                <div class="nosSigaNasRedes">
+                    <h2>Nos siga nas redes!</h2>
+                    <div class="logos-apps">
+                        <img src="/Nambio/assets/icons/instagram.svg" alt="instagram" />
+                        <img src="/Nambio/assets/icons/facebook.svg" alt="facebook" />
+                        <img src="/Nambio/assets/icons/tiktok.svg" alt="tiktok">
+                        <img src="/Nambio/assets/icons/twitter.svg" alt="twitter">
+                    </div>
+                </div>
+            </div>
+
+            <div class="informacao">
+                <h2>Acesso a informação</h2>
+                <ul>
+                    <li><a class="acesso" href="">Sobre nós</li></a>
+                    <li><a class="acesso" href="">Termos e condições</li></a>
+                    <li><a class="acesso" href="">Política de privacidade</li></a>
+                    <li><a class="acesso" href="">Suporte</li></a>
+                    <li><a class="acesso" href="">Serviços</li></a>
+                </ul>
+            </div>
+
+            <div class="novidades">
+                <h2>Quer receber novidades?</h2>
+                <p>Coloque seu email aqui, e fique por dentro de tudo que acontece na Nâmbio!</p>
+
+                <article class="novi">
+                    <input type="email" placeholder="Digite um email válido!"><br>
+                    <button>Enviar</button>
+                </article>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
