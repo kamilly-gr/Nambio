@@ -1,3 +1,40 @@
+DOMcontentLoaded = () => {
+
+  function limitarDigitos(id, maxDigits) {
+    const campo = document.getElementById(id);
+    if (!campo) return;
+
+    campo.addEventListener('input', function (e) {
+      // Remove tudo que não é número
+      let valor = e.target.value.replace(/\D/g, '');
+
+      // Limita ao número máximo de dígitos
+      if (valor.length > maxDigits) {
+        valor = valor.slice(0, maxDigits);
+      }
+
+      // Converte para número (opcional, para evitar "000123")
+      const num = valor === '' ? '' : parseInt(valor, 10);
+
+      // Atualiza o valor (mantém como string para não perder zeros à esquerda se quiser)
+      e.target.value = num === 0 && valor === '' ? '' : (num || '');
+    });
+
+    // (Opcional) Impede digitação de letras em tempo real
+    campo.addEventListener('keydown', function (e) {
+      if (e.key.length === 1 && /\D/.test(e.key) && e.key !== 'Backspace' && e.key !== 'Delete') {
+        e.preventDefault();
+      }
+    });
+  }
+
+  // Aplica limite de 2 dígitos para cômodos
+  limitarDigitos('quantComodos', 2);
+
+  // Aplica limite de 6 dígitos para renda familiar
+  limitarDigitos('rendaFam', 6);
+};
+
 function avançarParaDados() {
   const nome = document.getElementById('nome').value;
   const email = document.getElementById('email').value;
@@ -165,7 +202,7 @@ function finalizarCadastroHost() {
 
   // 3. Salvar o objeto no localStorage como uma string JSON
   // O localStorage só armazena strings, então precisamos serializar o objeto.
-  localStorage.setItem('usuarioPerfil', JSON.stringify(dadosUsuarioHost));
+  localStorage.setItem('usuarioPerfilHost', JSON.stringify(dadosUsuarioHost));
 
   console.log('Cadastro finalizado:');
   alert('Cadastro realizado com sucesso!');

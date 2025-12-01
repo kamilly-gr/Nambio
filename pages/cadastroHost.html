@@ -50,7 +50,8 @@
         </div>
 
         <div class="perfil-container" style="display: none;">
-            <a href="perfil.html"><img src="/Nambio/assets/icons/perfil.svg" alt="icone de perfil" id="imgPerfilHeader" class="icone-padrao"></a>
+            <a href="perfil.html"><img src="/Nambio/assets/icons/perfil.svg" alt="icone de perfil" id="imgPerfilHeader"
+                    class="icone-padrao"></a>
         </div>
     </header>
     <br><br><br>
@@ -58,7 +59,8 @@
     <form class="ctn" id="formCadastro">
         <div id="ctnLoginAluno1" class="ctnLoginAluno"> <!-- Parte 1 = -->
             <h1>Cadastro de Host</h1>
-            <p>Bem-vindo(a)!Complete seu cadastro para começar a usar nossos serviços. É rápido, fácil e totalmente seguro.</p>
+            <p>Bem-vindo(a)!Complete seu cadastro para começar a usar nossos serviços. É rápido, fácil e totalmente
+                seguro.</p>
 
             <h2 class="texto-aluno-cadastro">Digite seu nome completo e um e-mail válido. </h2>
 
@@ -76,16 +78,17 @@
                 <button type="button" class="btn-entrar-login" onclick="avançarParaDados()">Avançar</button>
             </div>
         </div>
-        
+
     </form>
 
     <!-- parte 2 do cadastro  -->
     <form class="ctn">
-        <div id="ctnLoginAluno2" class="ctnLoginAluno2"> 
+        <div id="ctnLoginAluno2" class="ctnLoginAluno2">
             <h1>Cadastro de Host</h1>
-            <p>Informe seu telefone, CPF, data de nascimento e estado civil. 
-                Essas informações ajudam a confirmar sua identidade e garantir que o cadastro seja realizado com segurança.</p>
-            
+            <p>Informe seu telefone, CPF, data de nascimento e estado civil.
+                Essas informações ajudam a confirmar sua identidade e garantir que o cadastro seja realizado com
+                segurança.</p>
+
             <div class="tel">
                 <label for="tel">Número de telefone</label><br>
                 <input type="tel" id="tel" maxlength="12" placeholder="(  ) _____-____">
@@ -128,27 +131,29 @@
     <form class="ctn end">
         <div id="ctnLoginAluno3" class="ctnLoginAluno3">
             <h1>Cadastro de Host</h1>
-            <p>Preencha os dados sobre sua residência e sua família. Quanto mais completo, melhor será o entendimento sobre o ambiente onde a pessoa será acolhida.</p>
+            <p>Preencha os dados sobre sua residência e sua família. Quanto mais completo, melhor será o entendimento
+                sobre o ambiente onde a pessoa será acolhida.</p>
 
             <div class="quantComodos">
-                <label for="quantComodos">Quantidades de cômodos</label><br>
-                <input type="number" id="quantComodos" min="0" max="30">
+                <label for="quantComodos">Quantidade de cômodos</label><br>
+                <input type="text" id="quantComodos" inputmode="numeric" pattern="[0-9]*" maxlength="2"
+                    placeholder="00">
             </div>
 
             <div class="rendaFam">
-                <label for="rendaFam">Renda Familiar</label><br>
-                <input type="number" id="rendaFam" placeholder="R$" minlength="0" maxlength="7">
+                <label for="rendaFam">Renda Familiar (R$)</label><br>
+                <input type="text" id="rendaFam" inputmode="numeric" pattern="[0-9]*" maxlength="6" />
             </div>
 
 
             <div class="add-fotos-casa">
                 <label for="add-fotos-casa">Adicione fotos da sua casa <i class="icon-camera-cadastro"><img
-                    src="/Nambio/assets/icons/icon-camera-cadastro.svg"
-                    alt="Camera de adicionar arquivo"></i></label>
+                            src="/Nambio/assets/icons/icon-camera-cadastro.svg"
+                            alt="Camera de adicionar arquivo"></i></label>
                 <input type="file" id="add-fotos-casa" placeholder="selecione arquivos de fotos">
             </div>
 
-                    
+
             <div class="tipoImovel">
                 <label>Tipo de Imóvel</label>
                 <div class="radios-tipoImovel">
@@ -162,11 +167,11 @@
                     </div>
                 </div>
             </div>
-                    
+
             <div class="falesobreVc">
                 <label for="falesobreVc">Conte um pouco sobre você e sua família</label>
                 <textarea name="formulario" id="falesobreVc" class="relato"
-                placeholder="Escreva aqui um pouco sobre você e sua família"></textarea>
+                    placeholder="Escreva aqui um pouco sobre você e sua família"></textarea>
             </div>
 
 
@@ -182,7 +187,8 @@
     <form class="ctn end">
         <div id="ctnLoginAluno4" class="ctnLoginAluno4">
             <h1>Cadastro de Host</h1>
-            <p>Informe seu CEP para identificarmos automaticamente seu endereço. Caso necessário, complete os demais campos para continuar.</p>
+            <p>Informe seu CEP para identificarmos automaticamente seu endereço. Caso necessário, complete os demais
+                campos para continuar.</p>
 
             <div class="cep">
                 <label for="cep">CEP</label><br>
@@ -198,7 +204,7 @@
 
             <div class="numeroCasa">
                 <label for="numeroCasa">Número</label><br>
-                <input type="number" id="numeroCasa" >
+                <input type="number" id="numeroCasa">
             </div>
 
 
@@ -231,7 +237,8 @@
     <form class="ctn end formCadastro">
         <div id="ctnLoginAluno5" class="ctnLoginAluno5">
             <h1>Cadastro de Host</h1>
-            <p>Defina uma senha forte para acessar sua conta. Utilize letras, números e símbolos para aumentar a proteção.</p>
+            <p>Defina uma senha forte para acessar sua conta. Utilize letras, números e símbolos para aumentar a
+                proteção.</p>
 
             <div class="senha">
                 <label for="senha">Senha</label><br>
@@ -241,7 +248,8 @@
 
             <div class="form-group">
                 <label for="confirmNovaSenha" id="confirmar-senha">Confirmar senha</label>
-                <input type="password" id="confirmNovaSenha" placeholder="Confirmar senha nova" class="input-senha-perfil">
+                <input type="password" id="confirmNovaSenha" placeholder="Confirmar senha nova"
+                    class="input-senha-perfil">
                 <button type="button" aria-label="Mostrar Senha" id="botao-senha2" onclick="mostrarSenha2()"></button>
             </div>
 
@@ -260,7 +268,8 @@
 
 
     <article class="link-cadastro-login">
-        <p>Já é uma host NÂMBIO? <strong><a href="/Nambio/pages/loginAluno.html">Entre agora na sua conta!</a></strong></p>
+        <p>Já é uma host NÂMBIO? <strong><a href="/Nambio/pages/loginAluno.html">Entre agora na sua conta!</a></strong>
+        </p>
     </article>
 
 

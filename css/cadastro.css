@@ -256,3 +256,11 @@
         color: white;
     }
 }
+
+.ctnLoginAluno div,
+.ctnLoginAluno2 div,
+.ctnLoginAluno3 div,
+.ctnLoginAluno4 div,
+.ctnLoginAluno5 div {
+    margin: 12px 0px;
+}
