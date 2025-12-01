@@ -44,10 +44,37 @@ function salvarPerfil() {
         perfil.tipoImovel = document.getElementById('tipoImovel')?.value.trim() || '';
         perfil.falesobreVc = document.getElementById('falesobreVc')?.value.trim() || '';
         perfil.estadoCivil = document.getElementById('estadoCiv')?.value.trim() || '';
+        
+        // Lidar com fotos da casa
+        const fotosTemp = localStorage.getItem('fotosCasaTemp');
+        const dadosExistentes = localStorage.getItem(chave);
+        let fotosExistentes = [];
+        
+        if (dadosExistentes) {
+            const usuarioExistente = JSON.parse(dadosExistentes);
+            fotosExistentes = usuarioExistente.fotosCasa || [];
+        }
+        
+        // Usar novas fotos se existirem, senão manter as existentes
+        perfil.fotosCasa = fotosTemp ? JSON.parse(fotosTemp) : fotosExistentes;
+        
+        // Limpar o armazenamento temporário
+        localStorage.removeItem('fotosCasaTemp');
     }
 
     localStorage.setItem(chave, JSON.stringify(perfil));
     aplicarModoVisualizacao();
+    
+    // Recarregar as fotos após salvar (só se for host)
+    if (ehHost) {
+        setTimeout(() => {
+            const previewContainer = document.getElementById('previewFotosCasa');
+            if (previewContainer && perfil.fotosCasa) {
+                exibirFotosCasa(perfil.fotosCasa);
+            }
+        }, 100);
+    }
+    
     console.log(`Perfil salvo em "${chave}" com sucesso!`);
 }
 
@@ -56,12 +83,12 @@ function fazerLogout() {
     localStorage.removeItem('usuarioLogado');
     localStorage.removeItem('usuarioPerfil');
     localStorage.removeItem('usuarioPerfilHost');
-    
+
     // Depois atualiza o header
     if (typeof verificarEstadoLogin === 'function') {
         verificarEstadoLogin();
     }
-    
+
     window.location.href = 'loginAluno.html';
 }
 
@@ -101,7 +128,7 @@ function criarNovaSenhaPerfil() {
     const ehHost = window.location.pathname.includes('perfilHost.html');
     const chave = ehHost ? 'usuarioPerfilHost' : 'usuarioPerfil';
     const dados = localStorage.getItem(chave);
-    
+
     if (dados) {
         const usuario = JSON.parse(dados);
         usuario.senha = nova;
@@ -113,18 +140,78 @@ function criarNovaSenhaPerfil() {
 }
 
 // ================================
-// FUNÇÕES AUXILIARES
+// NOVA FUNÇÃO GLOBAL PARA EXIBIR FOTOS DA CASA
+// ================================
+
+function exibirFotosCasa(fotosBase64) {
+    const previewContainer = document.getElementById('previewFotosCasa');
+    if (!previewContainer || !fotosBase64 || !Array.isArray(fotosBase64)) return;
+
+    previewContainer.innerHTML = '';
+    
+    if (fotosBase64.length === 0) {
+        previewContainer.innerHTML = `
+            <div style="
+                color: #666; 
+                font-style: italic; 
+                padding: 15px;
+                text-align: center;
+                width: 100%;
+                border: 1px dashed #ddd;
+                border-radius: 8px;
+                background: #f9f9f9;
+            ">Nenhuma foto cadastrada ainda</div>
+        `;
+        return;
+    }
+
+    fotosBase64.slice(0, 5).forEach((base64, index) => {
+        const imgWrapper = document.createElement('div');
+        imgWrapper.style.cssText = `
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin: 5px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border: 2px solid #e0e0e0;
+        `;
+        
+        imgWrapper.innerHTML = `
+            <img src="${base64}" 
+                alt="Foto da casa ${index + 1}" 
+                style="width: 100%; height: 100%; object-fit: cover;"
+            >
+            <div style="
+                position: absolute; 
+                bottom: 0; 
+                left: 0; 
+                right: 0; 
+                background: rgba(0,0,0,0.5); 
+                color: white; 
+                padding: 2px;
+                text-align: center;
+                font-size: 12px;
+            ">Foto ${index + 1}</div>
+        `;
+        previewContainer.appendChild(imgWrapper);
+    });
+}
+
+// ================================
+// FUNÇÕES AUXILIARES (SEM ALTERAÇÃO)
 // ================================
 
 function habilitarEdicaoIndividual(elementoId, mascaraFn = null) {
     const el = document.getElementById(elementoId);
     if (!el || !el.disabled) return;
-    
+
     el.disabled = false;
     el.readOnly = false;
     el.classList.remove('disabled');
     el.focus();
-    
+
     if (mascaraFn) {
         const handler = (e) => mascaraFn(e);
         el.addEventListener('input', handler);
@@ -136,9 +223,9 @@ function aplicarModoVisualizacao() {
     const ehHost = window.location.pathname.includes('perfilHost.html');
     const idsComuns = ['nome', 'nasc', 'cpf', 'email-acesso', 'tele-acesso', 'senha'];
     const idsHost = ['quantComodos', 'rendaFam', 'tipoImovel', 'falesobreVc', 'estadoCiv'];
-    
+
     const idsTodos = ehHost ? [...idsComuns, ...idsHost] : idsComuns;
-    
+
     // Processar campos
     idsTodos.forEach(id => {
         const campo = document.getElementById(id);
@@ -162,9 +249,9 @@ function aplicarModoEdicao() {
     const ehHost = window.location.pathname.includes('perfilHost.html');
     const idsComuns = ['nome', 'nasc', 'cpf', 'email-acesso', 'tele-acesso', 'senha'];
     const idsHost = ['quantComodos', 'rendaFam', 'tipoImovel', 'falesobreVc', 'estadoCiv'];
-    
+
     const idsTodos = ehHost ? [...idsComuns, ...idsHost] : idsComuns;
-    
+
     // Habilitar campos
     idsTodos.forEach(id => {
         const campo = document.getElementById(id);
@@ -194,11 +281,11 @@ function aplicarModoEdicao() {
 function formatarTelefone(event) {
     let input = event.target;
     let valor = input.value.replace(/\D/g, '');
-    
+
     if (valor.length > 0) valor = `(${valor}`;
     if (valor.length > 3) valor = `${valor.slice(0, 3)}) ${valor.slice(3)}`;
     if (valor.length > 10) valor = `${valor.slice(0, 10)}-${valor.slice(10, 15)}`;
-    
+
     input.value = valor;
 }
 
@@ -249,7 +336,7 @@ function verificarRadio() {
 function carregarFotoSalva() {
     const img = document.getElementById('imgPerfilHeader');
     const fotoSalva = localStorage.getItem('fotoPerfilURL');
-    
+
     if (img && fotoSalva) {
         img.src = fotoSalva;
         img.classList.remove('icone-padrao');
@@ -261,10 +348,10 @@ function carregarFotoSalva() {
 // INICIALIZAÇÃO CONDICIONAL
 // ================================
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const caminho = window.location.pathname;
     const ehPaginaPerfil = caminho.includes('perfil.html') || caminho.includes('perfilHost.html');
-    
+
     if (!ehPaginaPerfil) {
         console.log('perfil.js: não inicializado - não é página de perfil');
         return;
@@ -273,7 +360,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const ehHost = caminho.includes('perfilHost.html');
     const chave = ehHost ? 'usuarioPerfilHost' : 'usuarioPerfil';
     const dados = localStorage.getItem(chave);
-    
+
     if (dados) {
         const usuario = JSON.parse(dados);
         carregarDados(usuario, ehHost);
@@ -315,6 +402,16 @@ function carregarDados(usuario, ehHost) {
         setValor('tipoImovel', usuario.tipoImovel);
         setValor('falesobreVc', usuario.falesobreVc);
         setValor('estadoCiv', usuario.estadoCivil);
+        
+        // Exibir fotos da casa se existirem
+        if (usuario.fotosCasa && usuario.fotosCasa.length > 0) {
+            exibirFotosCasa(usuario.fotosCasa);
+        } else {
+            const previewContainer = document.getElementById('previewFotosCasa');
+            if (previewContainer) {
+                exibirFotosCasa([]); // Mostrar mensagem de "nenhuma foto"
+            }
+        }
     }
 }
 
@@ -332,7 +429,7 @@ function inicializarPagina(ehHost) {
         const atualizarTamanho = () => {
             senhaInput.size = Math.max(6, senhaInput.value.length + 1);
         };
-        
+
         senhaInput.addEventListener('input', atualizarTamanho);
         atualizarTamanho();
     }
@@ -345,8 +442,8 @@ function inicializarPagina(ehHost) {
         const limiteDigitos = (id, max) => {
             const campo = document.getElementById(id);
             if (!campo) return;
-            
-            campo.addEventListener('input', function() {
+
+            campo.addEventListener('input', function () {
                 let valor = this.value.replace(/\D/g, '');
                 if (valor.length > max) valor = valor.slice(0, max);
                 this.value = valor ? parseInt(valor, 10) : '';

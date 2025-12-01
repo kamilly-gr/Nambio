@@ -1,9 +1,9 @@
-document.addEventListener('DOMContentLoaded', function() {
-  
+document.addEventListener('DOMContentLoaded', function () {
+
   // ================================
   // LIMITADORES DE DIGITOS (mantendo sua estrutura)
   // ================================
-  
+
   function limitarDigitos(id, maxDigits) {
     const campo = document.getElementById(id);
     if (!campo) return;
@@ -37,13 +37,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Aplica limite de 6 dígitos para renda familiar
   limitarDigitos('rendaFam', 6);
-  
+
   // ================================
   // FUNÇÕES DE NAVEGAÇÃO ENTRE TELAS
   // (mantendo EXATAMENTE sua estrutura original)
   // ================================
-  
-  window.avançarParaDados = function() {
+
+  window.avançarParaDados = function () {
     const nome = document.getElementById('nome').value;
     const email = document.getElementById('email').value;
 
@@ -56,12 +56,12 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('ctnLoginAluno2').style.display = 'block';
   };
 
-  window.voltarParaEtapa1 = function() {
+  window.voltarParaEtapa1 = function () {
     document.getElementById('ctnLoginAluno1').style.display = 'block';
     document.getElementById('ctnLoginAluno2').style.display = 'none';
   };
 
-  window.avançarParaInfoHome = function() {
+  window.avançarParaInfoHome = function () {
     const tel = document.getElementById('tel').value;
     const nasc = document.getElementById('nasc').value;
     const cpf = document.getElementById('cpf').value;
@@ -75,20 +75,20 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('ctnLoginAluno3').style.display = 'block';
   };
 
-  window.voltarParaEtapa2 = function() {
+  window.voltarParaEtapa2 = function () {
     document.getElementById('ctnLoginAluno2').style.display = 'block';
     document.getElementById('ctnLoginAluno3').style.display = 'none';
   };
 
-  window.avançarParaEndereco = function() {
+  window.avançarParaEndereco = function () {
     const quantComodos = document.getElementById('quantComodos').value;
     const rendaFam = document.getElementById('rendaFam').value;
     const falesobreVc = document.getElementById('falesobreVc').value;
-    
+
     // Verifica se pelo menos um tipo de imóvel está selecionado
     const isProprioChecked = document.getElementById('proprio')?.checked;
     const isAlugadoChecked = document.getElementById('alugado')?.checked;
-    
+
     const tipoImovelSelecionado = isProprioChecked || isAlugadoChecked;
 
     if (!quantComodos || !rendaFam || !falesobreVc || !tipoImovelSelecionado) {
@@ -100,12 +100,12 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('ctnLoginAluno4').style.display = 'block';
   };
 
-  window.voltarParaEtapa3 = function() {
+  window.voltarParaEtapa3 = function () {
     document.getElementById('ctnLoginAluno3').style.display = 'block';
     document.getElementById('ctnLoginAluno4').style.display = 'none';
   };
 
-  window.avançarParaSenha = function() {
+  window.avançarParaSenha = function () {
     const logradouro = document.getElementById('logradouro')?.value;
     const bairro = document.getElementById('bairro')?.value;
     const cidade = document.getElementById('cidade')?.value;
@@ -120,15 +120,15 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('ctnLoginAluno5').style.display = 'block';
   };
 
-  window.voltarParaEtapa4 = function() {
+  window.voltarParaEtapa4 = function () {
     document.getElementById('ctnLoginAluno4').style.display = 'block';
     document.getElementById('ctnLoginAluno5').style.display = 'none';
   };
 
   // ================================
-  // BUSCA DE CEP (CORRIGIDA)
+  // BUSCA DE CEP
   // ================================
-  
+
   const cepInput = document.getElementById('cep');
   const logradouroInput = document.getElementById('logradouro');
   const bairroInput = document.getElementById('bairro');
@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const ufInput = document.getElementById('uf');
 
   if (cepInput) {
-    cepInput.addEventListener('blur', function() {
+    cepInput.addEventListener('blur', function () {
       let cep = (cepInput.value || '').toString().replace(/\D/g, '');
 
       // Limpa os campos ao sair do input
@@ -176,10 +176,10 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // ================================
-  // FINALIZAR CADASTRO (CORRIGIDA)
+  // FINALIZAR CADASTRO
   // ================================
-  
-  window.finalizarCadastroHost = function() {
+
+  window.finalizarCadastroHost = function () {
     // Obter valores com segurança
     const nome = document.getElementById('nome')?.value || '';
     const email = document.getElementById('email')?.value || '';
@@ -215,6 +215,8 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
 
+
+
     // 2. Criar um objeto com os dados
     const dadosUsuarioHost = {
       nome: nome,
@@ -235,6 +237,8 @@ document.addEventListener('DOMContentLoaded', function() {
       tipo: 'host'
     };
 
+    dadosUsuarioHost.fotosCasa = fotosCasaBase64; // Salva o array de fotos da casa em Base64
+    
     // 3. Salvar no localStorage
     localStorage.setItem('usuarioPerfilHost', JSON.stringify(dadosUsuarioHost));
 
@@ -257,8 +261,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // ================================
   // MOSTRAR/OCULTAR SENHA
   // ================================
-  
-  window.mostrarSenha = function() {
+
+  window.mostrarSenha = function () {
     const senhaInput = document.getElementById('senha');
     const botao = document.getElementById('botao-senha');
 
@@ -274,7 +278,7 @@ document.addEventListener('DOMContentLoaded', function() {
     botao.setAttribute('aria-label', isPassword ? 'Ocultar senha' : 'Mostrar senha');
   };
 
-  window.mostrarSenha2 = function() {
+  window.mostrarSenha2 = function () {
     const senhaInput = document.getElementById('confirmNovaSenha');
     const botao = document.getElementById('botao-senha2');
 
@@ -289,6 +293,46 @@ document.addEventListener('DOMContentLoaded', function() {
     botao.classList.toggle('mostrando', isPassword);
     botao.setAttribute('aria-label', isPassword ? 'Ocultar senha' : 'Mostrar senha');
   };
-  
+
+  // Variável para armazenar as fotos em Base64
+  let fotosCasaBase64 = [];
+
+  // Listener para o input de fotos
+  const inputFotos = document.getElementById('add-fotos-casa');
+  if (inputFotos) {
+    inputFotos.addEventListener('change', function (e) {
+      const files = Array.from(e.target.files);
+      processarFotos(files);
+    });
+  }
+
+  /**
+   * Processa as fotos selecionadas e converte para Base64
+   * @param {File[]} files - Arquivos selecionados pelo usuário
+   */
+  function processarFotos(files) {
+    fotosCasaBase64 = []; // Limpa fotos anteriores
+    const previewContainer = document.getElementById('previewFotosCasa');
+    if (previewContainer) previewContainer.innerHTML = '';
+
+    files.slice(0, 5).forEach(file => { // Limita a 5 fotos
+      if (!file.type.match('image.*')) return; // Ignora não-imagens
+
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        const base64 = event.target.result;
+        fotosCasaBase64.push(base64);
+
+        // Mostrar preview
+        if (previewContainer) {
+          const img = document.createElement('img');
+          img.src = base64;
+          img.alt = 'Foto da casa';
+          previewContainer.appendChild(img);
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+  }
   console.log("cadastroHost.js inicializado com sucesso");
 });

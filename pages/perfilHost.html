@@ -135,7 +135,14 @@
 
                     <div class="item-acesso">
                         <strong>Fotos da Casa</strong><br>
-                        <span style="color: var(--text-muted);">Gerenciamento disponível no app mobile</span>
+                        <div class="fotos-casa-container">
+                            <input type="file" id="add-fotos-casa" multiple accept="image/*" style="display: none;">
+                            <button type="button" id="btn-add-fotos" class="btn-add-fotos">
+                                <img src="/Nambio/assets/icons/icon-camera-cadastro.svg" alt="Adicionar fotos">
+                                <span>Ver/Adicionar fotos</span>
+                            </button>
+                            <div id="previewFotosCasa" class="preview-fotos-container"></div>
+                        </div>
                     </div>
                 </div>
             </div>

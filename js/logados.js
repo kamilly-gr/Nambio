@@ -113,3 +113,20 @@ document.addEventListener('DOMContentLoaded', function() {
     
     console.log("logados.js inicializado");
 });
+
+// Função para limpar fotos temporárias quando sair do perfil
+window.addEventListener('beforeunload', function() {
+    if (window.location.pathname.includes('perfilHost.html')) {
+        localStorage.removeItem('fotosCasaTemp');
+    }
+});
+
+// Ao carregar a página de perfil, restaurar fotos temporárias
+document.addEventListener('DOMContentLoaded', function() {
+    if (window.location.pathname.includes('perfilHost.html')) {
+        const fotosTemp = localStorage.getItem('fotosCasaTemp');
+        if (fotosTemp) {
+            exibirFotosSalvas(JSON.parse(fotosTemp)); // Reutiliza a função do perfil.js
+        }
+    }
+});

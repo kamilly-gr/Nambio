@@ -264,3 +264,16 @@
 .ctnLoginAluno5 div {
     margin: 12px 0px;
 }
+
+.preview-fotos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+.preview-fotos img {
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 4px;
+    object-fit: cover;
+}
