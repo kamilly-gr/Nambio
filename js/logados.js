@@ -75,7 +75,10 @@ function acionarTrocaDeFoto() {
 
 // Função 2: Chamada automaticamente quando o usuário seleciona um arquivo
 // Você precisa adicionar um 'event listener' para isso
-document.getElementById('inputFotoPerfil').addEventListener('change', mudarFotoDePerfil);
+const inputFoto = document.getElementById('inputFotoPerfil');
+if (inputFoto) {
+    inputFoto.addEventListener('change', mudarFotoDePerfil);
+}
 
 
 // Função 3: A lógica principal que processa a imagem (a mesma da resposta anterior)
