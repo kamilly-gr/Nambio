@@ -3,12 +3,15 @@
     justify-content: center;
 }
 
+
 .ctnLoginAluno, .ctnLoginAluno2, .ctnLoginAluno3, .ctnLoginAluno4, .ctnLoginAluno5{
     background-color: white;
     width: 35%;
     padding: 25px;
     margin: 25px;
     border-radius: 50px;
+    display: block;
+    justify-content: center;
 }
 
 .ctnLoginAluno h1, 
@@ -39,7 +42,7 @@
     background-color: #2C74Cc;
     border-radius: 50px;
     max-width: 45%;
-    margin-bottom: 15px;
+    margin: 0 auto;
 
 
 
@@ -76,7 +79,7 @@
 
     border-radius: 50px;
     max-width: 45%;
-    margin-bottom: 30px;
+    margin: 0 auto;
 
     &:hover {
         background-color: #b5b5b6;
@@ -116,7 +119,7 @@ hr {
 .aluno-login {
     text-align: center;
     padding: 15px;
-
+    
     margin-top: 15px;
 
 }
@@ -128,10 +131,11 @@ hr {
 
 }
 
-.campo-senha-alunoLogin,
-.campo-email-alunoLogin {
+.aluno-login .campo-senha-alunoLogin,
+.aluno-login .campo-email-alunoLogin {
     position: relative;
     max-width: 75%;
+    margin: 0 auto;
 }
 
 
@@ -153,10 +157,9 @@ hr {
 
 
 
-
 .lembrarSenha {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .lembraDeMim label,
@@ -228,4 +231,11 @@ hr {
 
 #confirmar-senha{
     font-weight: normal;
+}
+
+
+.ctnLoginAluno .caixa1, .ctnLoginAluno .caixa2{
+    margin: 0 auto;
+
+    
 }
