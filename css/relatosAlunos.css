@@ -36,7 +36,6 @@
     border-radius: 16px;
     overflow: hidden;
     /* Garante que a imagem não saia das bordas arredondadas */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: transform 0.3s ease;
 }
@@ -52,6 +51,7 @@
     object-fit: cover;
     /* Garante que a imagem preencha o espaço */
     display: block;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 .play-icon {
