@@ -192,11 +192,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const rendaFam = document.getElementById('rendaFam')?.value || '';
     const falesobreVc = document.getElementById('falesobreVc')?.value || '';
     const confirmNovaSenha = document.getElementById('confirmNovaSenha')?.value || '';
+    let caracteresRN = document.getElementById("caracteresRN");
+    let minusculaRN = document.getElementById("minusculaRN");
+    let maiusculaRN = document.getElementById("maiusculaRN");
+    let numeroRN = document.getElementById("numeroRN");
+    let especialRN = document.getElementById("especialRN");
 
     // Validação de requisitos de senha
 
-    if (!texto.length >= 8 || !texto.match(/[a-z]/) || !texto.match(/[A-Z]/) || !texto.match(/[0-9]/) || !texto.match(/[#\$%\^&\*\(\)_\+\-=\[\]\{\};':"\\|,.<>\/\?]/)) {
-      alert("A senha não atende aos requisitos mínimos.");
+    if (caracteresRN.classList.contains("desativado") || maiusculaRN.classList.contains("desativado") || minusculaRN.classList.contains("desativado") || numeroRN.classList.contains("desativado") || especialRN.classList.contains("desativado")) {
+      alert("A senha não atende aos requisitos de segurança. Por favor, verifique as regras.");
       return;
     }
 
@@ -348,7 +353,7 @@ document.addEventListener('DOMContentLoaded', function () {
   console.log("cadastroHost.js inicializado com sucesso");
 });
 
-let texto = document.getElementById("senha").value;
+
 let caracteresRN = document.getElementById("caracteresRN");
 let minusculaRN = document.getElementById("minusculaRN");
 let maiusculaRN = document.getElementById("maiusculaRN");
@@ -356,40 +361,51 @@ let numeroRN = document.getElementById("numeroRN");
 let especialRN = document.getElementById("especialRN");
 
 function senhaRequirements() {
-  console.log(texto.length)
+  let senha = document.getElementById("senha").value;
 
-  if (texto.length >= 8) {
+  console.log(senha.length)
+
+  if (senha.length >= 8) {
+    caracteresRN.classList.remove("desativado");
     caracteresRN.classList.add("ativado");
   }
   else {
     caracteresRN.classList.remove("ativado");
+    caracteresRN.classList.add("desativado");
   }
 
-  if (texto.match(/[a-z]/)) {
+  if (senha.match(/[a-z]/)) {
+    minusculaRN.classList.remove("desativado");
     minusculaRN.classList.add("ativado");
   }
   else {
     minusculaRN.classList.remove("ativado");
+    minusculaRN.classList.add("desativado");
   }
 
-  if (texto.match(/[A-Z]/)) {
+  if (senha.match(/[A-Z]/)) {
+    maiusculaRN.classList.remove("desativado");
     maiusculaRN.classList.add("ativado");
   }
   else {
     maiusculaRN.classList.remove("ativado");
+    maiusculaRN.classList.add("desativado");
   }
-  if (texto.match(/[0-9]/)) {
+  if (senha.match(/[0-9]/)) {
+    numeroRN.classList.remove("desativado");
     numeroRN.classList.add("ativado");
   }
   else {
     numeroRN.classList.remove("ativado");
+    numeroRN.classList.add("desativado");
   }
-  if (texto.match(/[#\$%\^&\*\(\)_\+\-=\[\]\{\};':"\\|,.<>\/\?]/)) {
+  if (senha.match(/[#\$%\^&\*\(\)_\+\-=\[\]\{\};':"\\|,.<>\/\?]/)) {
+    especialRN.classList.remove("desativado");
     especialRN.classList.add("ativado");
   }
   else {
     especialRN.classList.remove("ativado");
-
+    especialRN.classList.add("desativado");
   }
 
 }

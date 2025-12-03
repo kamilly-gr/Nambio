@@ -44,27 +44,27 @@ function salvarPerfil() {
         perfil.tipoImovel = document.getElementById('tipoImovel')?.value.trim() || '';
         perfil.falesobreVc = document.getElementById('falesobreVc')?.value.trim() || '';
         perfil.estadoCivil = document.getElementById('estadoCiv')?.value.trim() || '';
-        
+
         // Lidar com fotos da casa
         const fotosTemp = localStorage.getItem('fotosCasaTemp');
         const dadosExistentes = localStorage.getItem(chave);
         let fotosExistentes = [];
-        
+
         if (dadosExistentes) {
             const usuarioExistente = JSON.parse(dadosExistentes);
             fotosExistentes = usuarioExistente.fotosCasa || [];
         }
-        
+
         // Usar novas fotos se existirem, senão manter as existentes
         perfil.fotosCasa = fotosTemp ? JSON.parse(fotosTemp) : fotosExistentes;
-        
+
         // Limpar o armazenamento temporário
         localStorage.removeItem('fotosCasaTemp');
     }
 
     localStorage.setItem(chave, JSON.stringify(perfil));
     aplicarModoVisualizacao();
-    
+
     // Recarregar as fotos após salvar (só se for host)
     if (ehHost) {
         setTimeout(() => {
@@ -74,7 +74,7 @@ function salvarPerfil() {
             }
         }, 100);
     }
-    
+
     console.log(`Perfil salvo em "${chave}" com sucesso!`);
 }
 
@@ -148,7 +148,7 @@ function exibirFotosCasa(fotosBase64) {
     if (!previewContainer || !fotosBase64 || !Array.isArray(fotosBase64)) return;
 
     previewContainer.innerHTML = '';
-    
+
     if (fotosBase64.length === 0) {
         previewContainer.innerHTML = `
             <div style="
@@ -177,12 +177,12 @@ function exibirFotosCasa(fotosBase64) {
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             border: 2px solid #e0e0e0;
         `;
-        
+
         imgWrapper.innerHTML = `
             <img src="${base64}" 
                 alt="Foto da casa ${index + 1}" 
                 style="width: 100%; height: 100%; object-fit: cover;"
-            >
+            ><img src="/Nambio/assets/icons/trash.svg" class="trash-icon">
             <div style="
                 position: absolute; 
                 bottom: 0; 
@@ -402,7 +402,7 @@ function carregarDados(usuario, ehHost) {
         setValor('tipoImovel', usuario.tipoImovel);
         setValor('falesobreVc', usuario.falesobreVc);
         setValor('estadoCiv', usuario.estadoCivil);
-        
+
         // Exibir fotos da casa se existirem
         if (usuario.fotosCasa && usuario.fotosCasa.length > 0) {
             exibirFotosCasa(usuario.fotosCasa);
@@ -456,3 +456,90 @@ function inicializarPagina(ehHost) {
 
     console.log(`Página de perfil inicializada (${ehHost ? 'Host' : 'Aluno'})`);
 }
+
+function configurarAdicaoDeFotos() {
+    // Referências aos elementos
+    const btnAtivaInput = document.getElementById('btn-add-fotos');
+    const inputImagem = document.getElementById('add-fotos-casa-perfil');
+    const previewContainer = document.getElementById('previewFotosCasa');
+
+    // 1. Ouvinte de evento para o botão customizado abrir o input de arquivo
+    btnAtivaInput.addEventListener('click', function () {
+        inputImagem.click();
+    });
+
+    // 2. Ouvinte de evento para quando o usuário seleciona arquivos
+    inputImagem.addEventListener('change', function (event) {
+        const files = event.target.files;
+        if (files) {
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                if (file.type.startsWith('image/')) {
+                    // Passa o arquivo e o container para a função auxiliar
+                    criarPreviewDaImagem(file, previewContainer);
+                }
+            }
+        }
+        // Limpa o input para permitir selecionar o mesmo arquivo novamente, se necessário
+        inputImagem.value = '';
+    });
+}
+
+/**
+ * Cria um elemento de preview para um arquivo de imagem específico usando innerHTML.
+ * @param {File} file O objeto File da imagem.
+ * @param {HTMLElement} previewContainer A div onde o preview será inserido.
+ */
+function criarPreviewDaImagem(file, previewContainer) {
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+        const base64 = e.target.result;
+        // O índice será baseado no número atual de filhos (previews) no container
+        const index = previewContainer.children.length;
+
+        // Cria o elemento divWrapper (o container de cada foto individual)
+        const imgWrapper = document.createElement('div');
+
+        // Aplica os estilos CSS do seu exemplo diretamente via style.cssText
+        imgWrapper.style.cssText = `
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin: 5px; /* Adicionado para separar as fotos */
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border: 2px solid #e0e0e0;
+        `;
+
+        // Usa innerHTML para inserir a imagem e o rodapé usando template literals
+        imgWrapper.innerHTML = `
+            <img src="${base64}" 
+                alt="Foto da casa ${index + 1}" 
+                style="width: 100%; height: 100%; object-fit: cover;"
+                id="foto-casa-adicionada";
+            ><img src="/Nambio/assets/icons/trash.svg" class="trash-icon">
+            <div style="
+                position: absolute; 
+                bottom: 0; 
+                left: 0; 
+                right: 0; 
+                background: rgba(0,0,0,0.5); 
+                color: white; 
+                padding: 2px;
+                text-align: center;
+                font-size: 12px;
+            ">Foto ${index + 1}</div>
+        `;
+
+        // Adiciona o novo preview ao container principal
+        previewContainer.appendChild(imgWrapper);
+    };
+
+    // Lê o arquivo como URL de dados (base64)
+    reader.readAsDataURL(file);
+}
+
+// INICIALIZAÇÃO: Chame a função quando o documento estiver pronto
+document.addEventListener('DOMContentLoaded', configurarAdicaoDeFotos);

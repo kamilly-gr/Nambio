@@ -50,7 +50,8 @@
         </div>
 
         <div class="perfil-container" style="display: none;">
-            <a href="perfil.html"><img src="/Nambio/assets/icons/perfil.svg" alt="icone de perfil" id="imgPerfilHeader" class="icone-padrao"></a>
+            <a href="perfil.html"><img src="/Nambio/assets/icons/perfil.svg" alt="icone de perfil" id="imgPerfilHeader"
+                    class="icone-padrao"></a>
         </div>
     </header>
     <br><br><br>
@@ -58,9 +59,10 @@
     <form class="ctn" id="formCadastro">
         <div id="ctnLoginAluno1" class="ctnLoginAluno"> <!-- Parte 1 = -->
             <h1>Cadastro de Aluno</h1>
-            <p>Bem-vindo(a)!Complete seu cadastro para começar a usar nossos serviços. É rápido, fácil e totalmente seguro.</p>
+            <p>Bem-vindo(a)!Complete seu cadastro para começar a usar nossos serviços. É rápido, fácil e totalmente
+                seguro.</p>
 
-            
+
 
             <h2 class="texto-aluno-cadastro">Digite seu nome completo e um e-mail válido. </h2>
 
@@ -78,15 +80,16 @@
                 <button type="button" class="btn-entrar-login" onclick="avançarParaDados()">Avançar</button>
             </div>
         </div>
-        
+
     </form>
 
     <!-- parte 2 do cadastro  -->
     <form class="ctn">
-        <div id="ctnLoginAluno2" class="ctnLoginAluno2"> 
+        <div id="ctnLoginAluno2" class="ctnLoginAluno2">
             <h1>Cadastro de Aluno</h1>
-            <p>Forneça seu telefone, CPF e data de nascimento. Essas informações são importantes para garantir a segurança da sua conta e validar sua identidade.</p>
-            
+            <p>Forneça seu telefone, CPF e data de nascimento. Essas informações são importantes para garantir a
+                segurança da sua conta e validar sua identidade.</p>
+
             <div class="tel">
                 <label for="tel">Número de telefone</label><br>
                 <input type="tel" id="tel" maxlength="12" placeholder="(  ) _____-____">
@@ -114,7 +117,8 @@
     <form class="ctn end">
         <div id="ctnLoginAluno3" class="ctnLoginAluno3">
             <h1>Cadastro de Aluno</h1>
-            <p>Informe seu CEP para identificarmos automaticamente seu endereço. Caso necessário, complete os demais campos para continuar.</p>
+            <p>Informe seu CEP para identificarmos automaticamente seu endereço. Caso necessário, complete os demais
+                campos para continuar.</p>
 
             <div class="cep">
                 <label for="cep">CEP</label><br>
@@ -163,20 +167,28 @@
     <form class="ctn end formCadastro">
         <div id="ctnLoginAluno4" class="ctnLoginAluno4">
             <h1>Cadastro de Aluno</h1>
-            <p>Crie uma senha segura para acessar sua conta. Utilize letras, números e, se possível, caracteres especiais para aumentar a proteção.</p>
+            <p>Crie uma senha segura para acessar sua conta. Utilize letras, números e, se possível, caracteres
+                especiais para aumentar a proteção.</p>
 
             <div class="senha">
                 <label for="senha">Senha</label><br>
-                <input type="password" id="senha" placeholder="Inserir senha">
+                <input type="password" id="senha" placeholder="Inserir senha" oninput="senhaRequirements()">
                 <button type="button" aria-label="Mostrar Senha" id="botao-senha" onclick="mostrarSenha()"></button>
             </div>
+            <ul>
+                <li id="caracteresRN" class="desativado">Mínimo de 8 caracteres</li>
+                <li id="minusculaRN" class="desativado">Ao menos uma letra minúscula</li>
+                <li id="maiusculaRN" class="desativado">Ao menos uma letra maiúscula</li>
+                <li id="numeroRN" class="desativado">Ao menos um número</li>
+                <li id="especialRN" class="desativado">Ao menos um carácter especial (#$*)</li>
+            </ul>
 
             <div class="form-group">
-                <label for="confirmNovaSenha" id="confirmar-senha">Confirmar senha nova</label>
-                <input type="password" id="confirmNovaSenha" placeholder="Confirmar senha nova" class="input-senha-perfil">
+                <label for="confirmNovaSenha" id="confirmar-senha">Confirmar senha</label>
+                <input type="password" id="confirmNovaSenha" placeholder="Confirmar senha" class="input-senha-perfil">
                 <button type="button" aria-label="Mostrar Senha" id="botao-senha2" onclick="mostrarSenha2()"></button>
             </div>
-            
+
             <div class="btnAvancarCad">
                 <button type="button" class="btn-voltar-cad" onclick="voltarParaEtapa3()">Voltar</button>
                 <button type="button" class="btn-entrar-login" onclick="finalizarCadastro()">Cadastrar</button>
@@ -188,10 +200,11 @@
 
     </form>
 
-    
+
 
     <article class="link-cadastro-login">
-        <p>Já é um aluno NÂMBIO? <strong><a href="/Nambio/pages/loginAluno.html">Entre agora na sua conta!</a></strong></p>
+        <p>Já é um aluno NÂMBIO? <strong><a href="/Nambio/pages/loginAluno.html">Entre agora na sua conta!</a></strong>
+        </p>
     </article>
 
 
