@@ -140,13 +140,13 @@ function criarNovaSenhaPerfil() {
 }
 
 // ================================
-// NOVA FUNÇÃO GLOBAL PARA EXIBIR FOTOS DA CASA
+// FUNÇÃO ATUALIZADA: exibirFotosCasa
 // ================================
-
 function exibirFotosCasa(fotosBase64) {
     const previewContainer = document.getElementById('previewFotosCasa');
-    if (!previewContainer || !fotosBase64 || !Array.isArray(fotosBase64)) return;
+    if (!previewContainer || !Array.isArray(fotosBase64)) return;
 
+    // Limpa o container
     previewContainer.innerHTML = '';
 
     if (fotosBase64.length === 0) {
@@ -165,36 +165,27 @@ function exibirFotosCasa(fotosBase64) {
         return;
     }
 
+    // Garante que o array em memória esteja sincronizado
+    window.fotosAtuais = [...fotosBase64];
+
+    // Cria os previews
     fotosBase64.slice(0, 5).forEach((base64, index) => {
         const imgWrapper = document.createElement('div');
-        imgWrapper.style.cssText = `
-            position: relative;
-            width: 100px;
-            height: 100px;
-            margin: 5px;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            border: 2px solid #e0e0e0;
-        `;
+        imgWrapper.classList.add('image-wrapper');
+        imgWrapper.dataset.index = index; // Para identificar qual foto remover
 
         imgWrapper.innerHTML = `
             <img src="${base64}" 
-                alt="Foto da casa ${index + 1}" 
-                style="width: 100%; height: 100%; object-fit: cover;"
-            ><img src="/Nambio/assets/icons/trash.svg" class="trash-icon">
-            <div style="
-                position: absolute; 
-                bottom: 0; 
-                left: 0; 
-                right: 0; 
-                background: rgba(0,0,0,0.5); 
-                color: white; 
-                padding: 2px;
-                text-align: center;
-                font-size: 12px;
-            ">Foto ${index + 1}</div>
+                 alt="Foto da casa ${index + 1}" 
+                 class="img-casas-salva">
+            
+            <button type="button" class="trash-icon" title="Excluir foto">
+                <img src="/Nambio/assets/icons/trash.svg" alt="Excluir" style="width:16px;height:16px;">
+            </button>
+            
+            <div class="image-footer">Foto ${index + 1}</div>
         `;
+
         previewContainer.appendChild(imgWrapper);
     });
 }
@@ -403,14 +394,13 @@ function carregarDados(usuario, ehHost) {
         setValor('falesobreVc', usuario.falesobreVc);
         setValor('estadoCiv', usuario.estadoCivil);
 
-        // Exibir fotos da casa se existirem
-        if (usuario.fotosCasa && usuario.fotosCasa.length > 0) {
-            exibirFotosCasa(usuario.fotosCasa);
-        } else {
-            const previewContainer = document.getElementById('previewFotosCasa');
-            if (previewContainer) {
-                exibirFotosCasa([]); // Mostrar mensagem de "nenhuma foto"
-            }
+        // Sincroniza fotos em memória
+        window.fotosAtuais = usuario.fotosCasa || [];
+
+        // Exibe previews
+        const previewContainer = document.getElementById('previewFotosCasa');
+        if (previewContainer) {
+            exibirFotosCasa(window.fotosAtuais);
         }
     }
 }
@@ -454,6 +444,36 @@ function inicializarPagina(ehHost) {
         limiteDigitos('rendaFam', 6);
     }
 
+    // Listener único para exclusão (event delegation)
+    document.getElementById('previewFotosCasa')?.addEventListener('click', function (e) {
+        const trashBtn = e.target.closest('.trash-icon');
+        if (!trashBtn) return;
+
+        const wrapper = trashBtn.closest('.image-wrapper');
+        const index = parseInt(wrapper.dataset.index, 10);
+
+        if (window.fotosAtuais && index >= 0 && index < window.fotosAtuais.length) {
+            // Remove do array em memória
+            const removida = window.fotosAtuais.splice(index, 1)[0];
+            console.log('Foto removida:', removida);
+
+            // Atualiza índices dos wrappers seguintes
+            Array.from(wrapper.parentElement.children)
+                .filter(el => el.classList.contains('image-wrapper') &&
+                    parseInt(el.dataset.index, 10) > index)
+                .forEach(el => {
+                    el.dataset.index = parseInt(el.dataset.index, 10) - 1;
+                });
+
+            // Remove do DOM
+            wrapper.remove();
+
+            // Salva temporariamente
+            localStorage.setItem('fotosCasaTemp', JSON.stringify(window.fotosAtuais));
+            console.log('fotosCasaTemp atualizado com', window.fotosAtuais.length, 'fotos.');
+        }
+    });
+
     console.log(`Página de perfil inicializada (${ehHost ? 'Host' : 'Aluno'})`);
 }
 
@@ -490,56 +510,77 @@ function configurarAdicaoDeFotos() {
  * @param {File} file O objeto File da imagem.
  * @param {HTMLElement} previewContainer A div onde o preview será inserido.
  */
+// A função principal para criar e gerenciar previews
 function criarPreviewDaImagem(file, previewContainer) {
     const reader = new FileReader();
 
     reader.onload = function (e) {
         const base64 = e.target.result;
-        // O índice será baseado no número atual de filhos (previews) no container
         const index = previewContainer.children.length;
 
-        // Cria o elemento divWrapper (o container de cada foto individual)
+        // 1. Cria o wrapper que o CSS espera (classe image-wrapper)
         const imgWrapper = document.createElement('div');
+        imgWrapper.classList.add('image-wrapper');
 
-        // Aplica os estilos CSS do seu exemplo diretamente via style.cssText
-        imgWrapper.style.cssText = `
-            position: relative;
-            width: 100px;
-            height: 100px;
-            margin: 5px; /* Adicionado para separar as fotos */
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            border: 2px solid #e0e0e0;
-        `;
-
-        // Usa innerHTML para inserir a imagem e o rodapé usando template literals
+        // 2. Insere a imagem, o botão de lixeira e o rodapé
         imgWrapper.innerHTML = `
             <img src="${base64}" 
-                alt="Foto da casa ${index + 1}" 
-                style="width: 100%; height: 100%; object-fit: cover;"
-                id="foto-casa-adicionada";
-            ><img src="/Nambio/assets/icons/trash.svg" class="trash-icon">
-            <div style="
-                position: absolute; 
-                bottom: 0; 
-                left: 0; 
-                right: 0; 
-                background: rgba(0,0,0,0.5); 
-                color: white; 
-                padding: 2px;
-                text-align: center;
-                font-size: 12px;
-            ">Foto ${index + 1}</div>
+                 alt="Foto da casa ${index + 1}" 
+                 class="img-casas-salva">
+            
+            <button class="trash-icon" type="button" title="Excluir foto">
+                 🗑️
+            </button>
+            
+            <div class="image-footer">
+                Foto ${index + 1}
+            </div>
         `;
 
-        // Adiciona o novo preview ao container principal
+        // 3. ENCONTRA o ícone de lixeira ESPECÍFICO que acabamos de criar
+        const trashIcon = imgWrapper.querySelector('.trash-icon');
+
+        // 4. Adiciona o listener de clique AO ÍCONE DE LIXEIRA
+        trashIcon.addEventListener('click', function (event) {
+            event.stopPropagation(); // Impede outros comportamentos indesejados
+
+            // Remove o elemento pai inteiro (o imgWrapper) do DOM
+            imgWrapper.remove();
+            console.log("Imagem removida.");
+        });
+
+        // 5. Adiciona o novo preview ao container principal
         previewContainer.appendChild(imgWrapper);
     };
 
-    // Lê o arquivo como URL de dados (base64)
     reader.readAsDataURL(file);
 }
 
-// INICIALIZAÇÃO: Chame a função quando o documento estiver pronto
+
+// Função de Inicialização: Configura o input de arquivo e o botão
+function configurarAdicaoDeFotos() {
+    const fileInput = document.getElementById('add-fotos-casa-perfil'); // ID do input oculto
+    const addButton = document.getElementById('btn-add-fotos');         // ID do botão visível
+    const previewContainer = document.getElementById('previewFotosCasa');
+
+    // Quando o botão visível é clicado, disparamos o clique no input de arquivo oculto
+    addButton.addEventListener('click', function () {
+        fileInput.click();
+    });
+
+    // Listener para o evento 'change' (quando arquivos são selecionados no input oculto)
+    fileInput.addEventListener('change', function (event) {
+        const files = event.target.files;
+        if (files) {
+            // Itera sobre todos os arquivos selecionados
+            Array.from(files).forEach(file => {
+                criarPreviewDaImagem(file, previewContainer);
+            });
+            // Limpa o input para que o mesmo arquivo possa ser selecionado novamente, se necessário
+            event.target.value = '';
+        }
+    });
+}
+
+// INICIALIZAÇÃO: Chama a função de configuração quando o documento estiver pronto
 document.addEventListener('DOMContentLoaded', configurarAdicaoDeFotos);

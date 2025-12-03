@@ -391,75 +391,81 @@
     opacity: 1;
 }
 
-.preview-fotos-container {
+/* Container principal dos previews (nova classe/ID) */
+#previewFotosCasa.preview-fotos-container {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    margin-top: 10px; /* Adiciona espaço abaixo do botão */
     max-height: 200px;
     overflow-y: auto;
     padding: 5px;
     border-radius: 4px;
     background: #fcfcfc;
-    /* fundo levemente diferente do container */
 }
 
-.preview-fotos-container img {
-    max-width: 100px;
-    max-height: 100px;
+/* Wrapper intermediário que agrupa imagem, ícone e rodapé */
+.image-wrapper {
+    position: relative; /* Essencial para posicionar elementos internos */
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+
+/* Estilos para a imagem em si */
+.image-wrapper .img-casas-salva {
+    width: 100%;
+    height: 100%;
     border-radius: 8px;
     object-fit: cover;
     border: 2px solid #e0e0e0;
-    /* cinza claro */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
     transition: transform 0.2s;
-    z-index: 0;
+    display: block;
 }
 
-.preview-fotos-container img:hover {
+/* Efeito de escala na imagem quando o mouse passa sobre o WRAPPER */
+.image-wrapper:hover .img-casas-salva {
     transform: scale(1.05);
-    z-index: 7;
 }
 
-.preview-fotos-container img:hover ~ .trash-icon {
-    opacity: 1;
-    z-index: 8; 
-}
-
-/* Estilo para quando não há fotos */
-.preview-fotos-container.vazio {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100px;
-    border: 1px dashed #ddd;
-    border-radius: 8px;
-    color: #666;
-    font-style: italic;
-    text-align: center;
-    padding: 0px;
-}
-
+/* Estilo padrão do ícone de lixeira (escondido por padrão) */
 .trash-icon {
-    box-shadow: none !important;
-    border: none !important;
-    background-color: transparent !important;
     position: absolute;
-    top: 30px;
-    bottom: 30px;
-    left: 10px;
-    right: 10px;
-    background: rgba(0, 0, 0, 0.5);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 0, 0, 0.7); /* Fundo vermelho */
     color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0; /* Começa invisível */
+    cursor: pointer;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+    font-size: 16px;
+}
+
+/* Ação: Quando o mouse passa sobre o WRAPPER, o ícone aparece */
+.image-wrapper:hover .trash-icon {
+    opacity: 1;
+}
+
+/* Estilo para o rodapé da imagem (opcional) */
+.image-footer {
+    position: absolute; 
+    bottom: 0; 
+    left: 0; 
+    right: 0; 
+    background: rgba(0,0,0,0.6); 
+    color: white; 
     padding: 2px;
     text-align: center;
-    font-size: 12px;
-    width: 40px;
-    height: 40px;
-    opacity: 0;
-    pointer-events: none;
-
-    &:hover {
-        cursor: default;
-        transform: none !important;
-    }
+    font-size: 10px;
+    opacity: 0.9;
 }
