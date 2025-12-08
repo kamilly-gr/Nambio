@@ -143,7 +143,7 @@ function finalizarCadastro() {
 
   // Validação: confirmação coincide
   if (senha !== confirmNovaSenha) {
-    alert("A confirmação da senha não corresponde à nova senha!");
+    alert("A confirmação da senha não corresponde à senha criada!");
     return;
   }
 
