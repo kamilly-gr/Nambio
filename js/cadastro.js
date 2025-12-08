@@ -147,7 +147,7 @@ function finalizarCadastro() {
     return;
   }
 
-  if (caracteresRN.classList.contains("desativado") || maiusculaRN.classList.contains("desativado") || minusculaRN.classList.contains("desativado") || numeroRN.classList.contains("desativado") || especialRN.classList.contains("desativado") ) {
+  if (caracteresRN.classList.contains("desativado") || maiusculaRN.classList.contains("desativado") || minusculaRN.classList.contains("desativado") || numeroRN.classList.contains("desativado") || especialRN.classList.contains("desativado")) {
     alert("A senha não atende aos requisitos de segurança. Por favor, verifique as regras.");
     return;
   }
@@ -231,6 +231,7 @@ function senhaRequirements() {
   }
   else {
     caracteresRN.classList.remove("ativado");
+    caracteresRN.classList.add("desativado");
   }
 
   if (senha.match(/[a-z]/)) {
@@ -239,6 +240,7 @@ function senhaRequirements() {
   }
   else {
     minusculaRN.classList.remove("ativado");
+    minusculaRN.classList.add("desativado");
   }
 
   if (senha.match(/[A-Z]/)) {
@@ -247,6 +249,7 @@ function senhaRequirements() {
   }
   else {
     maiusculaRN.classList.remove("ativado");
+    maiusculaRN.classList.add("desativado");
   }
   if (senha.match(/[0-9]/)) {
     numeroRN.classList.remove("desativado");
@@ -254,6 +257,7 @@ function senhaRequirements() {
   }
   else {
     numeroRN.classList.remove("ativado");
+    numeroRN.classList.add("desativado");
   }
   if (senha.match(/[#\$%\^&\*\(\)_\+\-=\[\]\{\};':"\\|,.<>\/\?]/)) {
     especialRN.classList.remove("desativado");
@@ -261,7 +265,7 @@ function senhaRequirements() {
   }
   else {
     especialRN.classList.remove("ativado");
-
+    especialRN.classList.add("desativado");
   }
 
 }
