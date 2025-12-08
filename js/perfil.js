@@ -528,8 +528,8 @@ function criarPreviewDaImagem(file, previewContainer) {
                  alt="Foto da casa ${index + 1}" 
                  class="img-casas-salva">
             
-            <button class="trash-icon" type="button" title="Excluir foto">
-                 🗑️
+            <button type="button" class="trash-icon" title="Excluir foto">
+                <img src="/Nambio/assets/icons/trash.svg" alt="Excluir" style="width:16px;height:16px;">
             </button>
             
             <div class="image-footer">
