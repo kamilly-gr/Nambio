@@ -83,6 +83,7 @@ function fazerLogout() {
     localStorage.removeItem('usuarioLogado');
     localStorage.removeItem('usuarioPerfil');
     localStorage.removeItem('usuarioPerfilHost');
+    localStorage.removeItem('fotoPerfilURL');
 
     // Depois atualiza o header
     if (typeof verificarEstadoLogin === 'function') {
