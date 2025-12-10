@@ -222,3 +222,27 @@
     cursor: pointer;
 }
 
+.confirmacao-tag-ctt{
+    display: none;
+
+    margin-top: 20px;
+    margin-right: 40px;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.confirmacao-tag-ctt .check{
+    width: 10%;
+    margin: 0;
+}
+
+.confirmacao-tag-ctt .check img{
+    width: 55%;
+}
+
+.confirmacao-text{
+    color: #059c05;
+    margin: 0;
+    font-weight: bold;
+}
